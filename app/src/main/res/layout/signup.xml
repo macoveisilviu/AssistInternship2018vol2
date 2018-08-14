@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+
+        >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="151dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="98dp"
+            android:background="@drawable/ic_logo_teach_me"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="83dp"
+            android:background="@drawable/shape_field"
+            android:hint="first name"
+            android:inputType="textEmailAddress"
+            android:paddingStart="28dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_field"
+            android:hint="last name"
+            android:inputType="textEmailAddress"
+            android:paddingStart="28dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstName" />
+
+        <EditText
+            android:id="@+id/emailAddress"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_field"
+            android:hint="email address"
+            android:inputType="textEmailAddress"
+            android:paddingStart="28dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastName" />
+
+        <android.support.design.widget.TextInputLayout
+            app:passwordToggleEnabled="true"
+            android:paddingStart="28dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailAddress"
+            android:id="@+id/pass"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_field"
+
+
+            app:hintEnabled="false"
+            android:layout_marginBottom="20dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:background="@null"
+                android:id="@+id/etPassworddd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="......."
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorHint"
+                android:textAlignment="viewStart"
+
+                android:fontFamily="sans-serif"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>/>
+
+
+
+        <Button
+            android:id="@+id/createAccountBtn"
+            android:layout_width="280dp"
+            android:layout_height="59dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_button"
+            android:text="@string/reset_passw"
+            android:textAlignment="center"
+            android:textColor="@color/whiteText"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:paddingBottom="80dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createAccountBtn">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorHint"
+                tools:layout_editor_absoluteX="66dp"
+                tools:layout_editor_absoluteY="562dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" @string/i_agree_with_terms_and_conditions"
+
+                android:textColor="@color/whiteText" />
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

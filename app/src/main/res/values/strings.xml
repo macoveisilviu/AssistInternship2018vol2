@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">AssistTeachMe</string>
+
+    <string name="log_in">LOG IN</string>
+    <string name="forgot_password">Forgot password?\u0020<u>Reset it</u></string>
+    <string name="password">password</string>
+    <string name="email_address">email address</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="new_password">new password</string>
+    <string name="reset_pass">RESET PASSWORD</string>
+    <string name="reset_pass_btn">RESET PASS</string>
+    <string name="i_agree_with_terms_and_conditions">I agree with\u0020<u>Terms</u> and\u0020<u>Conditions</u></string>
+    <string name="reset_passw">RESET PASSWORD</string>
+    <string name="reset_password">RESET PASSWORD</string>
 </resources>

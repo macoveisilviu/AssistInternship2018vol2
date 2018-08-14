@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        tools:context=".LoginActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="151dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="118dp"
+            android:background="@drawable/ic_logo_teach_me"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/logEmail"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="105dp"
+            android:background="@drawable/shape_field"
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
+            android:paddingStart="28dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"></EditText>
+
+
+
+        <android.support.design.widget.TextInputLayout
+            app:hintEnabled="false"
+            android:id="@+id/logPass"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_field"
+            android:hint="@string/password"
+            android:inputType="textEmailAddress"
+
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logEmail"
+            app:passwordToggleEnabled="true">
+
+
+        <android.support.design.widget.TextInputEditText
+            android:background="@null"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logPasss"
+            android:hint="password"
+            android:paddingLeft="28dp"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            android:fontFamily="sans-serif"
+            android:inputType="textPassword"/>
+    </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonLog"
+            android:layout_width="280dp"
+            android:layout_height="59dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="31dp"
+            android:background="@drawable/shape_button"
+            android:text="@string/log_in"
+            android:textAlignment="center"
+            android:textColor="@color/whiteText"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logPass" />
+
+        <TextView
+            android:id="@+id/resetTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="@string/forgot_password"
+            android:textColor="@color/colorResetPass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLog" />
+
+
+        <LinearLayout
+            android:id="@+id/pl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="55dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resetTxt"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:id="@+id/no_account"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="@string/no_account"
+                android:textColor="@color/whiteText"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/signUp_btn"
+                android:layout_width="98dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/shape_button"
+                android:text="Sign up"
+                android:textAllCaps="false"
+                android:textColor="@color/whiteText"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pl">
+
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
