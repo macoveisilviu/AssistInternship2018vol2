@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".MyAccountMenu">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/activity_my_account_whitebackground"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@android:color/white" />
+
+
+            <TextView
+                android:id="@+id/activity_my_account_menu_textMY_ACCOUNT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="53dp"
+                android:text="My Account"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/activity_my_account_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/LineAWord2"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/activity_my_account_button"
+                android:layout_width="60dp"
+                android:layout_height="31dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="18dp"
+                android:background="#FF006FFF"
+                android:onClick="LogOutButton"
+                android:singleLine="true"
+
+
+                android:text="LOG OUT"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+
+                <TextView
+                    android:id="@+id/activity_my_account_information_account"
+                    android:layout_width="295dp"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="50dp"
+                    android:text="Account Informations"
+                    android:textColor="#FF06102B"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <ImageView
+                    android:id="@+id/activity_my_account_photo"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="20dp"
+
+                    android:background="@android:color/holo_blue_light" />
+
+                <TextView
+                    android:layout_width="174dp"
+                    android:layout_height="72dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="50dp"
+                    android:text="Image should have
+maximum 15 MB size."
+                    android:textColor="#FFAEB5BB"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:singleLine="true"
+                android:text="Upload file"
+                android:background="@android:color/white"
+                android:textColor="#FF006FFF"
+                android:layout_marginLeft="185dp"
+                android:layout_marginBottom="100dp"/>
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

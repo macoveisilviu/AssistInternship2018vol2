@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AssistTeachMe</string>
+    <string name="LineAWord">I agree with <u>Terms</u> and <u>Conditions</u> </string>
+    <string name="LineAWord2">"Here you can edit your account's
+
+informations, courses you started and
+
+the progress for each one.
+
+
+
+Contact us at <u>hei@alexateachme.com</u>,
+if you need any help."</string>
 </resources>
