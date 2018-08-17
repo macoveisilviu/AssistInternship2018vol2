@@ -39,12 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (validateLogin()) {
-//startActivity(new Intent(LoginActivity.this, ResetPassActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainViewActivity.class));
+                /*if (validateLogin()) {
+                    startActivity(new Intent(LoginActivity.this, MainViewActivity.class));
                 } else {
-                    //Toast.makeText(getApplicationContext(), "Invalid email address or password!", Toast.LENGTH_SHORT).show();
-                }
+                    // Toast.makeText(getApplicationContext(), "Invalid email address or password!", Toast.LENGTH_SHORT).show();
+                }*/
 
             }
         });
@@ -80,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(emailValidation) && TextUtils.isEmpty(passValidation)) {
 
-            /*email.setBackgroundResource(R.drawable.shape_error);
-            password.setBackgroundResource(R.drawable.shape_error);
+            /*email.setBackgroundResource(R.drawable.shape_btn_white);
+            password.setBackgroundResource(R.drawable.shape_btn_white);
 */
             email.setError("Enter email!");
             password.setError("Enter password!");
@@ -103,20 +103,26 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (passValidation.length() < 8 /*&& !UpperCasePatten.matcher(passValidation).find() && !specialCharPatten.matcher(passValidation).find()
-                && !lowerCasePatten.matcher(passValidation).find() && !digitCasePatten.matcher(passValidation).find()*/) {
-            password.setError("Enter valid password!");
+        if (passValidation.length() < 8) {
+            password.setError("Password should contain at least 8 characters!");
             return false;
         }
-
-        if (!TextUtils.isEmpty(emailValidation) && !TextUtils.isEmpty(passValidation) && android.util.Patterns.EMAIL_ADDRESS.matcher(emailValidation).matches()
-               /* && passValidation.length() >= 8 && UpperCasePatten.matcher(passValidation).find() && specialCharPatten.matcher(passValidation).find()
-                && lowerCasePatten.matcher(passValidation).find() && digitCasePatten.matcher(passValidation).find()*/) {
-
-
-            return true;
+        if (!specialCharPatten.matcher(passValidation).find()) {
+            password.setError("Password must have at least one special character!");
+            return false;
         }
-
+        if (!UpperCasePatten.matcher(passValidation).find()) {
+            password.setError("Password must have at least one uppercase character!");
+            return false;
+        }
+        if (!lowerCasePatten.matcher(passValidation).find()) {
+            password.setError("Password must have at least one lowercase character!");
+            return false;
+        }
+        if (!digitCasePatten.matcher(passValidation).find()) {
+            password.setError("Password must have at least one digit!");
+            return false;
+        }
 
         return true;
     }

@@ -13,4 +13,16 @@
     <string name="i_agree_with_terms_and_conditions">I agree with\u0020<u>Terms</u> and\u0020<u>Conditions</u></string>
     <string name="reset_passw">RESET PASSWORD</string>
     <string name="reset_password">RESET PASSWORD</string>
+    <string name="create_account">Create account</string>
+    <string name="alexa_teach_me_2018_all_rights_reserved"><b>Alexa Teach Me 2018.</b> All rights reserved.</string>
+    <string name="description_flower_rose">A rose is a woody perennial flowering plant of the genus Rosa, in the family Rosaceae, or the flower it bears. There are over a hundred species and thousands of cultivars.</string>
+    <string name="description_flower_carnation">Dianthus caryophyllus, the carnation or clove pink, is a species of Dianthus. It is probably native to the Mediterranean region but its exact range is unknown due to extensive cultivation for the last 2,000 years.</string>
+    <string name="title_activity_navigation">Navigation</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_about_activityy">AboutActivityy</string>
+
 </resources>

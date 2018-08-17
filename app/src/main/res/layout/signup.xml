@@ -17,25 +17,26 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="151dp"
-            android:layout_height="76dp"
-            android:layout_marginTop="98dp"
-            android:background="@drawable/ic_logo_teach_me"
+            android:layout_width="159dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/ic_logo_teach_me_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/firstName"
+            android:id="@+id/firstNameS"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="83dp"
+            android:layout_marginTop="79dp"
             android:background="@drawable/shape_field"
             android:hint="first name"
             android:inputType="textEmailAddress"
             android:paddingStart="28dp"
+            android:paddingRight="3dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
-            android:id="@+id/lastName"
+            android:id="@+id/lastNameS"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
@@ -53,14 +54,15 @@
             android:hint="last name"
             android:inputType="textEmailAddress"
             android:paddingStart="28dp"
+            android:paddingRight="3dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstName" />
+            app:layout_constraintTop_toBottomOf="@+id/firstNameS" />
 
         <EditText
-            android:id="@+id/emailAddress"
+            android:id="@+id/emailAddressS"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
@@ -70,21 +72,23 @@
             android:hint="email address"
             android:inputType="textEmailAddress"
             android:paddingStart="28dp"
+            android:paddingRight="3dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastName" />
+            app:layout_constraintTop_toBottomOf="@+id/lastNameS" />
 
         <android.support.design.widget.TextInputLayout
             app:passwordToggleEnabled="true"
             android:paddingStart="28dp"
+            android:paddingRight="3dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddress"
-            android:id="@+id/pass"
+            app:layout_constraintTop_toBottomOf="@+id/emailAddressS"
+            android:id="@+id/passS"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
@@ -97,17 +101,17 @@
             android:layout_marginBottom="20dp">
 
             <android.support.design.widget.TextInputEditText
-                android:background="@null"
-                android:id="@+id/etPassworddd"
+                android:id="@+id/etPasswordddS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="sans-serif"
                 android:hint="......."
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/colorHint"
+                android:inputType="textPassword"
                 android:textAlignment="viewStart"
 
-                android:fontFamily="sans-serif"
-                android:inputType="textPassword"/>
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorHint" />
         </android.support.design.widget.TextInputLayout>/>
 
 
@@ -121,13 +125,13 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_button"
-            android:text="@string/reset_passw"
+            android:text="@string/create_account"
             android:textAlignment="center"
             android:textColor="@color/whiteText"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pass" />
+            app:layout_constraintTop_toBottomOf="@+id/passS" />
 
         <LinearLayout
             android:layout_width="wrap_content"
