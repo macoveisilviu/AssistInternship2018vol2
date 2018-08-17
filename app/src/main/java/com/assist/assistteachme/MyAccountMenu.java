@@ -1,5 +1,6 @@
 package com.assist.assistteachme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ public class MyAccountMenu extends AppCompatActivity {
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.register_activity);
+                startActivity(new Intent(MyAccountMenu.this, LoginScreenActivity.class));
             }
         });
     }

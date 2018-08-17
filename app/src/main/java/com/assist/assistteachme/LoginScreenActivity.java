@@ -11,6 +11,7 @@ import android.widget.EditText;
 public class LoginScreenActivity extends AppCompatActivity {
 
     Button loginButon ;
+    Button createAccount;
     EditText emailEditText ;
     EditText passwordEditText ;
 
@@ -20,6 +21,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
 
         loginButon= findViewById(R.id.loginButton);
+        createAccount= findViewById(R.id.createAccountButton);
         emailEditText =(EditText) findViewById(R.id.emailEditText);
         passwordEditText =(EditText) findViewById(R.id.passwordEditText);
 
@@ -30,8 +32,19 @@ public class LoginScreenActivity extends AppCompatActivity {
             if(fieldsAreValid()) {
                 startActivity(new Intent(LoginScreenActivity.this, SecondActivity.class));
             }
+
         }
     });
+
+    createAccount.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(LoginScreenActivity.this, RegisterActivity.class));
+
+        }
+    });
+
+
 
 }
 

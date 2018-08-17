@@ -1,6 +1,7 @@
 package com.assist.assistteachme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -58,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 {
 
-                    setContentView(R.layout.activity_main);
+                    startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
 
 
                 } else {

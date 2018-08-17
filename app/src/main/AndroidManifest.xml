@@ -10,20 +10,20 @@
         android:supportsRtl="true"
 
         android:theme="@style/AppTheme">
+
         <activity android:name=".MyAccountMenu"/>
 
-        <activity android:name=".MainViewActivity">
+        <activity android:name="LoginScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MyAccountMenu"/>
+        <activity android:name=".MainViewActivity"/>
         <activity android:name=".SecondActivity" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".LoginScreenActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
 
     </application>
 
