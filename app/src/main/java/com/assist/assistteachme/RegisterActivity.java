@@ -108,8 +108,8 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if (passworD.length() < 4 || passworD.length() > 16) {
-            passworD.setError("MINIMUM 4 characters and MAXIMUM 16 characters!");
+        if (passworD.length() < 8 || passworD.length() > 100) {
+            passworD.setError("MINIMUM 8 characters and MAXIMUM 100 characters!");
             return false;
         }
 
