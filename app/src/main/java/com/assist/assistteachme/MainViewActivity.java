@@ -13,19 +13,19 @@ import android.view.MenuItem;
 
 public class MainViewActivity extends AppCompatActivity {
 
-    /*private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToogle;*/
+    //private DrawerLayout mDrawerLayout;
+    //private ActionBarDrawerToggle mToogle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_view);
-       /* mDrawerLayout=findViewById(R.id.navigation_drawer);
-        mToogle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open,R.string.close);
-        mDrawerLayout.addDrawerListener(mToogle);
-        mToogle.syncState();*/
-        //if(getSupportActionBar()!=null)
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.drawer_layout);
+       // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        //mDrawerLayout=findViewById(R.id.navigation_drawer);
+        //mToogle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open,R.string.close);
+       //mDrawerLayout.addDrawerListener(mToogle);
+       //mToogle.syncState();
+
     }
 
 

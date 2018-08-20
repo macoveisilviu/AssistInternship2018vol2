@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AssistTeachMe</string>
+    <string name="app_name"> </string>
 
     <string name="LineAWord">I agree with <u>Terms</u> and <u>Conditions</u> </string>
     <string name="LineAWord2">"Here you can edit your account's
@@ -21,5 +21,12 @@ if you need any help."</string>
     <string name="finnance"><b>FINNANCE</b></string>
     <string name="grammar"><b>GRAMMAR</b></string>
     <string name="jokes"><b>JOKES</b></string>
+    <string name="title_activity_drawer_test">DrawerTestActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

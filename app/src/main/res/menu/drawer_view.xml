@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/courses"
-            android:title="Courses"
-            />
-        <item
-            android:id="@+id/whatsNew"
-            android:title="What's new" />
-        <item
-            android:id="@+id/about"
-            android:title="About" />
-    </group>
+    <item
+        android:id="@+id/courses"
+        android:title="Courses" />
+    <item
+        android:id="@+id/whatsNew"
+        android:title="What's new" />
+    <item
+        android:id="@+id/about"
+        android:title="About" />
 
 </menu>
