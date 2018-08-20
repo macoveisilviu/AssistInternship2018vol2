@@ -26,10 +26,6 @@ public class FinishCourseScreenActivity extends AppCompatActivity {
         });
     }
 
-
-
-
-
 }
 
 

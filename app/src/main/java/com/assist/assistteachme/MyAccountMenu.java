@@ -48,7 +48,6 @@ public class MyAccountMenu extends AppCompatActivity {
         });
     }
 
-
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);

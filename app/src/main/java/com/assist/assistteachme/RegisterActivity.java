@@ -25,12 +25,10 @@ public class RegisterActivity extends AppCompatActivity {
     EditText emaiL;
     EditText passworD;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
-
         checkbox = findViewById(R.id.EditCheckbox);
         registerbutton = findViewById(R.id.registerActivity_editButton);
         context = getApplicationContext();
@@ -53,19 +51,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //OnCheckBoxClicked();
 
-
                 if (FieldsAreValid() && checkbox.isChecked())
 
-
                 {
-
                     startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
-
 
                 } else {
                     Toast.makeText(context, "Invalid", Toast.LENGTH_LONG).show();
                 }
-
 
             }
         });
@@ -112,11 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
             passworD.setError("MINIMUM 8 characters and MAXIMUM 100 characters!");
             return false;
         }
-
-
-
-
-
 
         return true;
     }

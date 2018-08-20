@@ -1,9 +1,10 @@
 package com.assist.assistteachme;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,20 +16,49 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-public class DrawerTestActivity extends AppCompatActivity
+import com.assist.assistteachme.Adapters.RecycleViewAdapterS;
+import com.assist.assistteachme.Models.CourseDetails;
+
+import java.util.ArrayList;
+
+public class BrowseThroughCourses extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     Button backButon;
     Button openButton;
     NavigationView nav;
 
+    //pentru recycle view
+    private RecyclerView recyclerView;
+    private RecycleViewAdapterS adapterS;
+
+    private ArrayList<CourseDetails> listCourseDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer_test);
-        nav = findViewById(R.id.nav_view);
+        setContentView(R.layout.activity_browse_through_courses);
+
+        //recycle view
+
+        recyclerView = findViewById(R.id.recycler_v);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listCourseDetails= new ArrayList<>();
+
+        populateWithDummyData();
+
+
+
+        //recycler view closed
+
+        adapterS = new RecycleViewAdapterS(listCourseDetails, this);
+        recyclerView.setAdapter(adapterS);
+
+        nav=findViewById(R.id.nav_view);
 
         backButon = findViewById(R.id.backButton);
         openButton = findViewById(R.id.openButton);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +70,7 @@ public class DrawerTestActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         backButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +99,7 @@ public class DrawerTestActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.drawer_test, menu);
+        getMenuInflater().inflate(R.menu.browse_through_courses, menu);
         return true;
     }
 
@@ -93,7 +124,7 @@ public class DrawerTestActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-       /* if (id == R.id.nav_camera) {
+        if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -105,10 +136,17 @@ public class DrawerTestActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void populateWithDummyData(){
+        for(int i=0; i<6; i++){
+            CourseDetails s= new CourseDetails("title"+i, "subtitle", "category");
+            listCourseDetails.add(s);
+        }
     }
 }

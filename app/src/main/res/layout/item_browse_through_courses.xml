@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/grey_round_corners"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:id="@+id/parent_layout">
+
+
+    <ImageView
+        android:id="@+id/course_photo"
+        android:layout_width="match_parent"
+        android:layout_height="238dp"
+        android:src="@drawable/itemphoto"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/course_textt"
+        android:layout_width="264dp"
+        android:layout_height="41dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/course_photo"
+        android:layout_marginTop="16dp"
+        android:text="Internet Banner Advertising Most Reliable \nForms of Web Advertising"
+        android:textColor="#FF06102B"
+        android:fontFamily="@font/roboco_font"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textAlignment="center" />
+    
+    <TextView
+        android:id="@+id/course_secondtextt"
+        android:layout_width="264dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/course_textt"
+        android:layout_marginTop="8dp"
+
+        android:text="qwdqsldk qsdlkqsdl sqdklqsdk dqksldk \nqdsqsdjqsdj qsdqsjd dqsj dqsj \n sqdjqsdj dqsj d fwfdw  jsqhd  dqshj qs"
+        android:textColor="#FFAEB5BB"
+        android:fontFamily="@font/roboco_font"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/finance_gradient"
+        android:layout_width="48dp"
+        android:layout_height="11dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="52dp"
+        android:layout_below="@+id/course_secondtextt"
+        android:background="@drawable/gradient_finnance_round_corners"
+        android:textSize="8sp"
+        android:fontFamily="@font/roboco_font"
+        android:textAlignment="center"
+        android:text="FINANCE"/>
+    
+    <ImageView
+        android:id="@+id/photo_clock"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/ic_icon_clock"
+        android:layout_below="@id/course_secondtextt"
+        android:layout_toRightOf="@+id/finance_gradient"
+        android:layout_marginLeft="19dp"
+       />
+    
+    <TextView
+        android:id="@+id/text_next_iconclock"
+        android:layout_width="36dp"
+        android:layout_height="9dp"
+        android:text="2h course"
+        android:textSize="8sp"
+        android:fontFamily="@font/roboco_font"
+        android:layout_below="@id/course_secondtextt"
+        android:layout_toRightOf="@+id/photo_clock"
+        android:layout_marginLeft="23dp"
+       />
+    
+
+</RelativeLayout>
