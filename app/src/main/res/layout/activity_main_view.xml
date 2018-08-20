@@ -1,94 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
-    tools:context=".MainViewActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-
-    <ScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include layout="@layout/top_bar_layout"
-                android:id="@+id/topimage"/>
+
+            <include
+                android:id="@+id/topimage"
+                layout="@layout/top_bar_layout"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_width="0dp"
+                android:layout_height="100dp"/>
+
             <TextView
-                android:layout_height="68dp"
-                android:layout_width="304dp"
                 android:id="@+id/first"
+                android:layout_width="304dp"
+                android:layout_height="68dp"
                 android:layout_below="@id/topimage"
-                android:layout_marginTop="51dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="@string/browse"
-                android:fontFamily="sans-serif"
-                android:textSize="24sp"
-                android:textColor="#FFFFFFFF"/>
+                android:textColor="#FFFFFFFF"
+                android:textSize="24sp" />
+
             <TextView
-                android:layout_height="50dp"
-                android:layout_width="185dp"
                 android:id="@+id/second"
+                android:layout_width="185dp"
+                android:layout_height="50dp"
                 android:layout_below="@id/first"
-                android:fontFamily="sans-serif"
-                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="Pick the one you like and start learning"
-                android:textSize="18sp"
-                android:textColor="#FFD1D5D8"/>
+                android:textColor="#FFD1D5D8"
+                android:textSize="18sp" />
+
             <EditText
-                android:layout_height="42dp"
-                android:layout_width="295dp"
-                android:layout_centerHorizontal="true"
                 android:id="@+id/searchEditText"
-                android:fontFamily="sans-serif"
-                android:background="@drawable/white_round_corners"
-                android:layout_below="@id/second"
-                android:layout_marginTop="51dp"
-                android:hint="search..."
-                android:textSize="18sp"
-                android:textColor="#FFAEB5BB"
-                android:paddingLeft="20dp"/>
-            <Button
-                android:layout_height="42dp"
                 android:layout_width="295dp"
+                android:layout_height="42dp"
+                android:layout_below="@id/second"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:background="@drawable/white_round_corners"
+                android:fontFamily="sans-serif"
+                android:hint="search..."
+                android:paddingLeft="20dp"
+                android:textColor="#FFAEB5BB"
+                android:textSize="18sp" />
+
+            <Button
                 android:id="@+id/searchButton"
+                android:layout_width="295dp"
+                android:layout_height="42dp"
                 android:layout_below="@id/searchEditText"
-                android:background="@drawable/blue_round_corners"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/blue_round_corners"
+                android:fontFamily="@font/roboco_font"
                 android:text="SEARCH"
                 android:textColor="#FFF7F7F7"
-                android:textSize="18sp"
-                android:fontFamily="@font/roboco_font"/>
+                android:textSize="18sp" />
+
+
             <RelativeLayout
+                android:id="@+id/buttonsl"
+                android:layout_width="match_parent"
+                android:layout_height="460dp"
                 android:layout_below="@id/searchButton"
                 android:layout_marginTop="46dp"
-                android:layout_width="match_parent"
-                android:id="@+id/buttonsl"
-                android:layout_height="460dp"
                 android:background="#FFFFFFFF">
+
                 <LinearLayout
+                    android:id="@+id/firstl"
                     android:layout_width="wrap_content"
                     android:layout_height="144dp"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/firstl"
                     android:layout_marginTop="55dp">
-                <Button
-                    android:layout_height="144dp"
-                    android:id="@+id/astrologyButton"
-                    android:layout_width="145dp"
-                    android:background="@drawable/gradient_astrology_round_corners"
-                    android:text="@string/astrology"
-                    android:fontFamily="sans-serif"
-                    android:textSize="18sp"
-                    android:textColor="#FFFFFFFF"/>
+
+                    <Button
+                        android:id="@+id/astrologyButton"
+                        android:layout_width="145dp"
+                        android:layout_height="144dp"
+                        android:background="@drawable/gradient_astrology_round_corners"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/astrology"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/finnanceButton"
@@ -101,23 +111,25 @@
                         android:textColor="#FFFFFFFF"
                         android:textSize="18sp" />
                 </LinearLayout>
+
                 <LinearLayout
+                    android:id="@+id/secondl"
                     android:layout_width="wrap_content"
                     android:layout_height="144dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/firstl"
-                    android:id="@+id/secondl"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="4dp">
-                <Button
-                    android:layout_height="144dp"
-                    android:id="@+id/grammarButton"
-                    android:layout_width="145dp"
-                    android:layout_weight="1.0"
-                    android:text="@string/grammar"
-                    android:fontFamily="sans-serif"
-                    android:textSize="18sp"
-                    android:textColor="#FFFFFFFF"
-                    android:background="@drawable/gradient_finnance_round_corners"/>
+
+                    <Button
+                        android:id="@+id/grammarButton"
+                        android:layout_width="145dp"
+                        android:layout_height="144dp"
+                        android:layout_weight="1.0"
+                        android:background="@drawable/gradient_finnance_round_corners"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/grammar"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/jokesButton"
@@ -125,13 +137,14 @@
                         android:layout_height="144dp"
                         android:layout_marginLeft="4dp"
                         android:layout_weight="1.0"
+                        android:background="@drawable/gradient_astrology_round_corners"
                         android:fontFamily="sans-serif"
                         android:text="@string/jokes"
                         android:textColor="#FFFFFFFF"
-                        android:textSize="18sp"
-                        android:background="@drawable/gradient_astrology_round_corners"/>
+                        android:textSize="18sp" />
                 </LinearLayout>
-                </RelativeLayout>
+            </RelativeLayout>
+
             <Button
                 android:layout_width="140dp"
                 android:layout_height="33dp"
@@ -139,10 +152,28 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="422dp"
                 android:background="@drawable/simple_round_blue_corners"
+                android:text="discover more"
+                android:textColor="#FF006FFF" />
 
-                />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_below="@id/buttonsl"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="223dp"
+                    android:layout_height="29dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Alexa Teach Me 2018. All rights reserved."
+                    android:textColor="#FFAEB5BB"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
         </RelativeLayout>
-    <!--<include layout="@layout/drawer_layout" />-->
 
     </ScrollView>
-</RelativeLayout>
+

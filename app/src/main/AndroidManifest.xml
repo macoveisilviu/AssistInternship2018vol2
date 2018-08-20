@@ -9,23 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinishCourseScreenActivity" />
-
-        <activity android:name=".LoginScreenActivity">
-
+        <activity android:name=".MyAccountMenu" />
+        <activity android:name=".DrawerTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainViewActivity" />
+        <activity android:name=".LoginScreenActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MyAccountMenu">
-
-        </activity>
+        <activity
+            android:name=".MainViewActivity"
+            android:label="@string/title_activity_drawer_test"
+            android:theme="@style/AppTheme"></activity>
     </application>
+
 
 </manifest>
