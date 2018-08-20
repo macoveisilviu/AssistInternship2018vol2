@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MyAccountMenu" />
-        <activity android:name=".DrawerTestActivity">
+        <activity android:name=".CourseDetailScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,15 @@
         <activity
             android:name=".MainViewActivity"
             android:label="@string/title_activity_drawer_test"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DrawerTestActivity"
+            android:label="@string/title_activity_course_detail_screen"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ChapterScreenActivity"
+            android:label="@string/title_activity_chapter_screen"
             android:theme="@style/AppTheme"></activity>
     </application>
-
 
 </manifest>

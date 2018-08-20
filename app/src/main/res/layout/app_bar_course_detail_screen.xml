@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CourseDetailScreenActivity">
+
+        <include
+            android:id="@+id/topimage"
+            layout="@layout/top_bar_layout"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <RelativeLayout
+            android:id="@+id/reletiveLayout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/topimage"
+            android:background="@drawable/background">
+
+            <TextView
+                android:id="@+id/categoryTextView"
+                android:layout_width="100dp"
+                android:layout_height="26dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="61dp"
+                android:background="@drawable/gradient_finnance_round_corners"
+                android:fontFamily="sans-serif"
+                android:text="FINNANCE"
+                android:textAlignment="center"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/middleTextView"
+                android:layout_width="329dp"
+                android:layout_height="114dp"
+                android:layout_below="@+id/categoryTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:fontFamily="sans-serif"
+                android:text="Internet Banner Advertising Most Reliable Forms Of Web Advertising"
+                android:textAlignment="center"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="272dp"
+                android:layout_height="75dp"
+                android:layout_below="@+id/middleTextView"
+                android:layout_centerHorizontal="true"
+                android:text="There is a lot of exciting stuff going on inthe stars above us that make astronomy so much fun"
+                android:textAlignment="center"
+                android:textColor="#FFD1D5D8"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/reletiveLayout"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/recycleView">
+
+            <Button
+                android:id="@+id/seeMoreButton"
+                android:layout_marginTop="26dp"
+                android:layout_width="198dp"
+                android:layout_height="29dp"
+                android:text="see the full curiculum"
+                android:textColor="#FF006FFF"
+                android:fontFamily="sans-serif"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/simple_round_blue_corners"/>
+
+            <TextView
+                android:layout_marginTop="107dp"
+                android:layout_below="@+id/seeMoreButton"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:layout_width="223dp"
+                android:layout_height="29dp"
+                android:fontFamily="sans-serif"
+                android:text="Alexa Teach Me 2018. All rights reserved."
+                android:textColor="#FFAEB5BB"
+                android:textSize="12sp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

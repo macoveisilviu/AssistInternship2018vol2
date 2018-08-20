@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ChapterScreenActivity">
+
+        <include
+            android:id="@+id/topimage"
+            layout="@layout/top_bar_layout"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+        <RelativeLayout
+            android:layout_below="@+id/topimage"
+            android:id="@+id/ryvw"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:background="@drawable/background">
+            <TextView
+                android:id="@+id/chapterTextView"
+                android:layout_width="99dp"
+                android:layout_height="21dp"
+                android:textSize="18sp"
+                android:textColor="#FFD1D5D8"
+                android:text="@string/chapter"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="125dp"
+                />
+            <TextView
+                android:layout_below="@+id/chapterTextView"
+                android:layout_width="329dp"
+                android:layout_height="76dp"
+                android:textColor="#FFFFFFFF"
+                android:text="@string/secondText"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp"
+                android:layout_marginTop="4dp"
+                />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ryvw">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+</ScrollView>
