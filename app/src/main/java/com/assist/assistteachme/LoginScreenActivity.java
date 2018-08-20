@@ -30,7 +30,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             if(fieldsAreValid()) {
-                startActivity(new Intent(LoginScreenActivity.this, SecondActivity.class));
+                startActivity(new Intent(LoginScreenActivity.this, MainViewActivity.class));
             }
 
         }

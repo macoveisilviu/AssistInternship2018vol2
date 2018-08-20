@@ -18,11 +18,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/activity_my_account_whitebackground"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/white" />
+        <include layout="@layout/top_bar_layout"/>
 
 
 
@@ -200,6 +196,22 @@ maximum 15 MB size."
                 android:text="Cancel"
                 android:background="@drawable/simple_round_corners"
                 />
+            
+            <EditText
+                android:id="@+id/blue_bar"
+                android:layout_width="295dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="47dp"
+                android:background="#FFE8E8E8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_cancel_button"
+
+
+
+                />
+            
+            
 
 
             
