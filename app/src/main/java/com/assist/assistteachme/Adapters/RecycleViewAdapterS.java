@@ -60,10 +60,7 @@ public class RecycleViewAdapterS extends RecyclerView.Adapter<RecycleViewAdapter
             }
         });
 
-
-
-
-    }
+        }
 
     @Override
     public int getItemCount() {

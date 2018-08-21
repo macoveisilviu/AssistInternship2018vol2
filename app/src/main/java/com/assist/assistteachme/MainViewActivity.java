@@ -20,7 +20,7 @@ public class MainViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_layout);
+        setContentView(R.layout.activity_main_view);
        // setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         //mDrawerLayout=findViewById(R.id.navigation_drawer);
         //mToogle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open,R.string.close);

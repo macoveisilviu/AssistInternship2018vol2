@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relativeLayoutRecycle">
+
+    <TextView
+        android:id="@+id/firstTextView"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:text="@string/chapter"
+        android:textColor="#FF006FFF"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/secondTextView"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstTextView"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:text="@string/secondText"
+        android:textColor="#FF06102B"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/thirdTextView"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/secondTextView"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:text="bla bala blabla bala blabla\n asd asdbasd \n asdasjdasdasdjakfjkjfakdjfkajf laksfa alsfasasd jasdkjasdasdasjdaskdjha    asdhaksjdhkajsd akjsdhvkkjasbc aksjc asa ckajsfb kjb aksjda v has ckaj akjs k jhkjsd kvjhaslkajfoivhkjas a casd ashd akjsd asjdha asnd akjsd askdna akjdh adkjasd k   aksjdh asdkjh  kjhs kjahkjas ash ajsdhkajc kajshd kjahsd kash aksj."
+        android:textColor="#FFAEB5BB"
+        android:textSize="14sp" />
+    <Button
+        android:id="@+id/startButton"
+        android:layout_marginTop="7dp"
+        android:layout_height="29dp"
+        android:layout_width="295dp"
+        android:layout_below="@id/thirdTextView"
+        android:layout_centerHorizontal="true"
+        android:text="start"
+        android:textSize="18sp"
+        android:textColor="#FFF7F7F7"
+        android:background="@drawable/blue_round_corners"/>
+</RelativeLayout>

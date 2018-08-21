@@ -28,7 +28,16 @@ if you need any help."</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
     <string name="title_activity_browse_through_courses">BrowseThroughCourses</string>
+
+    <string name="title_activity_course_detail_screen">CourseDetailScreenActivity</string>
+    <string name="chapter"><b>CHAPTER I</b>></string>
+    <string name="secondText"><b>Welcome To Desclassifieds Free Classifieds Free Adds</b></string>
+    <string name="title_activity_chapter_screen">ChapterScreenActivity</string>
+    <string name="title_activity_actvity_finish_course_drawer">ActvityFinishCourseDrawer</string>
+    <string name="title_activity_my_account_menu_drawer">MyAccountMenuDrawer</string>
+
 
 </resources>
 

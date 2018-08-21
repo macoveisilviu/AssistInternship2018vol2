@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+
+    tools:context=".MyAccountMenuDrawer">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+
+        >
+
+        <include
+            android:id="@+id/topimage"
+            layout="@layout/top_bar_layout"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/activity_my_account_menu_textMY_ACCOUNT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Account"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="32dp"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/topimage"/>
+
+        <TextView
+            android:id="@+id/activity_my_account_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="32dp"
+            android:text="@string/LineAWord2"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_below="@id/activity_my_account_menu_textMY_ACCOUNT"/>
+
+        <Button
+            android:id="@+id/activity_my_account_button"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/simple_round_blue_solid_corners"
+            android:onClick="LogOutButton"
+            android:singleLine="true"
+            android:text="LOG OUT"
+            android:textColor="#FFFFFF"
+            android:layout_below="@id/activity_my_account_information"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/activity_my_account_button"
+            android:background="#FFEFF1F4">
+
+            <TextView
+                android:id="@+id/activity_my_account_information_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="50dp"
+                android:layout_below="@id/activity_my_account_button"
+                android:text="Account Informations"
+                android:textColor="#FF06102B"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/activity_my_account_photo"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/activity_my_account_information_account"
+                android:src ="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="72dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="50dp"
+                android:layout_below="@id/activity_my_account_information_account"
+                android:text="Image should have
+maximum 15 MB size."
+                android:textColor="#FFAEB5BB"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/upload_button"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:singleLine="true"
+                android:text="Upload file"
+                android:layout_below="@id/activity_my_account_photo"
+                android:background="@drawable/simple_round_blue_corners"
+                android:textColor="#FF006FFF"
+                android:layout_marginLeft="185dp"
+                android:layout_marginBottom="100dp"/>
+
+            <TextView
+                android:id="@+id/accout_menu_username"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="Username"
+                android:background="@drawable/grey_round_corners"
+
+                android:gravity="left"
+                android:layout_marginLeft="30dp"
+                android:layout_below="@id/upload_button"
+                />
+
+
+            <TextView
+                android:id="@+id/account_menu_password"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="******"
+                android:background="@drawable/grey_round_corners"
+                android:layout_marginLeft="30dp"
+                android:gravity="left"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/accout_menu_username"
+                />
+
+            <TextView
+                android:id="@+id/account_menu_email"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="email"
+                android:background="@drawable/grey_round_corners"
+                android:layout_marginLeft="30dp"
+                android:gravity="left"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/account_menu_password"
+                />
+
+            <Button
+                android:id="@+id/account_save_button"
+                android:layout_width="56dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="40dp"
+                android:layout_below="@id/account_menu_email"
+                android:layout_centerHorizontal="true"
+                android:text="Save"
+                android:textColor="@android:color/white"
+                android:background="@drawable/simple_round_blue_solid_corners"
+                />
+
+            <Button
+                android:id="@+id/account_cancel_button"
+                android:layout_width="56dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/account_menu_email"
+                android:background="@drawable/simple_round_corners"
+                android:text="Cancel" />
+
+            <TextView
+                android:id="@+id/text_started_courses"
+                android:layout_width="295dp"
+                android:layout_height="38dp"
+                android:layout_below="@id/account_save_button"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="32dp"
+
+                android:text="Started courses"
+                android:textColor="#FF4A4A4A"
+                android:textStyle="bold"
+                android:fontFamily="@font/roboco_font"
+                android:textSize="24sp"
+                />
+
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:textColor="#FFAEB5BB"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboco_font"
+                android:text="Alexa Teach me 2018. All rights reserved."
+                android:layout_below="@id/text_started_courses"
+                android:layout_centerHorizontal="true"
+                />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
