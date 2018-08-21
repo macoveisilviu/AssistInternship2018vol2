@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".ActvityFinishCourseDrawer" />
-        <activity android:name=".CourseDetailScreenActivity" />
-        <activity android:name=".MyAccountMenuDrawer">
+        <activity android:name=".MyAccountMenuDrawer"/>
+
+        <activity android:name=".ChapterScreenActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +37,7 @@
             android:label="@string/title_activity_course_detail_screen"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ChapterScreenActivity"
+            android:name=".CourseDetailScreenActivity"
             android:label="@string/title_activity_chapter_screen"
             android:theme="@style/AppTheme" />
     </application>

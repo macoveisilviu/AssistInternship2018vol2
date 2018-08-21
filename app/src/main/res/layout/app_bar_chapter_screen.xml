@@ -54,7 +54,56 @@
             android:layout_below="@+id/ryvw">
 
         </android.support.v7.widget.RecyclerView>
-
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/recycleView">
+            <View
+                android:layout_marginTop="46dp"
+                android:layout_width="295dp"
+                android:layout_height="2dp"
+                android:background="#FFE8E8E8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+            <Button
+                android:layout_marginTop="65dp"
+                android:id="@+id/previousButton"
+                android:layout_width="140dp"
+                android:layout_height="29dp"
+                android:background="@drawable/simple_round_blue_corners"
+                android:text="previous chapter"
+                android:textColor="#FF006FFF"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/nextButton"
+                />
+            <Button
+                android:layout_marginTop="65dp"
+                android:id="@+id/nextButton"
+                android:layout_width="140dp"
+                android:layout_height="29dp"
+                android:background="@drawable/simple_round_blue_corners"
+                android:text="next chapter"
+                android:textColor="#FF006FFF"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/previousButton"
+                />
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="223dp"
+                android:layout_height="29dp"
+                android:fontFamily="sans-serif"
+                android:text="Alexa Teach Me 2018. All rights reserved."
+                android:textColor="#FFAEB5BB"
+                android:textSize="12sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+        </android.support.constraint.ConstraintLayout>
 
     </RelativeLayout>
 </ScrollView>

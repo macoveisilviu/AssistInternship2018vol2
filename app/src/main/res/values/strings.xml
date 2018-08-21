@@ -37,6 +37,8 @@ if you need any help."</string>
     <string name="title_activity_chapter_screen">ChapterScreenActivity</string>
     <string name="title_activity_actvity_finish_course_drawer">ActvityFinishCourseDrawer</string>
     <string name="title_activity_my_account_menu_drawer">MyAccountMenuDrawer</string>
+    <string name="q"><b>Q:</b></string>
+    <string name="question"><b>Is this a question?</b></string>
 
 
 </resources>

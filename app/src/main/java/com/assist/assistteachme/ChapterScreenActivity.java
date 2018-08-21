@@ -3,6 +3,8 @@ package com.assist.assistteachme;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,12 +16,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
+import com.assist.assistteachme.Adapters.RecycleViewAdaptersC;
+import com.assist.assistteachme.Models.ChapterQuestion;
+import com.assist.assistteachme.Models.Course;
+
+import java.util.ArrayList;
+
 public class ChapterScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Button backButon;
     Button openButton;
     NavigationView nav;
+
+    //pentru recycleview
+    private RecyclerView recycleView;
+    private ChapterQuestionsAdapter chapterQuestionsAdapter;
+
+    private ArrayList<ChapterQuestion> listQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +43,19 @@ public class ChapterScreenActivity extends AppCompatActivity
         setContentView(R.layout.activity_chapter_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //recycle view
+        recycleView = findViewById(R.id.recycleView);
+        recycleView.setHasFixedSize(true);
+        recycleView.setLayoutManager(new LinearLayoutManager(this));
+        listQuestions = new ArrayList<>();
+
+        populateWithDummyData();
+
+        chapterQuestionsAdapter = new ChapterQuestionsAdapter( listQuestions,this);
+        recycleView.setAdapter(chapterQuestionsAdapter);
+
+        //recicleview closed
 
         nav=findViewById(R.id.nav_view);
         backButon = findViewById(R.id.backButton);
@@ -112,5 +140,12 @@ public class ChapterScreenActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void populateWithDummyData(){
+        for(int i=0;i<3;i++){
+            ChapterQuestion c= new ChapterQuestion("Queston "+i,"answer 1","answer2","answer3");
+            listQuestions.add(c);
+        }
     }
 }
