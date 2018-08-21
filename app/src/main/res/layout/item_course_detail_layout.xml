@@ -33,8 +33,12 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"
         android:text="bla bala blabla bala blabla\n asd asdbasd \n asdasjdasdasdjakfjkjfakdjfkajf laksfa alsfasasd jasdkjasdasdasjdaskdjha    asdhaksjdhkajsd akjsdhvkkjasbc aksjc asa ckajsfb kjb aksjda v has ckaj akjs k jhkjsd kvjhaslkajfoivhkjas a casd ashd akjsd asjdha asnd akjsd askdna akjdh adkjasd k   aksjdh asdkjh  kjhs kjahkjas ash ajsdhkajc kajshd kjahsd kash aksj."
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="3"
         android:textColor="#FFAEB5BB"
         android:textSize="14sp" />
+
     <Button
         android:id="@+id/startButton"
         android:layout_marginTop="7dp"

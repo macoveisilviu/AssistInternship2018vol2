@@ -144,7 +144,7 @@ public class ChapterScreenActivity extends AppCompatActivity
 
     public void populateWithDummyData(){
         for(int i=0;i<3;i++){
-            ChapterQuestion c= new ChapterQuestion("Queston "+i,"answer 1","answer2","answer3");
+            ChapterQuestion c= new ChapterQuestion("Question "+i,"answer 1","answer2","answer3");
             listQuestions.add(c);
         }
     }
