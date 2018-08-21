@@ -1,5 +1,7 @@
 package com.assist.assistteachme;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
 import com.assist.assistteachme.Adapters.RecycleViewAdaptersC;
@@ -29,6 +33,11 @@ public class ChapterScreenActivity extends AppCompatActivity
     Button backButon;
     Button openButton;
     NavigationView nav;
+    TextView coursesTextView;
+    TextView whatsNewTextView;
+    TextView aboutTextView;
+    TextView nameTextView;
+    Context context;
 
     //pentru recycleview
     private RecyclerView recycleView;
@@ -60,6 +69,10 @@ public class ChapterScreenActivity extends AppCompatActivity
         nav=findViewById(R.id.nav_view);
         backButon = findViewById(R.id.backButton);
         openButton = findViewById(R.id.openButton);
+        whatsNewTextView = findViewById(R.id.whatsTextView);
+        aboutTextView = findViewById(R.id.aboutTextView);
+        nameTextView = findViewById(R.id.nameTextView);
+        context = getApplicationContext();
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -81,6 +94,32 @@ public class ChapterScreenActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.END);
+            }
+        });
+        coursesTextView = findViewById(R.id.coursesTextView);
+
+        coursesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChapterScreenActivity.this, DrawerTestActivity.class));
+            }
+        });
+        whatsNewTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Nothing new" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Developed by Sofian And Costel" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        nameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChapterScreenActivity.this, MyAccountMenuDrawer.class));
             }
         });
     }

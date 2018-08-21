@@ -1,5 +1,6 @@
 package com.assist.assistteachme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
 import com.assist.assistteachme.Adapters.MyAccounteMenuAdapter;
@@ -34,6 +37,12 @@ public class MyAccountMenuDrawer extends AppCompatActivity
     Button backButon;
     Button openButton;
     NavigationView nav;
+    TextView coursesTextView;
+    TextView whatsNewTextView;
+    TextView aboutTextView;
+    TextView nameTextView;
+    Context context;
+
 
     Button logOutButton;
     ImageView imageView;
@@ -70,6 +79,10 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         nav=findViewById(R.id.nav_view);
         backButon = findViewById(R.id.backButton);
         openButton = findViewById(R.id.openButton);
+        whatsNewTextView = findViewById(R.id.whatsTextView);
+        aboutTextView = findViewById(R.id.aboutTextView);
+        nameTextView = findViewById(R.id.nameTextView);
+        context = getApplicationContext();
 
         logOutButton = findViewById(R.id.activity_my_account_button);
         imageView = findViewById(R.id.activity_my_account_photo);
@@ -103,6 +116,32 @@ public class MyAccountMenuDrawer extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MyAccountMenuDrawer.this, LoginScreenActivity.class));
+            }
+        });
+        coursesTextView = findViewById(R.id.coursesTextView);
+
+        coursesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyAccountMenuDrawer.this, DrawerTestActivity.class));
+            }
+        });
+        whatsNewTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Nothing new" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Developed by Sofian And Costel" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        nameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyAccountMenuDrawer.this, MyAccountMenuDrawer.class));
             }
         });
 

@@ -1,5 +1,6 @@
 package com.assist.assistteachme;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,12 +15,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class DrawerTestActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Button backButon;
     Button openButton;
+    TextView coursesTextView;
     NavigationView nav;
+    TextView whatsNewTextView;
+    TextView aboutTextView;
+    TextView nameTextView;
+    Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +36,14 @@ public class DrawerTestActivity extends AppCompatActivity
         setContentView(R.layout.activity_drawer_test);
         nav = findViewById(R.id.nav_view);
 
+
+
         backButon = findViewById(R.id.backButton);
         openButton = findViewById(R.id.openButton);
+        whatsNewTextView = findViewById(R.id.whatsTextView);
+        aboutTextView = findViewById(R.id.aboutTextView);
+        nameTextView = findViewById(R.id.nameTextView);
+        context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,6 +66,33 @@ public class DrawerTestActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.END);
+            }
+        });
+
+        coursesTextView = findViewById(R.id.coursesTextView);
+
+        coursesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DrawerTestActivity.this, DrawerTestActivity.class));
+            }
+        });
+        whatsNewTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Nothing new" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Developed by Sofian And Costel" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        nameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DrawerTestActivity.this, MyAccountMenuDrawer.class));
             }
         });
     }

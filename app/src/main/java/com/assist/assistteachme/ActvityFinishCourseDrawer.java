@@ -1,5 +1,7 @@
 package com.assist.assistteachme;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ActvityFinishCourseDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -20,6 +25,12 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
     Button openButton;
     NavigationView nav;
     Button coursespage;
+    TextView coursesTextView;
+    TextView whatsNewTextView;
+    TextView aboutTextView;
+    TextView nameTextView;
+    Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +42,19 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
         nav=findViewById(R.id.nav_view);
         backButon = findViewById(R.id.backButton);
         openButton = findViewById(R.id.openButton);
+        coursesTextView = findViewById(R.id.coursesTextView);
+        whatsNewTextView = findViewById(R.id.whatsTextView);
+        aboutTextView = findViewById(R.id.aboutTextView);
+        nameTextView = findViewById(R.id.nameTextView);
+        coursespage = findViewById(R.id.goto_button);
+        context = getApplicationContext();
 
+        coursespage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActvityFinishCourseDrawer.this, DrawerTestActivity.class));
+            }
+        });
 
 
        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -56,6 +79,31 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.END);
             }
         });
+        coursesTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActvityFinishCourseDrawer.this, DrawerTestActivity.class));
+            }
+        });
+        whatsNewTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Nothing new" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Developed by Sofian And Costel" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+        nameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActvityFinishCourseDrawer.this, MyAccountMenuDrawer.class));
+            }
+        });
+
     }
 
 
