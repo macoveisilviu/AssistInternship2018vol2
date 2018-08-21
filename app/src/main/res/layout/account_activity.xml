@@ -15,7 +15,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/top"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_marginBottom="424dp"
             android:background="@color/whiteText"
             android:orientation="vertical"
@@ -79,7 +79,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="51dp"
                 android:gravity="left"
-                android:text="My Account"
+                android:text="@string/my_account"
                 android:textAlignment="center"
                 android:textColor="@color/whiteText"
                 android:textSize="24sp"
@@ -98,7 +98,7 @@
                 android:layout_marginTop="110dp"
                 android:gravity="left"
 
-                android:text="Here you can edit your account’s information, courses you started and the progress for each one. "
+                android:text="@string/desciption_my_account"
 
                 android:textColor="@color/fullWhite"
 
@@ -112,14 +112,14 @@
 
             <TextView
                 android:id="@+id/pick2"
-                android:layout_width="310dp"
+                android:layout_width="325dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
 
                 android:layout_marginTop="30dp"
 
                 android:gravity="left"
-                android:text="Contact us at hei@alexateachme.com, if you need any help. "
+                android:text="@string/Contact_my_account"
                 android:textColor="@color/fullWhite"
 
                 android:textSize="16sp"
@@ -134,7 +134,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape_button"
-                android:text="logout"
+                android:text="@string/logout"
                 android:textAlignment="center"
                 android:textColor="@color/whiteText"
                 android:textStyle="bold"
@@ -147,50 +147,50 @@
 
 
         <Button
-            android:id="@+id/discover"
+            android:id="@+id/chooseBtn"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
 
             android:layout_marginStart="25dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/shape_btn_white"
             android:padding="5dp"
-            android:text="Upload file"
+            android:text="@string/upload_file"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/blueButton"
             app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/profilePhoto"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <TextView
             android:id="@+id/acc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:gravity="left"
-            android:text="Account Information"
+            android:text="@string/account_information"
             android:textAlignment="center"
             android:textColor="@color/colorButtonDark"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/profilePhoto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/profilePhoto"
             android:layout_width="115dp"
             android:layout_height="115dp"
             android:layout_marginStart="36dp"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-
+            android:layout_marginTop="96dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchLayout"
-            app:layout_constraintVertical_bias="0.23000002"
             app:srcCompat="@drawable/capture2" />
 
 
@@ -200,20 +200,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
-            android:text=" Image should have maximum 15 MB size."
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            android:text="@string/image_should_have_maximum_15_mb_size"
+            app:layout_constraintStart_toEndOf="@+id/profilePhoto"
             app:layout_constraintTop_toBottomOf="@+id/acc" />
 
 
         <EditText
-            android:id="@+id/lastNameS"
-            android:layout_width="280dp"
+            android:id="@+id/nameAccount"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/shape_field_grey"
-            android:hint="last name"
+            android:hint="Duane Mendoza"
             android:inputType="textEmailAddress"
             android:paddingRight="3dp"
             android:paddingStart="28dp"
@@ -221,47 +221,45 @@
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/discover" />
+            app:layout_constraintTop_toBottomOf="@+id/chooseBtn" />
+
         <EditText
-            android:id="@+id/emailAddressS"
-            android:layout_width="280dp"
+            android:id="@+id/emailAccount"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
             android:layout_marginStart="65dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_field_grey"
-            android:hint="email address"
+            android:hint="duanemendoza@gmail.com"
             android:inputType="textEmailAddress"
-            android:paddingStart="28dp"
             android:paddingRight="3dp"
+            android:paddingStart="28dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passS"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/passS" />
 
         <android.support.design.widget.TextInputLayout
-            app:passwordToggleEnabled="true"
-            android:paddingStart="28dp"
-            android:paddingRight="3dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorHint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameS"
             android:id="@+id/passS"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
             android:layout_marginStart="65dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_field_grey"
-
->
+            android:paddingRight="3dp"
+            android:paddingStart="28dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameAccount"
+            app:passwordToggleEnabled="true">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/etPasswordddS"
+                android:id="@+id/PassAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -272,34 +270,36 @@
 
                 android:textColor="@color/colorPrimaryDark"
                 android:textColorHint="@color/colorHint" />
-        </android.support.design.widget.TextInputLayout>/>
+        </android.support.design.widget.TextInputLayout>
+        />
 
         <Button
             android:id="@+id/btnSaveChange"
             android:layout_width="56dp"
             android:layout_height="31dp"
             android:layout_marginStart="70dp"
-            android:background="@drawable/shape_button"
-            android:text="Save"
-            android:textAllCaps="false"
             android:layout_marginTop="28dp"
+            android:background="@drawable/shape_button"
+            android:text="@string/save"
+            android:textAllCaps="false"
             android:textColor="@color/whiteText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddressS" />
+            app:layout_constraintTop_toBottomOf="@+id/emailAccount" />
+
         <Button
             android:id="@+id/btnCancelChange"
             android:layout_width="56dp"
             android:layout_height="31dp"
             android:layout_marginStart="220dp"
-            android:background="@null"
-            android:text="Cancel"
-            android:textAllCaps="false"
             android:layout_marginTop="28dp"
+            android:background="@null"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
             android:textColor="@color/colorButtonDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddressS" />
+            app:layout_constraintTop_toBottomOf="@+id/emailAccount" />
 
 
         <TextView
@@ -309,13 +309,48 @@
             android:layout_marginStart="36dp"
             android:layout_marginTop="80dp"
             android:gravity="left"
-            android:text="Started courses"
+            android:text="@string/started_courses"
             android:textAlignment="center"
             android:textColor="@color/colorButtonDark"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddressS" />
+            app:layout_constraintTop_toBottomOf="@+id/emailAccount" />
+        <LinearLayout
+            android:id="@+id/recyclerViewLayout"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/started">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="12dp"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewLayout"
+            android:text="@string/alexa_teach_me_2018_all_rights_reserved"
+            android:textColor="@color/colorHint"
+            />
+
 
     </android.support.constraint.ConstraintLayout>
 

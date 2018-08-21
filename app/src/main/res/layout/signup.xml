@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
-            android:id="@+id/lastNameS"
+            android:id="@+id/nameAccount"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/firstNameS" />
 
         <EditText
-            android:id="@+id/emailAddressS"
+            android:id="@+id/emailAccount"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginEnd="65dp"
@@ -77,7 +77,7 @@
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameS" />
+            app:layout_constraintTop_toBottomOf="@+id/nameAccount" />
 
         <android.support.design.widget.TextInputLayout
             app:passwordToggleEnabled="true"
@@ -87,7 +87,7 @@
             android:textColorHint="@color/colorHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailAddressS"
+            app:layout_constraintTop_toBottomOf="@+id/emailAccount"
             android:id="@+id/passS"
             android:layout_width="280dp"
             android:layout_height="50dp"

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp">
+
+    <!--    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/textView4"
+        android:layout_width="295dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <RelativeLayout
+        android:id="@+id/relatoveQuestion"
+        android:layout_width="295dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_button"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:background="@color/blueButton"
+            android:text="Q:"
+            android:textAlignment="center"
+            android:textColor="@color/fullWhite"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <TextView
+            android:id="@+id/questionTxt"
+
+            android:layout_width="214dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="60dp"
+            android:background="@color/blueButton"
+            android:text="Where Can You Find Unique Myspace Layouts Nowadays?"
+            android:textAlignment="textStart"
+            android:textColor="@color/fullWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/shape_field_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relatoveQuestion">
+
+
+        <RadioButton
+            android:id="@+id/rb_one"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="16dp"
+            android:buttonTint="@color/blueButton"
+            android:paddingRight="20dp"
+            android:text="From Wetlands To Canals And Dams Amsterdam Is Alive"
+            android:textColor="@color/colorHint"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="253dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorHint" />
+
+        <RadioButton
+            android:id="@+id/rb_two"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="16dp"
+            android:buttonTint="@color/blueButton"
+            android:paddingRight="20dp"
+            android:text="From Wetlands To Canals And Dams Amsterdam Is Alive"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorHint"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="312dp" />
+
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorHint" />
+
+        <RadioButton
+            android:id="@+id/rb_three"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="16dp"
+            android:buttonTint="@color/blueButton"
+            android:paddingRight="20dp"
+            android:text="From Wetlands To Canals And Dams Amsterdam Is Alive"
+            android:textColor="@color/colorHint"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="194dp" />
+    </RadioGroup>
+
+</android.support.constraint.ConstraintLayout>
+
+

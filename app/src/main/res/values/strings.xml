@@ -24,5 +24,16 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_about_activityy">AboutActivityy</string>
+    <string name="my_account">My Account</string>
+    <string name="desciption_my_account">Here you can edit your account’s information, courses you started and the progress for each one.</string>
+    <string name="Contact_my_account">Contact us at\u0020<u>hei@alexateachme.com</u>, if you need any help.</string>
+    <string name="logout">logout</string>
+    <string name="upload_file">Upload file</string>
+    <string name="account_information">Account Information</string>
+    <string name="image_should_have_maximum_15_mb_size">Image should have maximum 15 MB size.</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="started_courses">Started courses</string>
+    <string name="title_activity_question">QuestionActivity</string>
 
 </resources>

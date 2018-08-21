@@ -1,5 +1,6 @@
 package com.assist.assistteachme;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,10 +13,13 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.assist.assistteachme.CoursesActivityDoc.CoursesActivity;
+import com.assist.assistteachme.Login.Reset.SignUp.SignupActivity;
+import com.assist.assistteachme.MyAccount.AccountActivity;
+
 import java.util.List;
 
 /**
@@ -27,34 +31,21 @@ public class MainViewActivity extends AppCompatActivity implements NavigationVie
 
     /*  RecyclerView mRecyclerView;*/
     List mCategory;
-    AlbumCategory mFlowerData;
-    ImageButton btnMenu, btnAbout;
+
+    ImageButton btnMenu,btnAbout, courses;
 
 
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_view);
 
 
-       /* mRecyclerView = findViewById(R.id.recyclerview);
-        GridLayoutManager mGridLayoutManager = new GridLayoutManager(MainViewActivity.this, 2);
-        mRecyclerView.setLayoutManager(mGridLayoutManager);*/
-
-        mCategory = new ArrayList<>();
-        mFlowerData = new AlbumCategory("Math", getString(R.string.description_flower_rose),
-                R.drawable.rectangle1);
-        mCategory.add(mFlowerData);
-        mFlowerData = new AlbumCategory("Bio", getString(R.string.description_flower_carnation),
-                R.drawable.rectangle2);
-
-
-       /* AdapterAlbumCategory myAdapter = new  AdapterAlbumCategory(MainViewActivity.this, mCategory);
-        mRecyclerView.setAdapter(myAdapter);*/
-
-
         btnMenu = (ImageButton) findViewById(R.id.btnMenu);
+       courses = (ImageButton) findViewById(R.id.courses);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,8 +55,8 @@ public class MainViewActivity extends AppCompatActivity implements NavigationVie
                 this, drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+      /*  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);*/
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -78,8 +69,7 @@ public class MainViewActivity extends AppCompatActivity implements NavigationVie
 
         });
 
-
-        btnAbout = (ImageButton) findViewById(R.id.about);
+    btnAbout = (ImageButton) findViewById(R.id.aboutBTN);
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +78,34 @@ public class MainViewActivity extends AppCompatActivity implements NavigationVie
             }
 
         });
+       courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainViewActivity.this, CoursesActivity.class));
+            }
+
+        });
+
+
+
+
+
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View headerview=navigationView.getHeaderView(0);
+       TextView accountName =(TextView)headerview.findViewById(R.id.accountName);
+
+        accountName.setOnClickListener(new View.OnClickListener() {
+            @Override    public void onClick(View v) {
+                Intent intent = new Intent(MainViewActivity.this,AccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
     }//onCreate
@@ -131,7 +149,7 @@ public class MainViewActivity extends AppCompatActivity implements NavigationVie
             startActivity(new Intent(MainViewActivity.this, SignupActivity.class));
         } else if (id == R.id.whatsNew) {
 
-        } else if (id == R.id.about) {
+        } else if (id == R.id.aboutBTN) {
         }
 
 

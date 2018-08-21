@@ -1,4 +1,4 @@
-package com.assist.assistteachme;
+package com.assist.assistteachme.Login.Reset.SignUp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.assist.assistteachme.R;
 
 import java.util.regex.Pattern;
 
@@ -47,8 +49,8 @@ public class SignupActivity extends AppCompatActivity {
     private boolean validateSignUp() {
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         firstNamee = (EditText) findViewById(R.id.firstNameS);
-        lastNamee = (EditText) findViewById(R.id.lastNameS);
-        email = (EditText) findViewById(R.id.emailAddressS);
+        lastNamee = (EditText) findViewById(R.id.nameAccount);
+        email = (EditText) findViewById(R.id.emailAccount);
         password = (TextInputEditText) findViewById(R.id.etPasswordddS);
         emailValidation = email.getText().toString().trim();
         passValidation = password.getText().toString().trim();

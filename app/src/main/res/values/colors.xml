@@ -11,6 +11,7 @@
     <color name="colorHint">#FFAEB5BB</color>
     <color name="colorButtonDark">#FF06102B</color>
 <color name="buttonX">#303749</color>
-
+    #FFFA3466
+    <color name="buttonXred">#FFFA3466</color>
     <color name="colorResetPass">#FFD1D5D8</color>
 </resources>

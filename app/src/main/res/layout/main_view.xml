@@ -22,8 +22,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_navigation"
         app:menu="@menu/activity_navigation_drawer">
-   <!--
-        <include layout="@layout/nav_header_navigation"
+
+    <!--    <include layout="@layout/nav_header_navigation"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />-->
 
@@ -359,9 +359,9 @@
 
 
             <Button
-                android:id="@+id/discover"
+                android:id="@+id/chooseBtn"
                 android:layout_width="140dp"
-                android:layout_height="0dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="324dp"
                 android:background="@drawable/shape_btn_white"
                 android:padding="5dp"
@@ -375,13 +375,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/searchLayout" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/courses"
                 android:layout_width="145dp"
                 android:layout_height="144dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/about"
+                app:layout_constraintEnd_toStartOf="@+id/aboutBTN"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchLayout"
                 app:srcCompat="@drawable/rectangle1" />
@@ -395,17 +395,17 @@
                 android:textColor="@color/colorHint"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/discover" />
+                app:layout_constraintTop_toBottomOf="@+id/chooseBtn" />
 
             <ImageButton
-                android:id="@+id/about"
+                android:id="@+id/aboutBTN"
                 android:layout_width="145dp"
                 android:layout_height="144dp"
                 android:layout_marginEnd="52dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.132"
-                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintStart_toEndOf="@+id/courses"
                 app:layout_constraintTop_toBottomOf="@+id/searchLayout"
                 app:srcCompat="@drawable/rectangle3" />
 
@@ -418,7 +418,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton6"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton"
+                app:layout_constraintTop_toBottomOf="@+id/courses"
                 app:srcCompat="@drawable/rectangle3" />
 
             <ImageButton
@@ -430,7 +430,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.132"
                 app:layout_constraintStart_toEndOf="@+id/imageButton5"
-                app:layout_constraintTop_toBottomOf="@+id/about"
+                app:layout_constraintTop_toBottomOf="@+id/aboutBTN"
                 app:srcCompat="@drawable/rectangle2" />
 
         </android.support.constraint.ConstraintLayout>
