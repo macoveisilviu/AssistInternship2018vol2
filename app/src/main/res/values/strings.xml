@@ -32,7 +32,8 @@ if you need any help."</string>
     <string name="chapter"><b>CHAPTER I</b>></string>
     <string name="secondText"><b>Welcome To Desclassifieds Free Classifieds Free Adds</b></string>
     <string name="title_activity_chapter_screen">ChapterScreenActivity</string>
-
+    <string name="q"><b>Q:</b></string>
+    <string name="question"><b>Is this a question?</b></string>
 
 </resources>
 
