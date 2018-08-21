@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class ChapterQuestionsAdapter  extends RecyclerView.Adapter<ChapterQuesti
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chapter_recycle_layout, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chapter_recycle_layoutv2, parent,false);
         ViewHolder holder=new ViewHolder(view);
         return holder;
     }
@@ -41,7 +42,7 @@ public class ChapterQuestionsAdapter  extends RecyclerView.Adapter<ChapterQuesti
     public void onBindViewHolder(@NonNull ChapterQuestionsAdapter.ViewHolder holder, final int position) {
         Log.d(TAG,"on bind ViewHolder");
 
-        ChapterQuestion listQ = chapterQuestionsList.get(position);
+        final ChapterQuestion listQ = chapterQuestionsList.get(position);
 
         holder.question.setText(listQ.getQuestion());
         holder.answer1.setText(listQ.getAnswer1());
@@ -52,7 +53,7 @@ public class ChapterQuestionsAdapter  extends RecyclerView.Adapter<ChapterQuesti
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext, "asda",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "asd" ,Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -67,9 +68,9 @@ public class ChapterQuestionsAdapter  extends RecyclerView.Adapter<ChapterQuesti
         TextView answer1;
         TextView answer2;
         TextView answer3;
-        CheckBox checkBox1;
-        CheckBox checkBox2;
-        CheckBox checkBox3;
+        RadioButton radioButton1;
+        RadioButton radioButton2;
+        RadioButton radioButton3;
         RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
@@ -78,9 +79,9 @@ public class ChapterQuestionsAdapter  extends RecyclerView.Adapter<ChapterQuesti
             answer1 = itemView.findViewById(R.id.answer1TextView);
             answer2 =itemView.findViewById(R.id.answer2TextView);
             answer3 = itemView.findViewById(R.id.answer3TextView);
-            checkBox1 = itemView.findViewById(R.id.checkb1);
-            checkBox2 = itemView.findViewById(R.id.checkb2);
-            checkBox3 = itemView.findViewById(R.id.checkb3);
+            radioButton1 = itemView.findViewById(R.id.answer1RadioButton);
+            radioButton2 = itemView.findViewById(R.id.answer2RadioButton);
+            radioButton3 = itemView.findViewById(R.id.answer3RadioButton);
             parentLayout = itemView.findViewById(R.id.recycleLayoutChapter);
         }
     }

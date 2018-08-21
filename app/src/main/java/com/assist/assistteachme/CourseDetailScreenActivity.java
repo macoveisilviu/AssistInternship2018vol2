@@ -142,7 +142,7 @@ public class CourseDetailScreenActivity extends AppCompatActivity
 
     public void populateWithDummyData(){
         for(int i=0;i<5;i++){
-            Course c= new Course("chapter"+i,"subtitlu","asdasd");
+            Course c= new Course("chapter"+i,"subtitlu","asdasdsadasd asdasd asda dasd asd asda as dasd  sfgafas  ajsdg ajhdg j gdajshd kad asjhdg jahsd jasd sadasd asd asd a dsa sda asd asd asd asd asd asd asdasd .");
             listCourse.add(c);
         }
     }
