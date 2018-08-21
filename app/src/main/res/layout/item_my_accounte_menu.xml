@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="174dp"
+    android:background="@drawable/grey_round_corners_recycle"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="50dp"
+    android:id="@+id/my_account_menu_recycle_layout">
+
+
+    <ImageView
+        android:id="@+id/my_account_menu_itemphoto"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:background="@drawable/itemphoto"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="25dp"
+        />
+
+    <TextView
+        android:id="@+id/my_account_menu_bannertext"
+        android:layout_width="208dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/my_account_menu_itemphoto"
+        android:layout_marginLeft="20dp"
+        android:textColor="#FF06102B"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboco_font"
+        android:layout_toEndOf="@+id/my_account_menu_itemphoto"
+        android:text="Internet Banner Advertising\n Most Reliable Forms of Web \n Advertising"
+         />
+
+    <TextView
+        android:id="@+id/my_account_menu_subbannertext"
+        android:layout_width="195dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/my_account_menu_bannertext"
+        android:layout_marginBottom="21dp"
+        android:textColor="#FFAEB5BB"
+        android:fontFamily="@font/roboco_font"
+        android:textSize="10sp"
+        android:text="qsdqsd kjqdsk jdkqs j djkqsd\n qjsdqksdjd djqsk  jdqsd dsqd \n qsdqj sdjq jsqdqsd sqd dqsd dsqd  dsqmdqsk dsqkd qsdkqs" />
+
+
+    <TextView
+        android:id="@+id/my_account_menu_pointstext"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:text="120 \n points"
+        android:layout_below="@id/my_account_menu_itemphoto"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="9dp"
+        android:textColor="#FF006FFF"
+        android:textAlignment="center"
+        android:textSize="10sp"
+        android:fontFamily="@font/roboco_font"
+        />
+
+</RelativeLayout>

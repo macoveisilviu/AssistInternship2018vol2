@@ -63,6 +63,7 @@
             android:layout_below="@id/activity_my_account_information"/>
 
         <RelativeLayout
+            android:id="@+id/layout_account_informations"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_below="@id/activity_my_account_button"
@@ -177,6 +178,7 @@ maximum 15 MB size."
                 android:layout_height="38dp"
                 android:layout_below="@id/account_save_button"
                 android:layout_marginTop="18dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="32dp"
 
                 android:text="Started courses"
@@ -186,20 +188,19 @@ maximum 15 MB size."
                 android:textSize="24sp"
                 />
 
-            <TextView
-                android:layout_width="260dp"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:textColor="#FFAEB5BB"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboco_font"
-                android:text="Alexa Teach me 2018. All rights reserved."
-                android:layout_below="@id/text_started_courses"
-                android:layout_centerHorizontal="true"
-                />
 
 
         </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view_my_account_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFEFF1F4"
+            android:layout_below="@id/layout_account_informations">
+
+
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 

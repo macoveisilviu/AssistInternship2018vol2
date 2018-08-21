@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,7 +21,13 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
+import com.assist.assistteachme.Adapters.MyAccounteMenuAdapter;
+import com.assist.assistteachme.Models.ChapterQuestion;
+import com.assist.assistteachme.Models.MyAccountMenuModel;
+
 import java.io.File;
+import java.util.ArrayList;
 
 public class MyAccountMenuDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +41,12 @@ public class MyAccountMenuDrawer extends AppCompatActivity
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
 
+    private ArrayList<MyAccountMenuModel> listMyAccountMenu;
+
+    //pentru recycleview
+    private RecyclerView recycleView;
+    private MyAccounteMenuAdapter myAccounteMenuAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +54,18 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //recycle view
+        recycleView = findViewById(R.id.recycle_view_my_account_menu);
+        recycleView.setHasFixedSize(true);
+        recycleView.setLayoutManager(new LinearLayoutManager(this));
+        listMyAccountMenu = new ArrayList<>();
+
+        populateWithDummyData();
+
+        myAccounteMenuAdapter = new MyAccounteMenuAdapter( listMyAccountMenu,this);
+        recycleView.setAdapter(myAccounteMenuAdapter);
+
+        //recycle closed
 
         nav=findViewById(R.id.nav_view);
         backButon = findViewById(R.id.backButton);
@@ -179,5 +205,12 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void populateWithDummyData(){
+        for(int i=0;i<5;i++){
+            MyAccountMenuModel c= new MyAccountMenuModel("Text1 "+i,"Text2","Category");
+            listMyAccountMenu.add(c);
+        }
     }
 }

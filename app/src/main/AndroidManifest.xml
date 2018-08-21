@@ -13,9 +13,9 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ActvityFinishCourseDrawer" />
-        <activity android:name=".MyAccountMenuDrawer"/>
+        <activity android:name=".BrowseThroughCourses"/>
 
-        <activity android:name=".ChapterScreenActivity">
+        <activity android:name=".MyAccountMenuDrawer">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".BrowseThroughCourses" />
+        <activity android:name=".ChapterScreenActivity" />
         <activity
             android:name=".MainViewActivity"
             android:label="@string/title_activity_drawer_test"

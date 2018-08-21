@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BrowseThroughCourses">
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <include
         android:id="@+id/topimage"
         layout="@layout/top_bar_layout"
@@ -52,6 +54,8 @@
 
 
 
+
+
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -62,7 +66,27 @@
 
     </android.support.v7.widget.RecyclerView>
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/recycler_v">
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="260dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:textColor="#FFAEB5BB"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboco_font"
+                android:text="Alexa Teach me 2018. All rights reserved."
+                android:layout_below="@id/recycler_v"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
 
 
     
