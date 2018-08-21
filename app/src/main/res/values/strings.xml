@@ -13,7 +13,7 @@ the progress for each one.
 Contact us at <u>hei@alexateachme.com</u>,
 if you need any help."</string>
 
-    <string name="Reset">Forgot password? <u>Reset it</u></string>
+    <string name="Reset"><u>Reset it</u></string>
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="browse"><b>Browse through best learning courses for Alexa</b></string>
