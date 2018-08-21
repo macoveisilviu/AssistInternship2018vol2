@@ -19,6 +19,7 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
     Button backButon;
     Button openButton;
     NavigationView nav;
+    Button coursespage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
             }
         });
     }
+
+
 
     @Override
     public void onBackPressed() {
