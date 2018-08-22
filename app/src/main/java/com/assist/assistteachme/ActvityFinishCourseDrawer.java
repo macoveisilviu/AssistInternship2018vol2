@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assist.assistteachme.Models.Post;
+import com.assist.assistteachme.Network.RestClient;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ActvityFinishCourseDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Button backButon;
@@ -30,6 +40,10 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
     TextView aboutTextView;
     TextView nameTextView;
     Context context;
+
+    //network
+    private final String TAG = "MainActivity";
+    private TextView postText;
 
 
     @Override
@@ -104,6 +118,8 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
             }
         });
 
+        //network
+        //showPosts();
     }
 
 
@@ -163,5 +179,31 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showPosts() {
+        RestClient.networkHandler().getPosts().enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if (!response.isSuccessful()) {
+                    // display error message
+                    return;
+                }
+
+                // do something with the result
+                Log.w(TAG, "number of posts is " + response.body().size());
+                String result = "";
+                for (Post post : response.body()) {
+                    result = result + "\nUser id:" + post.getUserId() + "\nID:" + post.getId() + " \nTitle:" + post.getTitle() + "\n" + post.getBody() + "\n\n";
+                }
+                //postText.setText(result);
+                Toast.makeText(context, result ,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                // show message couldn't connect to server
+            }
+        });
     }
 }

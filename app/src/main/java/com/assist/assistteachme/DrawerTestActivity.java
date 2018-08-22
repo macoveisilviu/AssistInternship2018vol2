@@ -2,9 +2,14 @@ package com.assist.assistteachme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +20,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
+import com.assist.assistteachme.Adapters.CourseButtonAdapter;
+import com.assist.assistteachme.Adapters.RecycleViewAdapterS;
+import com.assist.assistteachme.Models.ChapterQuestion;
+import com.assist.assistteachme.Models.CourseButton;
+
+import java.util.ArrayList;
 
 public class DrawerTestActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,14 +42,30 @@ public class DrawerTestActivity extends AppCompatActivity
     TextView aboutTextView;
     TextView nameTextView;
     Context context;
+    TextView courseName;
+    Button discoverMoreButton;
 
+    private RecyclerView recyclerView;
+    private CourseButtonAdapter adapter;
+    private ArrayList<CourseButton> courseButtonArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_test);
         nav = findViewById(R.id.nav_view);
+        discoverMoreButton = findViewById(R.id.discoverMoreButton);
 
+        recyclerView = findViewById(R.id.recycleViewCourse);
+        recyclerView.setHasFixedSize(true);
+        courseButtonArrayList= new ArrayList<>();
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(DrawerTestActivity.this, 2);
+        recyclerView.setLayoutManager(mGridLayoutManager);
+        courseName =findViewById(R.id.courseNameTextView);
+        populateWithDummyData(0,4);
+
+        adapter = new CourseButtonAdapter(courseButtonArrayList ,this);
+        recyclerView.setAdapter(adapter);
 
 
         backButon = findViewById(R.id.backButton);
@@ -95,6 +125,15 @@ public class DrawerTestActivity extends AppCompatActivity
                 startActivity(new Intent(DrawerTestActivity.this, MyAccountMenuDrawer.class));
             }
         });
+
+        discoverMoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                courseButtonArrayList.clear();
+                populateWithDummyData(4,8);
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 
     @Override
@@ -152,5 +191,19 @@ public class DrawerTestActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void populateWithDummyData(int i,int max){
+        Drawable a;
+        for(i=0;i<max;i++){
+            if(i%3==0)
+                a=getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+            else if(i%3==1)
+                a=getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+            else
+                a=getResources().getDrawable(R.drawable.gradient_else_round_corners);
+            CourseButton c= new CourseButton("Course "+i,a);
+            courseButtonArrayList.add(c);
+        }
     }
 }

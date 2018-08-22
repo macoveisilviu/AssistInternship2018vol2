@@ -1,164 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <include
-            android:id="@+id/topimage"
-            layout="@layout/top_bar_layout"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_width="0dp"
-            android:layout_height="100dp"/>
-
-        <TextView
-            android:id="@+id/first"
-            android:layout_width="304dp"
-            android:layout_height="68dp"
-            android:layout_below="@id/topimage"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="51dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:text="@string/browse"
-            android:textColor="#FFFFFFFF"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/second"
-            android:layout_width="185dp"
-            android:layout_height="50dp"
-            android:layout_below="@id/first"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:text="Pick the one you like and start learning"
-            android:textColor="#FFD1D5D8"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="295dp"
-            android:layout_height="42dp"
-            android:layout_below="@id/second"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="51dp"
-            android:background="@drawable/white_round_corners"
-            android:fontFamily="sans-serif"
-            android:hint="search..."
-            android:paddingLeft="20dp"
-            android:textColor="#FFAEB5BB"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="295dp"
-            android:layout_height="42dp"
-            android:layout_below="@id/searchEditText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/blue_round_corners"
-            android:fontFamily="@font/roboco_font"
-            android:text="SEARCH"
-            android:textColor="#FFF7F7F7"
-            android:textSize="18sp" />
-
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/buttonsl"
+            android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
             android:layout_height="460dp"
-            android:layout_below="@id/searchButton"
-            android:layout_marginTop="46dp"
-            android:background="#FFFFFFFF">
+            android:background="@drawable/background">
 
-            <LinearLayout
-                android:id="@+id/firstl"
-                android:layout_width="wrap_content"
-                android:layout_height="144dp"
+            <include
+                android:id="@+id/topimage"
+                layout="@layout/top_bar_layout"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/first"
+                android:layout_width="304dp"
+                android:layout_height="68dp"
+                android:layout_below="@id/topimage"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="55dp">
+                android:layout_marginTop="51dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="@string/browse"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24sp" />
 
-                <Button
-                    android:id="@+id/astrologyButton"
-                    android:layout_width="145dp"
-                    android:layout_height="144dp"
-                    android:background="@drawable/gradient_astrology_round_corners"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/astrology"
-                    android:textColor="#FFFFFFFF"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/finnanceButton"
-                    android:layout_width="145dp"
-                    android:layout_height="144dp"
-                    android:layout_marginLeft="4dp"
-                    android:background="@drawable/gradient_finnance_round_corners"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/finnance"
-                    android:textColor="#FFFFFFFF"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/secondl"
-                android:layout_width="wrap_content"
-                android:layout_height="144dp"
-                android:layout_below="@+id/firstl"
+            <TextView
+                android:id="@+id/second"
+                android:layout_width="185dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/first"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Pick the one you like and start learning"
+                android:textColor="#FFD1D5D8"
+                android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/grammarButton"
-                    android:layout_width="145dp"
-                    android:layout_height="144dp"
-                    android:layout_weight="1.0"
-                    android:background="@drawable/gradient_finnance_round_corners"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/grammar"
-                    android:textColor="#FFFFFFFF"
-                    android:textSize="18sp" />
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="295dp"
+                android:layout_height="42dp"
+                android:layout_below="@id/second"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:background="@drawable/white_round_corners"
+                android:fontFamily="sans-serif"
+                android:hint="search..."
+                android:paddingLeft="20dp"
+                android:textColor="#FFAEB5BB"
+                android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/jokesButton"
-                    android:layout_width="145dp"
-                    android:layout_height="144dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1.0"
-                    android:background="@drawable/gradient_astrology_round_corners"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/jokes"
-                    android:textColor="#FFFFFFFF"
-                    android:textSize="18sp" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="295dp"
+                android:layout_height="42dp"
+                android:layout_below="@id/searchEditText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/blue_round_corners"
+                android:fontFamily="@font/roboco_font"
+                android:text="SEARCH"
+                android:textColor="#FFF7F7F7"
+                android:textSize="18sp" />
+
+
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="33dp"
+                android:layout_below="@+id/searchButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="422dp"
+                android:background="@drawable/simple_round_blue_corners"
+                android:text="discover more"
+                android:textColor="#FF006FFF" />
+
+
         </RelativeLayout>
 
-        <Button
-            android:layout_width="140dp"
-            android:layout_height="33dp"
-            android:layout_below="@+id/searchButton"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleViewCourse"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="422dp"
-            android:background="@drawable/simple_round_blue_corners"
-            android:text="discover more"
-            android:textColor="#FF006FFF" />
-
+            android:layout_below="@+id/relativeLayout2"></android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/recycleViewCourse"
+            android:id="@+id/relativeLayout3">
+            <Button
+                android:id="@+id/discoverMoreButton"
+                android:layout_width="140dp"
+                android:layout_height="33dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/simple_round_blue_corners"
+                android:text="discover more"
+                android:textColor="#FF006FFF" />
+        </RelativeLayout>
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            android:layout_below="@id/buttonsl"
+            android:layout_below="@+id/relativeLayout3"
             android:background="#FFFFFF">
 
             <TextView
@@ -174,5 +133,4 @@
         </android.support.constraint.ConstraintLayout>
 
     </RelativeLayout>
-
 </ScrollView>

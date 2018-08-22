@@ -26,6 +26,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:hint="first name"
+        android:paddingStart="20dp"
         android:singleLine="true"
         android:background="@drawable/simple_round_corners"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +41,7 @@
         android:background="@drawable/simple_round_corners"
         android:hint="last name"
         android:singleLine="true"
-
+        android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerActivity_editFirstName"
@@ -55,7 +56,7 @@
         android:background="@drawable/simple_round_corners"
         android:hint="email adress"
         android:singleLine="true"
-
+        android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerActivity_editLastName"
@@ -71,8 +72,7 @@
         android:hint="********"
         android:inputType="textPassword"
         android:singleLine="true"
-
-
+        android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerActivity_editEmailAdress"
@@ -87,8 +87,7 @@
         android:background="@drawable/blue_round_corners"
         android:text="CREATE ACCOUNT"
         android:textColor="#FFFFFF"
-
-
+        android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerActivity_editPassword"

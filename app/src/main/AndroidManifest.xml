@@ -15,7 +15,7 @@
         <activity android:name=".DrawerTestActivity" />
         <activity android:name=".BrowseThroughCourses"/>
 
-        <activity android:name=".ActvityFinishCourseDrawer">
+        <activity android:name=".LoginScreenActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginScreenActivity" />
+        <activity android:name=".ActvityFinishCourseDrawer" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegisterActivity" />
