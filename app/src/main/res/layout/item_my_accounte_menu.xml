@@ -67,9 +67,11 @@
         android:layout_marginRight="7dp"
         android:background="@drawable/red_round_corners"
         />
-
-
-
-
-
+    <SeekBar
+        android:id="@+id/courseProgressSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/gradient_finnance_round_corners"
+        />
 </RelativeLayout>

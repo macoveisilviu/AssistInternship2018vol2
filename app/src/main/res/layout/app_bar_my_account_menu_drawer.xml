@@ -56,6 +56,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginLeft="32dp"
             android:background="@drawable/simple_round_blue_solid_corners"
+
             android:singleLine="true"
             android:text="LOG OUT"
             android:textColor="#FFFFFF"
@@ -117,10 +118,12 @@ maximum 15 MB size."
                 android:layout_height="45dp"
                 android:hint="Username"
                 android:background="@drawable/grey_round_corners"
+
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:textSize="18sp"
                 android:layout_centerHorizontal="true"
+
                 android:gravity="left"
                 android:layout_below="@id/upload_button"
                 />
@@ -202,13 +205,29 @@ maximum 15 MB size."
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle_view_my_account_menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#FFEFF1F4"
             android:layout_below="@id/layout_account_informations">
 
 
         </android.support.v7.widget.RecyclerView>
+<RelativeLayout
+    android:background="#FFEFF1F4"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_below="@+id/recycle_view_my_account_menu">
+        <TextView
 
+            android:layout_centerHorizontal="true"
+            android:layout_width="223dp"
+            android:layout_height="29dp"
+            android:fontFamily="sans-serif"
+            android:text="Alexa Teach Me 2018. All rights reserved."
+            android:textColor="#FFAEB5BB"
+            android:textSize="12sp"
+            android:gravity="bottom"
+            />
+</RelativeLayout>
     </RelativeLayout>
 
 </ScrollView>

@@ -1,6 +1,7 @@
 package com.assist.assistteachme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assist.assistteachme.CourseDetailScreenActivity;
 import com.assist.assistteachme.Models.CourseDetails;
 import com.assist.assistteachme.Models.MyAccountMenuModel;
 import com.assist.assistteachme.R;
@@ -52,12 +55,12 @@ public class MyAccounteMenuAdapter extends RecyclerView.Adapter<MyAccounteMenuAd
         holder.Text1.setText(listM.getText1());
         holder.Text2.setText(listM.getText2());
         holder.CategoryM.setText(listM.getPoints());
+        holder.courseProgressSeekBar.setBackground(listM.getBackgroundSeekBar());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext, "asda",Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -77,6 +80,7 @@ public class MyAccounteMenuAdapter extends RecyclerView.Adapter<MyAccounteMenuAd
         TextView Text3;
         TextView CategoryM;
         Button redCloseButton;
+        SeekBar courseProgressSeekBar;
 
         RelativeLayout parentLayout;
 
@@ -90,6 +94,20 @@ public class MyAccounteMenuAdapter extends RecyclerView.Adapter<MyAccounteMenuAd
             CategoryM = itemView.findViewById(R.id.my_account_menu_pointstext);
             redCloseButton = itemView.findViewById(R.id.my_account_menu_redclosebutton);
             parentLayout = itemView.findViewById(R.id.my_account_menu_recycle_layout);
+            courseProgressSeekBar = itemView.findViewById(R.id.courseProgressSeekBar);
+
+            redCloseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   // myAccountMenuList.remove(getAdapterPosition());
+                    Toast.makeText(mContext, "asda "+getAdapterPosition(),Toast.LENGTH_SHORT).show();
+                    //parentLayout.setVisibility(View.GONE);
+                    int position = getAdapterPosition();
+                    myAccountMenuList.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position,myAccountMenuList.size());
+                }
+            });
         }
     }
 

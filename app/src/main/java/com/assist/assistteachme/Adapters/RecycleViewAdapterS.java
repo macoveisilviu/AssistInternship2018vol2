@@ -1,6 +1,7 @@
 package com.assist.assistteachme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assist.assistteachme.BrowseThroughCourses;
+import com.assist.assistteachme.CourseDetailScreenActivity;
 import com.assist.assistteachme.Models.CourseDetails;
 import com.assist.assistteachme.R;
 
@@ -57,7 +60,7 @@ public class RecycleViewAdapterS extends RecyclerView.Adapter<RecycleViewAdapter
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext, "asda",Toast.LENGTH_SHORT).show();
-
+                mContext.startActivity(new Intent(mContext, CourseDetailScreenActivity.class));
             }
         });
 

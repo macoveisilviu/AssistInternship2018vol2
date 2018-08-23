@@ -1,6 +1,7 @@
 package com.assist.assistteachme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assist.assistteachme.BrowseThroughCourses;
+import com.assist.assistteachme.ChapterScreenActivity;
 import com.assist.assistteachme.Models.Course;
 import com.assist.assistteachme.R;
 
@@ -76,6 +79,17 @@ public class RecycleViewAdaptersC extends RecyclerView.Adapter<RecycleViewAdapte
             secondParagraph = itemView.findViewById(R.id.thirdTextView);
             startButton = itemView.findViewById(R.id.startButton);
             parentLayout = itemView.findViewById(R.id.relativeLayoutRecycle);
+
+            startButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // myAccountMenuList.remove(getAdapterPosition());
+                    Toast.makeText(mContext, "asda "+getAdapterPosition(),Toast.LENGTH_SHORT).show();
+                    mContext.startActivity(new Intent(mContext, ChapterScreenActivity.class));
+                }
+            });
         }
+
+
     }
 }

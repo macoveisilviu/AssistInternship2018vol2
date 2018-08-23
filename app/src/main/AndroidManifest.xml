@@ -3,7 +3,6 @@
     package="com.assist.assistteachme">
     //permission to the internet
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,29 +10,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".DrawerTestActivity" />
-        <activity android:name=".BrowseThroughCourses"/>
-
-        <activity android:name=".MyAccountMenuDrawer">
-
+        <activity android:name=".BrowseThroughCourses" />
+        <activity android:name=".LoginScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ActvityFinishCourseDrawer" />
         <activity android:name=".SecondActivity" />
+        <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginScreenActivity" />
         <activity android:name=".ChapterScreenActivity" />
         <activity
             android:name=".MainViewActivity"
             android:label="@string/title_activity_drawer_test"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".MyAccountMenuDrawer"
             android:label="@string/title_activity_course_detail_screen"
             android:theme="@style/AppTheme" />
         <activity
@@ -41,5 +36,4 @@
             android:label="@string/title_activity_chapter_screen"
             android:theme="@style/AppTheme" />
     </application>
-
 </manifest>
