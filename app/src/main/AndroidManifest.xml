@@ -25,15 +25,15 @@
         </activity>
         <activity android:name=".ActvityFinishCourseDrawer" />
         <activity android:name=".SecondActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginScreenActivity" />
         <activity android:name=".ChapterScreenActivity" />
         <activity
             android:name=".MainViewActivity"
             android:label="@string/title_activity_drawer_test"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".LoginScreenActivity"
+            android:name=".ForgotPasswordActivity"
             android:label="@string/title_activity_course_detail_screen"
             android:theme="@style/AppTheme" />
         <activity

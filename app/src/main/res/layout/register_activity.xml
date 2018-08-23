@@ -63,21 +63,36 @@
         android:layout_marginTop="7dp"
         />
 
-    <EditText
-        android:id="@+id/registerActivity_editPassword"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/simple_round_corners"
-        android:hint="********"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        android:paddingStart="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+
+
+    <android.support.design.widget.TextInputLayout
+
+        android:id="@+id/passwordTextInputReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:passwordToggleEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerActivity_editEmailAdress"
-        android:layout_marginTop="7dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerActivity_editEmailAdress">
+
+        <EditText
+            android:id="@+id/registerActivity_editPassword"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_round_corners"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="4dp"
+            android:hint="******"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:textColor="#FFAEB5BB"
+
+            />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/registerActivity_editButton"
@@ -90,7 +105,7 @@
         android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerActivity_editPassword"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextInputReset"
         android:layout_marginTop="30dp"
 
         />
