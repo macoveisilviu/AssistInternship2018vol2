@@ -88,6 +88,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         imageView = findViewById(R.id.activity_my_account_photo);
         uploadButton = findViewById(R.id.upload_button);
 
+
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,6 +97,8 @@ public class MyAccountMenuDrawer extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
         backButon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,6 +250,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
     }
 
     public void populateWithDummyData(){
+
         for(int i=0;i<5;i++){
             MyAccountMenuModel c= new MyAccountMenuModel("Text1 "+i,"Text2","Category");
             listMyAccountMenu.add(c);

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -75,6 +76,7 @@ public class MyAccounteMenuAdapter extends RecyclerView.Adapter<MyAccounteMenuAd
         TextView Text2;
         TextView Text3;
         TextView CategoryM;
+        Button redCloseButton;
 
         RelativeLayout parentLayout;
 
@@ -86,6 +88,7 @@ public class MyAccounteMenuAdapter extends RecyclerView.Adapter<MyAccounteMenuAd
             Text2 = itemView.findViewById(R.id.my_account_menu_subbannertext);
             Text3 = itemView.findViewById(R.id.my_account_menu_pointstext);
             CategoryM = itemView.findViewById(R.id.my_account_menu_pointstext);
+            redCloseButton = itemView.findViewById(R.id.my_account_menu_redclosebutton);
             parentLayout = itemView.findViewById(R.id.my_account_menu_recycle_layout);
         }
     }
