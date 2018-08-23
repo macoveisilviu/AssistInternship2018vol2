@@ -1,6 +1,7 @@
 package com.assist.assistteachme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assist.assistteachme.ActvityFinishCourseDrawer;
+import com.assist.assistteachme.BrowseThroughCourses;
+import com.assist.assistteachme.DrawerTestActivity;
 import com.assist.assistteachme.Models.ChapterQuestion;
 import com.assist.assistteachme.Models.CourseButton;
 import com.assist.assistteachme.R;
@@ -52,7 +56,8 @@ public class CourseButtonAdapter  extends RecyclerView.Adapter<CourseButtonAdapt
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext, "asd" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Curs "+position ,Toast.LENGTH_SHORT).show();
+                mContext.startActivity(new Intent(mContext, BrowseThroughCourses.class));
             }
         });
     }
