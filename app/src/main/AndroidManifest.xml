@@ -15,7 +15,7 @@
         <activity android:name=".DrawerTestActivity" />
         <activity android:name=".BrowseThroughCourses"/>
 
-        <activity android:name=".MyAccountMenuDrawer">
+        <activity android:name=".LoginScreenActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             android:label="@string/title_activity_drawer_test"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".LoginScreenActivity"
+            android:name=".MyAccountMenuDrawer"
             android:label="@string/title_activity_course_detail_screen"
             android:theme="@style/AppTheme" />
         <activity

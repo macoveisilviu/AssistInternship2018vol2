@@ -2,6 +2,7 @@ package com.assist.assistteachme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
 import com.assist.assistteachme.Adapters.MyAccounteMenuAdapter;
 import com.assist.assistteachme.Models.ChapterQuestion;
+import com.assist.assistteachme.Models.CourseButton;
 import com.assist.assistteachme.Models.MyAccountMenuModel;
 
 import java.io.File;
@@ -42,7 +44,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
     TextView aboutTextView;
     TextView nameTextView;
     Context context;
-
+    Button closeButton;
 
     Button logOutButton;
     ImageView imageView;
@@ -62,6 +64,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         setContentView(R.layout.activity_my_account_menu_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        closeButton = findViewById(R.id.my_account_menu_redclosebutton);
 
         //recycle view
         recycleView = findViewById(R.id.recycle_view_my_account_menu);
@@ -250,9 +253,15 @@ public class MyAccountMenuDrawer extends AppCompatActivity
     }
 
     public void populateWithDummyData(){
-
-        for(int i=0;i<5;i++){
-            MyAccountMenuModel c= new MyAccountMenuModel("Text1 "+i,"Text2","Category");
+        Drawable a;
+        for(int i=0;i<3;i++){
+            if(i%3==0)
+                a=getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+            else if(i%3==1)
+                a=getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+            else
+                a=getResources().getDrawable(R.drawable.gradient_else_round_corners);
+            MyAccountMenuModel c= new MyAccountMenuModel("Text1 "+i,"Text2","Category",a);
             listMyAccountMenu.add(c);
         }
     }

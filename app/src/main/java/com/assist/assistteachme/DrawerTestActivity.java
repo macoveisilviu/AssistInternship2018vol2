@@ -202,7 +202,7 @@ public class DrawerTestActivity extends AppCompatActivity
                 a=getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
             else
                 a=getResources().getDrawable(R.drawable.gradient_else_round_corners);
-            CourseButton c= new CourseButton("Course "+i,a);
+            CourseButton c= new CourseButton("Category "+i,a);
             courseButtonArrayList.add(c);
         }
     }
