@@ -111,7 +111,6 @@ public class RegisterActivity extends AppCompatActivity {
             passworD.setError(("empty field"));
             return false;
         }
-
         if (passworD.length() < 8) {
             passworD.setError("MINIMUM 8 characters!");
             return false;
@@ -136,6 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
                 for (Post post : response.body()) {
                     result = result + "\nUser id:" + post.getUserId() + "\nID:" + post.getId() + " \nTitle:" + post.getTitle() + "\n" + post.getBody() + "\n\n";
                 }
+
                 //postText.setText(result);
                 Toast.makeText(context, result ,Toast.LENGTH_LONG).show();
             }

@@ -39,9 +39,11 @@
         android:layout_height="wrap_content"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailEditText">
+        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        app:hintEnabled="false">
 
     <EditText
         android:id="@+id/passwordEditText"

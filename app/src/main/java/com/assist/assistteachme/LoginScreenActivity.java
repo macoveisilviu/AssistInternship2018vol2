@@ -37,7 +37,6 @@ public class LoginScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
-
         loginButon = findViewById(R.id.loginButton);
         createAccount = findViewById(R.id.createAccountButton);
         emailEditText = (EditText) findViewById(R.id.emailEditText);

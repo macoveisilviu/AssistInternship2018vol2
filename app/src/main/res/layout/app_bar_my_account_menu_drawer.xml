@@ -118,12 +118,10 @@ maximum 15 MB size."
                 android:layout_height="45dp"
                 android:hint="Username"
                 android:background="@drawable/grey_round_corners"
-
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:textSize="18sp"
                 android:layout_centerHorizontal="true"
-
                 android:gravity="left"
                 android:layout_below="@id/upload_button"
                 />
