@@ -12,12 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.assist.assistteachme.Models.Post;
 import com.assist.assistteachme.Network.RestClient;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText lastName;
     EditText emaiL;
     EditText passworD;
+    TextView agreeTextView;
 
     private final String TAG = "MainActivity";
 
@@ -47,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         lastName = findViewById(R.id.registerActivity_editLastName);
         emaiL = findViewById(R.id.registerActivity_editEmailAdress);
         passworD = findViewById(R.id.registerActivity_editPassword);
+        agreeTextView = findViewById(R.id.agreeTextView);
         ButtonAction();
 
     }
@@ -90,9 +94,26 @@ public class RegisterActivity extends AppCompatActivity {
             firstName.setError("empty field");
             return false;
         }
+        if (firstName.getText().toString().contains(" ")) {
+            firstName.setError("spaces are not allowed");
+            return false;
+        }
 
+        if (checkForNumbers(firstName.getText().toString())==false) {
+            firstName.setError("field must contain only letters");
+            return false;
+        }
+        if (lastName.getText().toString().contains(" ")) {
+            lastName.setError("spaces are not allowed");
+            return false;
+        }
         if (TextUtils.isEmpty(lastName.getText().toString())) {
             lastName.setError("empty field");
+            return false;
+        }
+
+        if (checkForNumbers(lastName.getText().toString())==false) {
+            lastName.setError("field must contain only letters");
             return false;
         }
 
@@ -117,8 +138,21 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
+        if(checkbox.isChecked()==false){
+            agreeTextView.setError("Check!");
+            return false;
+        }
+
 
         return true;
+    }
+
+    public boolean checkForNumbers(String a){
+        if (Pattern.matches("[a-zA-Z]+", a) == true) {
+            return true;
+        }
+        else
+            return false;
     }
 
     public void showPosts() {
