@@ -27,10 +27,17 @@ import android.widget.Toast;
 import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
 import com.assist.assistteachme.Adapters.CourseButtonAdapter;
 import com.assist.assistteachme.Adapters.RecycleViewAdapterS;
+import com.assist.assistteachme.Models.CategoriesRecive;
 import com.assist.assistteachme.Models.ChapterQuestion;
 import com.assist.assistteachme.Models.CourseButton;
+import com.assist.assistteachme.Network.RestClient;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DrawerTestActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +51,9 @@ public class DrawerTestActivity extends AppCompatActivity
     Context context;
     TextView courseName;
     Button discoverMoreButton;
+    boolean buttonIsPressed=false;
+    boolean lessthan4=false;
+    int counter=0;
 
     private RecyclerView recyclerView;
     private CourseButtonAdapter adapter;
@@ -58,13 +68,13 @@ public class DrawerTestActivity extends AppCompatActivity
 
         recyclerView = findViewById(R.id.recycleViewCourse);
         recyclerView.setHasFixedSize(true);
-        courseButtonArrayList= new ArrayList<>();
+        courseButtonArrayList = new ArrayList<>();
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(DrawerTestActivity.this, 2);
         recyclerView.setLayoutManager(mGridLayoutManager);
-        courseName =findViewById(R.id.courseNameTextView);
-        populateWithDummyData(0,4);
+        courseName = findViewById(R.id.courseNameTextView);
+        CategoriesToApi(false);
 
-        adapter = new CourseButtonAdapter(courseButtonArrayList ,this);
+        adapter = new CourseButtonAdapter(courseButtonArrayList, this);
         recyclerView.setAdapter(adapter);
 
 
@@ -110,13 +120,13 @@ public class DrawerTestActivity extends AppCompatActivity
         whatsNewTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Nothing new" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Nothing new", Toast.LENGTH_SHORT).show();
             }
         });
         aboutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Developed by Sofian And Costel" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Developed by Sofian And Costel", Toast.LENGTH_SHORT).show();
             }
         });
         nameTextView.setOnClickListener(new View.OnClickListener() {
@@ -129,8 +139,10 @@ public class DrawerTestActivity extends AppCompatActivity
         discoverMoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                courseButtonArrayList.clear();
-                populateWithDummyData(4,8);
+                //courseButtonArrayList.clear();
+                counter++;
+                if(counter==1)
+                CategoriesToApi(true);
                 recyclerView.setAdapter(adapter);
             }
         });
@@ -193,17 +205,74 @@ public class DrawerTestActivity extends AppCompatActivity
         return true;
     }
 
-    public void populateWithDummyData(int i,int max){
+    public void populateWithDummyData(int i, int max) {
         Drawable a;
-        for(i=0;i<max;i++){
-            if(i%3==0)
-                a=getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
-            else if(i%3==1)
-                a=getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+        for (i = 0; i < max; i++) {
+            if (i % 3 == 0)
+                a = getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+            else if (i % 3 == 1)
+                a = getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
             else
-                a=getResources().getDrawable(R.drawable.gradient_else_round_corners);
-            CourseButton c= new CourseButton("Category "+i,a);
+                a = getResources().getDrawable(R.drawable.gradient_else_round_corners);
+            CourseButton c = new CourseButton("Category " + i, a);
             courseButtonArrayList.add(c);
         }
+    }
+
+    public void CategoriesToApi(final boolean greaterThan4) {
+        RestClient.networkHandler().getCategories().enqueue(new Callback<ArrayList<CategoriesRecive>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CategoriesRecive>> call, Response<ArrayList<CategoriesRecive>> response) {
+                ArrayList<CategoriesRecive> newCategoriesRecive = response.body();
+                Drawable a;
+
+                if (response.isSuccessful()) {
+                    if (newCategoriesRecive.size() >4) {
+                        if(greaterThan4==false) {
+                            for (int i = 0; i < 4; i++) {
+                                if (i % 3 == 0)
+                                    a = getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+                                else if (i % 3 == 1)
+                                    a = getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+                                else
+                                    a = getResources().getDrawable(R.drawable.gradient_else_round_corners);
+                                CourseButton c = new CourseButton(newCategoriesRecive.get(i).getName(), a);
+                                courseButtonArrayList.add(c);
+                            }
+                        }
+                        else {
+                            for (int i = 4; i < newCategoriesRecive.size(); i++) {
+                                if (i % 3 == 0)
+                                    a = getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+                                else if (i % 3 == 1)
+                                    a = getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+                                else
+                                    a = getResources().getDrawable(R.drawable.gradient_else_round_corners);
+                                CourseButton c = new CourseButton(newCategoriesRecive.get(i).getName(), a);
+                                courseButtonArrayList.add(c);
+                            }
+                        }
+                    }
+                    else{
+                        for (int i = 0; i < newCategoriesRecive.size(); i++) {
+                            if (i % 3 == 0)
+                                a = getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+                            else if (i % 3 == 1)
+                                a = getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+                            else
+                                a = getResources().getDrawable(R.drawable.gradient_else_round_corners);
+                            CourseButton c = new CourseButton(newCategoriesRecive.get(i).getName(), a);
+                            courseButtonArrayList.add(c);
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CategoriesRecive>> call, Throwable t) {
+
+            }
+        });
     }
 }
