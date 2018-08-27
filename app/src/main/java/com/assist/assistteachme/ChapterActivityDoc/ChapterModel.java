@@ -34,7 +34,6 @@ public class ChapterModel {
     }
 
 
-
     public ChapterModel(String chapterNo, String chapterName, String chapterDescription) {
         this.chapterNo = chapterNo;
         this.chapterName = chapterName;

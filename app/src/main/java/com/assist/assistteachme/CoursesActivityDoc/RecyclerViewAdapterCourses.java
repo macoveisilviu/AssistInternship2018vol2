@@ -23,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.assist.assistteachme.R;
 import com.bumptech.glide.Glide;
 
@@ -58,7 +57,8 @@ public class RecyclerViewAdapterCourses extends RecyclerView.Adapter<RecyclerVie
     public RecyclerViewAdapterCourses.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.element_adapter_allcourses_activity, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.element_adapter_allcourses_activity, parent, false);
 
         RecyclerViewAdapterCourses.ViewHolder viewHolder = new RecyclerViewAdapterCourses.ViewHolder(view);
 

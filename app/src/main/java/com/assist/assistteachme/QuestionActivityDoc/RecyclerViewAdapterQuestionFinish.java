@@ -11,10 +11,10 @@ import com.assist.assistteachme.R;
 import java.util.List;
 
 /**
- * Created by anairda on 8/21/2018.
+ * Created by anairda on 8/22/2018.
  */
 
-public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerViewAdapterQuestion.ViewHolder> {
+public class RecyclerViewAdapterQuestionFinish extends RecyclerView.Adapter<RecyclerViewAdapterQuestionFinish.ViewHolder> {
 
 
     public interface OnItemClickListener {
@@ -22,11 +22,11 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
     }
 
     private final List<QuestionModel> question;
-    private final RecyclerViewAdapterQuestion.OnItemClickListener listener;
+    private final RecyclerViewAdapterQuestionFinish.OnItemClickListener listener;
 
 
-    public RecyclerViewAdapterQuestion(List<QuestionModel> question,
-                                       RecyclerViewAdapterQuestion.OnItemClickListener listener) {
+    public RecyclerViewAdapterQuestionFinish(List<QuestionModel> question,
+                                             RecyclerViewAdapterQuestionFinish.OnItemClickListener listener) {
 
         this.question = question;
         this.listener = listener;
@@ -35,19 +35,19 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
 
 
     @Override
-    public RecyclerViewAdapterQuestion.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewAdapterQuestionFinish.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.element_adapter_question_activity, parent, false);
+                inflate(R.layout.element_adapter_question_finish_activity, parent, false);
 
-        RecyclerViewAdapterQuestion.ViewHolder viewHolder = new RecyclerViewAdapterQuestion.ViewHolder(view);
+        RecyclerViewAdapterQuestionFinish.ViewHolder viewHolder = new RecyclerViewAdapterQuestionFinish.ViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewAdapterQuestion.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewAdapterQuestionFinish.ViewHolder holder, int position) {
         holder.bind(question.get(position), listener);
 
 
@@ -76,7 +76,7 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
         }
 
         public void bind(final QuestionModel question,
-                         final RecyclerViewAdapterQuestion.OnItemClickListener listener) {
+                         final RecyclerViewAdapterQuestionFinish.OnItemClickListener listener) {
             txtViewQuestion.setText(question.getQuestion());
             txtViewAnswerOne.setText(question.getAnswer_one());
             txtViewAnswerTwo.setText(question.getAnswer_two());

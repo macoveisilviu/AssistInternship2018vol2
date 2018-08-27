@@ -1,4 +1,4 @@
-package com.assist.assistteachme.MyAccount;
+package com.assist.assistteachme.MyAccountDoc;
 
 /**
  * Created by anairda on 8/20/2018.

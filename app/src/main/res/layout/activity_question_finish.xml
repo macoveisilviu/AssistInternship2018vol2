@@ -157,11 +157,11 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+                app:layout_constraintTop_toBottomOf="@+id/view2">
 
                 <Button
                     android:id="@+id/discoverBtn"
@@ -179,17 +179,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView"></Button>
 
                 <Button
-                    android:id="@+id/nextBtn"
+                    android:id="@+id/finishBtn"
                     android:layout_width="130dp"
                     android:layout_height="33dp"
 
                     android:layout_weight="1"
-                    android:background="@drawable/shape_btn_white"
+                    android:background="@drawable/shape_button"
                     android:padding="5dp"
-                    android:text="Next chapter"
+                    android:text="Finish"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="@color/blueButton" />
+                    android:textColor="@color/fullWhite" />
 
 
             </LinearLayout>
@@ -210,7 +210,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <View
-                android:id="@+id/line"
+                android:id="@+id/view2"
                 android:layout_width="295dp"
                 android:layout_height="1dp"
                 android:layout_marginBottom="20dp"

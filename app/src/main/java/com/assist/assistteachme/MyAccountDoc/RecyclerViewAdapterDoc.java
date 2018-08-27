@@ -1,4 +1,4 @@
-package com.assist.assistteachme.MyAccount;
+package com.assist.assistteachme.MyAccountDoc;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +22,8 @@ public class RecyclerViewAdapterDoc extends RecyclerView.Adapter<RecyclerViewAda
 
     public interface OnItemClickListener {
         void onCourseClick(Courses courses);
+
+        void onCourseDeleteBtnPressed(Courses courses, int position);
     }
 
     private final List<Courses> courses;
@@ -60,13 +62,14 @@ public class RecyclerViewAdapterDoc extends RecyclerView.Adapter<RecyclerViewAda
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imgViewCourse;
         private TextView txtViewTitle;
         private TextView txtViewDescription;
         private TextView txtViewPoints;
         public Button btnDelete;
+        public Boolean state = false;
 
 
         public ViewHolder(View itemView) {
@@ -75,26 +78,41 @@ public class RecyclerViewAdapterDoc extends RecyclerView.Adapter<RecyclerViewAda
             txtViewTitle = (TextView) itemView.findViewById(R.id.courseTitle);
             txtViewDescription = (TextView) itemView.findViewById(R.id.courseDescription);
             imgViewCourse = (ImageView) itemView.findViewById(R.id.imgViewCourse);
-            btnDelete=(Button) itemView.findViewById(R.id.btnDeleteCourse);
+            btnDelete = (Button) itemView.findViewById(R.id.btnDeleteCourse);
         }
 
         public void bind(final Courses courses, final OnItemClickListener listener) {
             txtViewDescription.setText(courses.getCourse_description());
             txtViewPoints.setText(Integer.toString(courses.getPoints()));
             txtViewTitle.setText(courses.getTitle());
+            state = true;
 
             Glide.with(itemView.getContext()).load(courses.getImg()).into(imgViewCourse);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onCourseClick(courses);
+
+
+                    if (state == true) {
+                        btnDelete.setVisibility(View.VISIBLE);
+                    }
+
+                    btnDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            listener.onCourseDeleteBtnPressed(courses, getAdapterPosition());
+                        }
+                    });
+
                 }
+
+
+                //onCourseClick
             });
         }
+
+
     }
-
-
 }
-
-
 

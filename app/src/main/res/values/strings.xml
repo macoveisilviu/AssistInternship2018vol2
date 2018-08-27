@@ -35,5 +35,16 @@
     <string name="cancel">Cancel</string>
     <string name="started_courses">Started courses</string>
     <string name="title_activity_question">QuestionActivity</string>
+    <string name="title_activity_question_finish">QuestionFinishActivity</string>
+    <string name="title_activity_congrats">CongratsActivity</string>
+    <string name="browse_through_best_learning_courses_for_alexa">Browse through best learning courses for Alexa</string>
+    <string name="pick_the_one_you_like_and_start_learning">Pick the one you like and start learning</string>
+    <string name="discover_more">Discover more</string>
+    <string name="confirm_passwordd">confirm password</string>
+    <string name="last_name">last name</string>
+    <string name="email_addresss">email address</string>
+    <string name="button">Button</string>
+    <string name="browse_through_best_learning_courses_for_alexaa">Browse through best learning courses for Alexa</string>
+    <string name="pick_the_one_you_like_and_start_learningg">Pick the one you like and start learning</string>
 
 </resources>

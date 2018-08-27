@@ -93,125 +93,73 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/searchLayout"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top"
-                app:layout_constraintVertical_bias="0.0">
-
-
-                <TextView
-                    android:id="@+id/AlexaTxt"
-                    android:layout_width="329dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Internet Banner Advertising Most Reliable Forms Of Web Advertising"
-                    android:textAlignment="center"
-                    android:textColor="@color/whiteText"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/categoryTxt" />
-
-                <TextView
-                    android:id="@+id/pick"
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="There is a lot of exciting stuff going on in the stars above us that make astronomy so much fun. "
-
-                    android:textAlignment="center"
-                    android:textColor="@color/colorHint"
-
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.508"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/AlexaTxt" />
-
-                <TextView
-                    android:id="@+id/categoryTxt"
-                    android:layout_width="80dp"
-                    android:layout_height="23dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="60dp"
-                    android:background="@drawable/shape_category_pink"
-                    android:text="FINANCE"
-                    android:textAlignment="center"
-                    android:textColor="@color/fullWhite"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/recyclerViewLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchLayout">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="12dp" />
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/discoverBtn"
-                android:layout_width="165dp"
+                android:layout_width="189dp"
                 android:layout_height="33dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/shape_btn_white"
                 android:padding="5dp"
-                android:text="See full curriculum"
+                android:text="Go to courses page"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/blueButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewLayout"></Button>
+                app:layout_constraintTop_toBottomOf="@+id/textView5"></Button>
+
 
             <TextView
-                android:id="@+id/categoryTxt"
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="240dp"
+                android:text="@string/alexa_teach_me_2018_all_rights_reserved"
+                android:textColor="@color/colorHint"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/discoverBtn"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
-                android:text="@string/alexa_teach_me_2018_all_rights_reserved"
-
+                android:layout_marginTop="167dp"
+                android:text="CONGRATS!"
                 android:textColor="@color/colorHint"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/discoverBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/top" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="You have finished the course."
+                android:textAllCaps="false"
+                android:textColor="@color/colorButtonDark"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
         </android.support.constraint.ConstraintLayout>
 
 

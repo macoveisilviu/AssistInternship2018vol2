@@ -4,14 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="fullWhite">#FFFFFFFF</color>
-
     <color name="blueButton">#FF006FFF</color>
-
     <color name="whiteText">#FFF7F7F7</color>
     <color name="colorHint">#FFAEB5BB</color>
     <color name="colorButtonDark">#FF06102B</color>
-<color name="buttonX">#303749</color>
-    #FFFA3466
+    <color name="buttonX">#303749</color>
     <color name="buttonXred">#FFFA3466</color>
     <color name="colorResetPass">#FFD1D5D8</color>
 </resources>

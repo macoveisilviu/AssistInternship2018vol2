@@ -15,37 +15,80 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.assist.assistteachme.CongratsActivity;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
 import com.assist.assistteachme.MyAccountDoc.AccountActivity;
 import com.assist.assistteachme.R;
 
 import java.util.ArrayList;
 
-public class QuestionActivity extends AppCompatActivity implements RecyclerViewAdapterQuestion.OnItemClickListener {
+public class QuestionFinishActivity extends AppCompatActivity implements RecyclerViewAdapterQuestionFinish.OnItemClickListener {
     DrawerLayout drawer;
     ImageButton btnMenu;
     RecyclerView recyclerView;
     ArrayList<QuestionModel> list = new ArrayList<QuestionModel>();
-    Button nextChapter;
+    Button finishBtn, prevBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_question_finish);
+
         initVariables();
-        buttonsOnClick();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.bringToFront();
+
         populateDummyData();
+
         recyclerViewInit();
         buttonsInit();
+    }
+
+    private void initVariables() {
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        btnMenu = (ImageButton) findViewById(R.id.btnMenu);
+
+        finishBtn = (Button) findViewById(R.id.finishBtn);
+        prevBtn = (Button) findViewById(R.id.discoverBtn);
+
+    }
+
+    private void buttonsInit() {
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+
+        });
 
 
-    }//onCReate
+        finishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(QuestionFinishActivity.this, CongratsActivity.class));
+
+
+            }
+        });
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(QuestionFinishActivity.this, QuestionActivity.class));
+
+
+            }
+        });
+    }
 
     public void clickButtonView(View view) {
         TextView coursesNav = (TextView) findViewById(R.id.coursesNav);
         coursesNav.setBackgroundColor(getResources().getColor(R.color.blueButton));
         drawer.closeDrawer(Gravity.RIGHT);
-        Intent intent = new Intent(QuestionActivity.this, MainViewActivity.class);
+        Intent intent = new Intent(QuestionFinishActivity.this, MainViewActivity.class);
         startActivity(intent);
 
 
@@ -54,20 +97,10 @@ public class QuestionActivity extends AppCompatActivity implements RecyclerViewA
 
     public void clickAccountBtn(View view) {
         drawer.closeDrawer(Gravity.RIGHT);
-        Intent intent = new Intent(QuestionActivity.this, AccountActivity.class);
+        Intent intent = new Intent(QuestionFinishActivity.this, AccountActivity.class);
         startActivity(intent);
 
 
-    }
-
-    private void buttonsOnClick() {
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.openDrawer(Gravity.RIGHT);
-            }
-
-        });
     }
 
 
@@ -76,32 +109,11 @@ public class QuestionActivity extends AppCompatActivity implements RecyclerViewA
 
     }
 
-    private void initVariables() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.bringToFront();
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        btnMenu = (ImageButton) findViewById(R.id.btnMenu);
-
-    }
-
-    private void buttonsInit() {
-        nextChapter = (Button) findViewById(R.id.nextBtn);
-        nextChapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(QuestionActivity.this, QuestionFinishActivity.class));
-
-
-            }
-        });
-    }
-
     private void recyclerViewInit() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(QuestionActivity.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(QuestionFinishActivity.this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new RecyclerViewAdapterQuestion(list, this));
+        recyclerView.setAdapter(new RecyclerViewAdapterQuestionFinish(list, this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }

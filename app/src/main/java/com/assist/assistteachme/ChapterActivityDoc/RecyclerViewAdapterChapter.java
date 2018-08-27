@@ -72,7 +72,8 @@ public class RecyclerViewAdapterChapter extends RecyclerView.Adapter<RecyclerVie
             txtViewDescription = (TextView) itemView.findViewById(R.id.chapterDescription);
         }
 
-        public void bind(final ChapterModel chapter, final RecyclerViewAdapterChapter.OnItemClickListener listener) {
+        public void bind(final ChapterModel chapter,
+                         final RecyclerViewAdapterChapter.OnItemClickListener listener) {
             txtViewDescription.setText(chapter.getChapterDescription());
             txtViewChapterNo.setText(chapter.getChapterNo());
             txtViewTitle.setText(chapter.getChapterName());

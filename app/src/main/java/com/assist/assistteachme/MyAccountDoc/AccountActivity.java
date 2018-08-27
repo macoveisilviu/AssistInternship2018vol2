@@ -1,35 +1,55 @@
-package com.assist.assistteachme.MyAccount;
+package com.assist.assistteachme.MyAccountDoc;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.assist.assistteachme.LoginActivityDoc.LoginActivity;
+import com.assist.assistteachme.MainViewDoc.MainViewActivity;
+import com.assist.assistteachme.Network.RestClient;
 import com.assist.assistteachme.R;
+import com.assist.assistteachme.SignUpActivityDoc.SignUpResponseModel;
+import com.assist.assistteachme.User;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class AccountActivity extends AppCompatActivity implements RecyclerViewAdapterDoc.OnItemClickListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    public EditText name, email;
-    public TextInputEditText password;
-    public String emailValidation, passValidation, nameValidation;
-    Button ChooseButton, btnSaveChanges, btnCancelChanges, btnDeleteCourse;
+public class AccountActivity extends AppCompatActivity implements RecyclerViewAdapterDoc.OnItemClickListener {
+    DrawerLayout drawer;
+    ImageButton btnMenu;
+    EditText name, email;
+    TextInputEditText password;
+    String emailValidation, passValidation, nameValidation;
+    Button ChooseButton, btnSaveChanges, btnCancelChanges, btnDeleteCourse, btnLogOut;
     ImageView SelectImage;
     private Uri mimage = null;
 
@@ -44,31 +64,69 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_activity);
 
-        //.setVisibility(View.GONE);
-        //.setVisibility(View.VISIBLE);
-
         populateDummyData();
         initVariables();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.bringToFront();
+
         buttonsOnClickImplement();
 
+        recyclerViewInit();
+        getUserDetails();
 
 
+    }// onCreate
 
 
+    public void clickButtonView(View view) {
+        TextView coursesNav = (TextView) findViewById(R.id.coursesNav);
+        coursesNav.setBackgroundColor(getResources().getColor(R.color.blueButton));
+        drawer.closeDrawer(Gravity.RIGHT);
+        Intent intent = new Intent(AccountActivity.this, MainViewActivity.class);
+        startActivity(intent);
 
+
+        Log.d("OK Button", "pressed");
+    }
+
+    public void clickAccountBtn(View view) {
+        drawer.closeDrawer(Gravity.RIGHT);
+        Intent intent = new Intent(AccountActivity.this, AccountActivity.class);
+        startActivity(intent);
+
+
+    }
+
+
+    public void clickCloseMenuBtn(View view) {
+        drawer.closeDrawer(Gravity.RIGHT);
+
+    }
+
+    private void getUserDetails() {
+        RestClient.networkHandler().accountInfo(User.getInstance().getLoginResponseModel()
+                .getToken()).enqueue(new Callback<SignUpResponseModel>() {
+            @Override
+            public void onResponse(Call<SignUpResponseModel> call, Response<SignUpResponseModel> response) {
+                name.setHint(response.body().getFirstName());
+                email.setHint(response.body().getMail());
+            }
+
+            @Override
+            public void onFailure(Call<SignUpResponseModel> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void recyclerViewInit() {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(AccountActivity.this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new RecyclerViewAdapterDoc(list, this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-
-
-
-
-    }// onCreate
+    }
 
     private void buttonsOnClickImplement() {
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +137,8 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
                /*     Toast.makeText(getApplicationContext(), "Your account was created!",
                             Toast.LENGTH_SHORT).show();*/
                 } else {
-                    //  Toast.makeText(getApplicationContext(), "Invalid email address or password!", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getApplicationContext(), "Invalid email address or password!",
+                    // Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -104,11 +163,39 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
                         Image_Request_Code);
             }
         });
+
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+
+        });
+
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MY_PREF_NAME", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+
+                Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
     }
 
+
     private void initVariables() {
-       btnDeleteCourse=(Button)findViewById(R.id.btnDeleteCourse);
-        ChooseButton = (Button) findViewById(R.id.chooseBtn);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        btnMenu = (ImageButton) findViewById(R.id.btnMenu);
+        btnLogOut = (Button) findViewById(R.id.buttonLogout);
+        btnDeleteCourse = (Button) findViewById(R.id.btnDeleteCourse);
+        ChooseButton = (Button) findViewById(R.id.discoverBtn);
         SelectImage = (ImageView) findViewById(R.id.profilePhoto);
         btnSaveChanges = (Button) findViewById(R.id.btnSaveChange);
         btnCancelChanges = (Button) findViewById(R.id.btnCancelChange);
@@ -258,23 +345,55 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
 
     @Override
     public void onCourseClick(Courses courses) {
-        Log.d("CursClick", courses.points+"");
+        Log.d("CursClick", courses.points + "");
 
 
+    }
+
+    @Override
+    public void onCourseDeleteBtnPressed(final Courses courses, int position) {
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(AccountActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(AccountActivity.this);
+        }
+        builder.setTitle("Delete course")
+                .setMessage("Are you sure you want to delete this course?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        list.remove(courses);
+                        refreshRecycler();
+                        deletePoints(courses);
+
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+        recyclerView.setAdapter(new RecyclerViewAdapterDoc(list, this));
+    }
+
+    private void deletePoints(Courses courses) {
+        int deleteNoPoint = courses.getPoints();
+        Log.d("deleteNoPoints" ,""+deleteNoPoint);
+        int finalpoints;
+        TextView pointsNav = (TextView) findViewById(R.id.points);
+        int totalPoints = Integer.parseInt(pointsNav.getText().toString());
+        finalpoints = totalPoints - deleteNoPoint;
+        pointsNav.setText(String.valueOf(finalpoints));
 
 
-  /*      btnDeleteCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             *//*   public void remove(Courses courses) {
-                    int position = items.indexOf(item);
-                    cou.remove(position);
-                    notifyItemRemoved(position);
-                }*//*
+    }
 
-            }
-        });*/
-
+    private void refreshRecycler() {
+        recyclerView.setAdapter(new RecyclerViewAdapterDoc(list, this));
     }
 }
 

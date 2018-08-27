@@ -1,73 +1,110 @@
-package com.assist.assistteachme.Login.Reset.SignUp;
+package com.assist.assistteachme.SignUpActivityDoc;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.assist.assistteachme.LoginActivityDoc.LoginActivity;
+import com.assist.assistteachme.Network.RestClient;
 import com.assist.assistteachme.R;
 
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity {
     public Button signUp_btn;
     public EditText firstNamee, lastNamee, email;
     public TextInputEditText password;
-    public String emailValidation, passValidation, firstName, lastName;
+    public String emailValidation, passValidation, firstNameValidation, lastNameValidation;
     CheckBox checkBox;
+    Pattern specialCharPatten, UpperCasePatten, lowerCasePatten, digitCasePatten;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
+        initVariables();
+        signUpBtnOnClick();
 
-        signUp_btn = (Button) findViewById(R.id.createAccountBtn);
 
+    }// onCreate
+
+    private void signUpBtnOnClick() {
         signUp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (validateSignUp()) {
-                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                    Toast.makeText(getApplicationContext(), "Your account was created!",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    //  Toast.makeText(getApplicationContext(), "Invalid email address or password!", Toast.LENGTH_SHORT).show();
+
+                    signUp(emailValidation, passValidation, firstNameValidation, lastNameValidation);
                 }
 
             }
         });
-    }// onCreate
+    }
 
-    private boolean validateSignUp() {
+    private void signUp(String emailValidation, String passValidation, String firstNameValidation, String lastNameValidation) {
+        SignUpUserModel userModelSignUp = new SignUpUserModel(emailValidation, passValidation, firstNameValidation, lastNameValidation);
+
+        RestClient.networkHandler().signUp(userModelSignUp).enqueue(new Callback<SignUpResponseModel>() {
+            @Override
+            public void onResponse(Call<SignUpResponseModel> call, Response<SignUpResponseModel> response) {
+                Log.d("LOGIN RESPONSE", response.message());
+
+                if (response.code() == 201) {
+                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                    Toast.makeText(SignupActivity.this, "Account was created! Please login!", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SignUpResponseModel> call, Throwable t) {
+                Toast.makeText(SignupActivity.this, "Check internet connection!", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
+    }
+
+    private void initVariables() {
+        signUp_btn = (Button) findViewById(R.id.createAccountBtn);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         firstNamee = (EditText) findViewById(R.id.firstNameS);
         lastNamee = (EditText) findViewById(R.id.nameAccount);
         email = (EditText) findViewById(R.id.emailAccount);
         password = (TextInputEditText) findViewById(R.id.etPasswordddS);
+        signUp_btn = (Button) findViewById(R.id.createAccountBtn);
+        specialCharPatten = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        UpperCasePatten = Pattern.compile("[A-Z ]");
+        lowerCasePatten = Pattern.compile("[a-z ]");
+        digitCasePatten = Pattern.compile("[0-9 ]");
+    }
+
+    private boolean validateSignUp() {
         emailValidation = email.getText().toString().trim();
         passValidation = password.getText().toString().trim();
-        firstName = firstNamee.getText().toString().trim();
-        lastName = lastNamee.getText().toString().trim();
-        signUp_btn = (Button) findViewById(R.id.createAccountBtn);
-        Pattern specialCharPatten = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-        Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
-        Pattern lowerCasePatten = Pattern.compile("[a-z ]");
-        Pattern digitCasePatten = Pattern.compile("[0-9 ]");
+        firstNameValidation = firstNamee.getText().toString().trim();
+        lastNameValidation = lastNamee.getText().toString().trim();
+
         if (TextUtils.isEmpty(emailValidation)
                 && TextUtils.isEmpty(passValidation)
-                && TextUtils.isEmpty(firstName)
-                && TextUtils.isEmpty(lastName)) {
-        /*email.setBackgroundResource(R.drawable.shape_btn_white);
-            password.setBackgroundResource(R.drawable.shape_btn_white);*/
-
+                && TextUtils.isEmpty(firstNameValidation)
+                && TextUtils.isEmpty(lastNameValidation)) {
 
             email.setError("Enter email!");
             password.setError("Enter password!");
@@ -92,34 +129,33 @@ public class SignupActivity extends AppCompatActivity {
             return false;
         }
 
-        if (TextUtils.isEmpty(firstName)) {
+        if (TextUtils.isEmpty(firstNameValidation)) {
             firstNamee.setError("Enter first name!");
             return false;
         }
-        if (TextUtils.isEmpty(lastName)) {
+        if (TextUtils.isEmpty(lastNameValidation)) {
             lastNamee.setError("Enter last name!");
             return false;
         }
-        if (digitCasePatten.matcher(firstName).find()) {
+        if (digitCasePatten.matcher(firstNameValidation).find()) {
             firstNamee.setError("First name should contain only characters!");
             return false;
         }
 
-        if (digitCasePatten.matcher(lastName).find()) {
+        if (digitCasePatten.matcher(lastNameValidation).find()) {
             lastNamee.setError("Last name should contain only characters!");
             return false;
         }
 
-        if (specialCharPatten.matcher(firstName).find()) {
+        if (specialCharPatten.matcher(firstNameValidation).find()) {
             firstNamee.setError("First name should contain only characters!");
             return false;
         }
 
-        if (specialCharPatten.matcher(lastName).find()) {
+        if (specialCharPatten.matcher(lastNameValidation).find()) {
             lastNamee.setError("Last name should contain only characters!");
             return false;
         }
-
 
 
         if (passValidation.length() < 8) {

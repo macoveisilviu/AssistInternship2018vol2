@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  public class RestClient {
     private static API REST_CLIENT;
 
-    private static String BASE_URL = "http://192.168.151.36:8000/api/";
+    private static String BASE_URL = "http://192.168.151.36:8000";
 
     public static API networkHandler() {
         return REST_CLIENT;
@@ -36,3 +36,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
         REST_CLIENT = retrofit.create(API.class);
     }
 }
+
+
+
+
+
+
+
