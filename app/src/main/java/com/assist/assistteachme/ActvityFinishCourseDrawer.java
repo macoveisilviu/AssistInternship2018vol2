@@ -181,7 +181,7 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
         return true;
     }
 
-    public void showPosts() {
+    /*public void showPosts() {
         RestClient.networkHandler().getPosts().enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
@@ -205,5 +205,5 @@ public class ActvityFinishCourseDrawer extends AppCompatActivity
                 // show message couldn't connect to server
             }
         });
-    }
+    }*/
 }

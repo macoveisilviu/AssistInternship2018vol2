@@ -68,6 +68,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             confirmedPasswordEditText.setError("passwords don't match");
             return false;
         }
+        if (passwordEditText.length() < 8) {
+            passwordEditText.setError("MINIMUM 8 characters!");
+            return false;
+        }
+        if (confirmedPasswordEditText.length() < 8) {
+            confirmedPasswordEditText.setError("MINIMUM 8 characters!");
+            return false;
+        }
         return true;
     }
 }

@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assist.assistteachme.Models.LogInReceive;
+import com.assist.assistteachme.Models.LogInSend;
 import com.assist.assistteachme.Models.Post;
 import com.assist.assistteachme.Network.RestClient;
 
@@ -43,12 +45,14 @@ public class LoginScreenActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         resetTextView = findViewById(R.id.resetTextView);
 
+
         loginButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (fieldsAreValid()) {
-                    startActivity(new Intent(LoginScreenActivity.this, DrawerTestActivity.class));
+                    LogInAccountToAPI();
+
                 }
 
             }
@@ -95,7 +99,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         return true;
     }
 
-    public void showPosts() {
+    /*public void showPosts() {
         RestClient.networkHandler().getPosts().enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
@@ -119,7 +123,35 @@ public class LoginScreenActivity extends AppCompatActivity {
                 // show message couldn't connect to server
             }
         });
+    }*/
+
+    public void LogInAccountToAPI(){
+
+        LogInSend logInSend = new LogInSend();
+        logInSend.setEmail(emailEditText.getText().toString());
+        logInSend.setPassword(passwordEditText.getText().toString());
+        RestClient.networkHandler().getLogInReceive(logInSend).enqueue(new Callback<LogInReceive>() {
+            @Override
+            public void onResponse(Call<LogInReceive> call, Response<LogInReceive> response) {
+                int statuscode = response.code();
+                if( statuscode == 200){
+                    startActivity(new Intent(LoginScreenActivity.this, DrawerTestActivity.class));
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogInReceive> call, Throwable t) {
+
+            }
+        });
     }
+
+
+
+
+
+
 
 
 }

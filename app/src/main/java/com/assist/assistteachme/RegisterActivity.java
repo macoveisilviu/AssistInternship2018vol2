@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
             firstName.setError("empty field");
             return false;
         }
-        if (firstName.getText().toString().contains(" ")) {
+        if (firstName.getText().toString().matches(" ")) {
             firstName.setError("spaces are not allowed");
             return false;
         }
@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
             firstName.setError("field must contain only letters");
             return false;
         }
-        if (lastName.getText().toString().contains(" ")) {
+        if (lastName.getText().toString().matches(" ")) {
             lastName.setError("spaces are not allowed");
             return false;
         }
@@ -154,7 +154,9 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
     }
 
-    public void showPosts() {
+
+
+   /* public void showPosts() {
         RestClient.networkHandler().getPosts().enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
@@ -179,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
                 // show message couldn't connect to server
             }
         });
-    }
+    }*/
 
 }
 
