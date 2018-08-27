@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.assist.assistteachme.Models.Post;
+import com.assist.assistteachme.Models.RegisterRecive;
+import com.assist.assistteachme.Models.RegisterSend;
 import com.assist.assistteachme.Network.RestClient;
 
 import java.util.List;
@@ -67,9 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
                 //OnCheckBoxClicked();
 
                 if (FieldsAreValid() && checkbox.isChecked())
-
                 {
-                    startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
+                    RegisterAccountToApi();
 
                 } else {
                     Toast.makeText(context, "Invalid", Toast.LENGTH_LONG).show();
@@ -98,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity {
             firstName.setError("spaces are not allowed");
             return false;
         }
-
         if (checkForNumbers(firstName.getText().toString())==false) {
             firstName.setError("field must contain only letters");
             return false;
@@ -137,6 +137,11 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
+        if (checkPassword(passworD.getText().toString())==false && checkForNumbers(passworD.getText().toString())==true) {
+            passworD.setError("Password must contain Upper character and number");
+            return false;
+        }
+
         if(checkbox.isChecked()==false){
             agreeTextView.setError("Check!");
             return false;
@@ -144,6 +149,37 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         return true;
+
+
+    }
+
+    public boolean checkPassword(String a){
+        if (Pattern.matches("[A-Z]", a) == true) {
+            return true;
+        }
+        else
+            return false;
+    }
+    public void RegisterAccountToApi(){
+        RegisterSend registerSend = new RegisterSend();
+        registerSend.setFirstName(firstName.getText().toString());
+        registerSend.setLastName(lastName.getText().toString());
+        registerSend.setEmail(emaiL.getText().toString());
+        registerSend.setPassword(passworD.getText().toString());
+        RestClient.networkHandler().getRegisterUser(registerSend).enqueue(new Callback<RegisterRecive>() {
+            @Override
+            public void onResponse(Call<RegisterRecive> call, Response<RegisterRecive> response) {
+                int statusCode = response.code();
+                if (statusCode == 201) {
+                    startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
+                    Toast.makeText(context, statusCode, Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<RegisterRecive> call, Throwable t) {
+                Toast.makeText(context,"could not connect to server",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public boolean checkForNumbers(String a){
@@ -156,7 +192,20 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+
    /* public void showPosts() {
+
+    public boolean checkPassword(String a){
+        if (Pattern.matches("[a-zA-Z]", a) == true) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+
+    /*public void showPosts() {
+
         RestClient.networkHandler().getPosts().enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {

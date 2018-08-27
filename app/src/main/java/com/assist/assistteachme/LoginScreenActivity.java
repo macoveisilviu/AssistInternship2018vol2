@@ -18,6 +18,7 @@ import com.assist.assistteachme.Models.Post;
 import com.assist.assistteachme.Network.RestClient;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -83,6 +84,14 @@ public class LoginScreenActivity extends AppCompatActivity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailt).matches();
     }
 
+    public boolean checkForNumbers(String a){
+        if (Pattern.matches("[a-zA-Z]+", a) == true) {
+            return true;
+        }
+        else
+            return false;
+    }
+
     public boolean fieldsAreValid() {
         if (TextUtils.isEmpty(emailEditText.getText().toString())) {
             emailEditText.setError("empty field");
@@ -96,8 +105,24 @@ public class LoginScreenActivity extends AppCompatActivity {
             passwordEditText.setError("empty field");
             return false;
         }
+
+        if (checkPassword(passwordEditText.getText().toString())==false && checkForNumbers(passwordEditText.getText().toString())==true) {
+            passwordEditText.setError("Password must contain Upper character and number");
+            return false;
+        }
         return true;
     }
+
+
+
+    public boolean checkPassword(String a){
+        if (Pattern.matches("[A-Z]", a) == true) {
+            return true;
+        }
+        else
+            return false;
+    }
+
 
     /*public void showPosts() {
         RestClient.networkHandler().getPosts().enqueue(new Callback<List<Post>>() {
@@ -125,6 +150,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         });
     }*/
 
+
     public void LogInAccountToAPI(){
 
         LogInSend logInSend = new LogInSend();
@@ -146,6 +172,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
 
