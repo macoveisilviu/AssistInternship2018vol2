@@ -12,7 +12,6 @@ the progress for each one.
 
 Contact us at <u>hei@alexateachme.com</u>,
 if you need any help."</string>
-
     <string name="Reset"><u>Reset it</u></string>
     <string name="open">open</string>
     <string name="close">close</string>
@@ -39,6 +38,9 @@ if you need any help."</string>
     <string name="title_activity_my_account_menu_drawer">MyAccountMenuDrawer</string>
     <string name="q"><b>Q:</b></string>
     <string name="question"><b>Is this a question?</b></string>
+
+
+
 
 
 </resources>

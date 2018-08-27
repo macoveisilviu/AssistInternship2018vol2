@@ -2,22 +2,22 @@ package com.assist.assistteachme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.assist.assistteachme.Models.LogInReceive;
 import com.assist.assistteachme.Models.LogInSend;
-import com.assist.assistteachme.Models.Post;
 import com.assist.assistteachme.Network.RestClient;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -32,6 +32,8 @@ public class LoginScreenActivity extends AppCompatActivity {
     EditText passwordEditText;
     TextView resetTextView;
     Context context;
+    private SharedPreferences mPrefs;
+    private static final String PREFS_NAME = "PrefsFile";
 
 
     private final String TAG = "MainActivity";
@@ -40,11 +42,15 @@ public class LoginScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
+
         loginButon = findViewById(R.id.loginButton);
         createAccount = findViewById(R.id.createAccountButton);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         resetTextView = findViewById(R.id.resetTextView);
+        mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        getPreferencesDataAndAutologin();
 
 
         loginButon.setOnClickListener(new View.OnClickListener() {
@@ -52,12 +58,12 @@ public class LoginScreenActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (fieldsAreValid()) {
-                    LogInAccountToAPI();
+                    LogInAccountToAPI(emailEditText.getText().toString(), passwordEditText.getText().toString(),false);
 
                 }
-
             }
         });
+
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +81,27 @@ public class LoginScreenActivity extends AppCompatActivity {
             }
         });
 
+
+        emailEditText.getText().clear();
+        passwordEditText.getText().clear();
+
+
     }
+
+
+    private void getPreferencesDataAndAutologin() {
+        String email = "";
+        String password = "";
+
+        email= PreferenceManager.getDefaultSharedPreferences(this).getString("pref_email", "");
+        password=PreferenceManager.getDefaultSharedPreferences(this).getString("pref_password", "");
+
+        if (!email.isEmpty() && !password.isEmpty()) {
+            LogInAccountToAPI(email, password, true);
+        }
+
+    }
+
 
     public boolean isValidEmail(String emailt) {
         if (emailt == null)
@@ -84,11 +110,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailt).matches();
     }
 
-    public boolean checkForNumbers(String a){
+    public boolean checkForNumbers(String a) {
         if (Pattern.matches("[a-zA-Z]+", a) == true) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -106,7 +131,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             return false;
         }
 
-        if (checkPassword(passwordEditText.getText().toString())==false && checkForNumbers(passwordEditText.getText().toString())==true) {
+        if (!checkPassword(passwordEditText.getText().toString()) && checkForNumbers(passwordEditText.getText().toString())) {
             passwordEditText.setError("Password must contain Upper character and number");
             return false;
         }
@@ -114,12 +139,10 @@ public class LoginScreenActivity extends AppCompatActivity {
     }
 
 
-
-    public boolean checkPassword(String a){
+    public boolean checkPassword(String a) {
         if (Pattern.matches("[A-Z]", a) == true) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 
@@ -151,16 +174,20 @@ public class LoginScreenActivity extends AppCompatActivity {
     }*/
 
 
-    public void LogInAccountToAPI(){
+    public void LogInAccountToAPI(final String email, final String password, final Boolean isAutologin) {
 
         LogInSend logInSend = new LogInSend();
-        logInSend.setEmail(emailEditText.getText().toString());
-        logInSend.setPassword(passwordEditText.getText().toString());
+        logInSend.setEmail(email);
+        logInSend.setPassword(password);
         RestClient.networkHandler().getLogInReceive(logInSend).enqueue(new Callback<LogInReceive>() {
             @Override
             public void onResponse(Call<LogInReceive> call, Response<LogInReceive> response) {
                 int statuscode = response.code();
-                if( statuscode == 200){
+                if (statuscode == 200) {
+                    if (!isAutologin) {
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("pref_email", email).apply();
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("pref_password", password).apply();
+                    }
                     startActivity(new Intent(LoginScreenActivity.this, DrawerTestActivity.class));
 
                 }
@@ -172,13 +199,6 @@ public class LoginScreenActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-
 
 
 }

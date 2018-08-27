@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -121,6 +122,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().apply();
                 startActivity(new Intent(MyAccountMenuDrawer.this, LoginScreenActivity.class));
             }
         });

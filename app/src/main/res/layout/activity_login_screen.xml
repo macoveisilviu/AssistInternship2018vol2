@@ -61,11 +61,13 @@
          />
     </android.support.design.widget.TextInputLayout>
 
+
+
     <Button
         android:id="@+id/loginButton"
         android:layout_width="280dp"
         android:layout_height="57dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/blue_round_corners"
         android:text="LOG IN"
         android:textColor="#FFF7F7F7"
