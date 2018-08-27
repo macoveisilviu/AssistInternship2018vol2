@@ -172,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (statusCode == 201) {
                     startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
-                    Toast.makeText(context, statusCode, Toast.LENGTH_LONG).show();
+
                 }
             }
             @Override

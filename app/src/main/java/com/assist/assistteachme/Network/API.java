@@ -1,6 +1,7 @@
 package com.assist.assistteachme.Network;
 
 
+import com.assist.assistteachme.Models.CategoriesRecive;
 import com.assist.assistteachme.Models.LogInReceive;
 import com.assist.assistteachme.Models.LogInSend;
 
@@ -12,6 +13,7 @@ import com.assist.assistteachme.Models.Post;
 import com.assist.assistteachme.Models.RegisterRecive;
 import com.assist.assistteachme.Models.RegisterSend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,6 +34,8 @@ public interface API {
     Call<RegisterRecive> getRegisterUser(@Body RegisterSend registerSend);
 
    @POST("api/users/forgotPassword")
-    Call<ForgotPasswordRecive> getPasswordChange(@Body ForgotPasswordSend forgotPasswordSend);
+    Call<String> getPasswordChange(@Body ForgotPasswordSend forgotPasswordSend);
 
+   @GET("api/categories")
+    Call<ArrayList<CategoriesRecive>> getCategories();
 }

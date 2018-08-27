@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -111,14 +112,19 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     public void forgotPasswordToApi(){
         ForgotPasswordSend forgotPasswordSend = new ForgotPasswordSend();
         forgotPasswordSend.setEmail(emailEditText.getText().toString());
-        RestClient.networkHandler().getPasswordChange(forgotPasswordSend).enqueue(new Callback<ForgotPasswordRecive>() {
+        RestClient.networkHandler().getPasswordChange(forgotPasswordSend).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<ForgotPasswordRecive> call, Response<ForgotPasswordRecive> response) {
-                Toast.makeText(context,"Email change password sendt", Toast.LENGTH_LONG).show();
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.w("RESPONSE", response.isSuccessful()+" "+response.code());
+                if (response.isSuccessful()) {
+                    String message = response.body();
+                    startActivity(new Intent(ForgotPasswordActivity.this, LoginScreenActivity.class));
+                    Toast.makeText(context,  message, Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<ForgotPasswordRecive> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
 
             }
         });
