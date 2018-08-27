@@ -10,6 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.assist.assistteachme.Models.ForgotPasswordRecive;
+import com.assist.assistteachme.Models.ForgotPasswordSend;
+import com.assist.assistteachme.Network.RestClient;
+
+import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ForgotPasswordActivity extends AppCompatActivity {
 
    private EditText emailEditText;
@@ -33,7 +43,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  if(fieldsAreValid()){
-                     Toast.makeText(context,"Valid", Toast.LENGTH_LONG).show();
+                     forgotPasswordToApi();
                  }
 
              }
@@ -45,6 +55,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailt).matches();
     }
+    public boolean checkPassword(String a){
+        if (Pattern.matches("[A-Z]+[0-9]", a) == true) {
+            return true;
+        }
+        else
+            return false;
+    }
 
     public boolean fieldsAreValid(){
         if(TextUtils.isEmpty(emailEditText.getText().toString())){
@@ -55,20 +72,44 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             emailEditText.setError("invalid email");
             return false;
         }
-        if(TextUtils.isEmpty(passwordEditText.getText().toString())){
+        /*if(TextUtils.isEmpty(passwordEditText.getText().toString())){
             passwordEditText.setError("empty field");
+            return false;
+        }
+        if(checkPassword(passwordEditText.getText().toString())){
+            passwordEditText.setError("Password must contain Upper character and number");
             return false;
         }
         if(TextUtils.isEmpty(confirmedPasswordEditText.getText().toString())){
             confirmedPasswordEditText.setError("empty field");
             return false;
         }
+        if(checkPassword(confirmedPasswordEditText.getText().toString())){
+            confirmedPasswordEditText.setError("Password must contain Upper character and number");
+            return false;
+        }
         if(!confirmedPasswordEditText.getText().toString().equals(passwordEditText.getText().toString())){
             passwordEditText.setError("passwords don't match");
             confirmedPasswordEditText.setError("passwords don't match");
             return false;
-        }
+        }*/
         return true;
+    }
+
+    public void forgotPasswordToApi(){
+        ForgotPasswordSend forgotPasswordSend = new ForgotPasswordSend();
+        forgotPasswordSend.setEmail(emailEditText.getText().toString());
+        RestClient.networkHandler().getPasswordChange(forgotPasswordSend).enqueue(new Callback<ForgotPasswordRecive>() {
+            @Override
+            public void onResponse(Call<ForgotPasswordRecive> call, Response<ForgotPasswordRecive> response) {
+                Toast.makeText(context,"Email change password sendt", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ForgotPasswordRecive> call, Throwable t) {
+
+            }
+        });
     }
 }
 
