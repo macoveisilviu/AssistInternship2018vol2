@@ -62,6 +62,7 @@
                 android:background="@drawable/white_round_corners"
                 android:fontFamily="sans-serif"
                 android:hint="search..."
+                android:singleLine="true"
                 android:paddingLeft="20dp"
                 android:textColor="#FFAEB5BB"
                 android:textSize="18sp" />

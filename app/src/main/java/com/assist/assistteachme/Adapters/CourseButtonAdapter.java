@@ -27,10 +27,12 @@ public class CourseButtonAdapter  extends RecyclerView.Adapter<CourseButtonAdapt
 
     private static final String TAG = "RecycleViewAdaptersC";
 
+
     private ArrayList<CourseButton> courseButtonsList = new ArrayList<>();
     Context mContext;
 
     public CourseButtonAdapter(ArrayList<CourseButton> courseButtonsList, Context mContext) {
+
         this.courseButtonsList = courseButtonsList;
         this.mContext = mContext;
     }
@@ -44,22 +46,25 @@ public class CourseButtonAdapter  extends RecyclerView.Adapter<CourseButtonAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseButtonAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final CourseButtonAdapter.ViewHolder holder, final int position) {
         Log.d(TAG,"on bind ViewHolder");
 
         final CourseButton listQ = courseButtonsList.get(position);
-        Log.d("CourseDebugg", listQ.getCourseName().toString());
+//        Log.d("CourseDebugg", listQ.getCourseName().toString());
         holder.courseTitle.setText(listQ.getCourseName());
         holder.courseTitle.setBackground(listQ.getBackground());
+        holder.courseTitle.setTag(position);
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(mContext, "Curs "+position ,Toast.LENGTH_SHORT).show();
-                mContext.startActivity(new Intent(mContext, BrowseThroughCourses.class));
+                Intent intent = new Intent(mContext, BrowseThroughCourses.class);
+                intent.putExtra("title",courseButtonsList.get(position).getCourseName());
+               // Toast.makeText(mContext, "Category "+position ,Toast.LENGTH_SHORT).show();
+                mContext.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -67,14 +72,18 @@ public class CourseButtonAdapter  extends RecyclerView.Adapter<CourseButtonAdapt
         return courseButtonsList.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView courseTitle;
         CardView parentLayout;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             courseTitle = itemView.findViewById(R.id.courseNameTextView);
             parentLayout = itemView.findViewById(R.id.cardview);
         }
+
     }
+
 }

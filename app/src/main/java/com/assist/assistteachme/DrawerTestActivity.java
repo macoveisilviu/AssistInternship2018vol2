@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import com.assist.assistteachme.Adapters.CourseButtonAdapter;
 import com.assist.assistteachme.Adapters.RecycleViewAdapterS;
 import com.assist.assistteachme.Models.CategoriesRecive;
 import com.assist.assistteachme.Models.ChapterQuestion;
+import com.assist.assistteachme.Models.Course;
 import com.assist.assistteachme.Models.CourseButton;
 import com.assist.assistteachme.Network.RestClient;
 
@@ -50,14 +52,18 @@ public class DrawerTestActivity extends AppCompatActivity
     TextView nameTextView;
     Context context;
     TextView courseName;
+    EditText searchEditText;
     Button discoverMoreButton;
-    boolean buttonIsPressed=false;
-    boolean lessthan4=false;
+    Button searchButton;
     int counter=0;
 
     private RecyclerView recyclerView;
     private CourseButtonAdapter adapter;
     private ArrayList<CourseButton> courseButtonArrayList;
+    private ArrayList<CourseButton> originalCourseButtonArrayList;
+
+
+    ArrayList<CategoriesRecive> newCategoriesRecive = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +71,13 @@ public class DrawerTestActivity extends AppCompatActivity
         setContentView(R.layout.activity_drawer_test);
         nav = findViewById(R.id.nav_view);
         discoverMoreButton = findViewById(R.id.discoverMoreButton);
+        searchButton = findViewById(R.id.searchButton);
+        searchEditText = findViewById(R.id.searchEditText);
 
         recyclerView = findViewById(R.id.recycleViewCourse);
         recyclerView.setHasFixedSize(true);
         courseButtonArrayList = new ArrayList<>();
+        originalCourseButtonArrayList = new ArrayList<>();
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(DrawerTestActivity.this, 2);
         recyclerView.setLayoutManager(mGridLayoutManager);
         courseName = findViewById(R.id.courseNameTextView);
@@ -86,6 +95,8 @@ public class DrawerTestActivity extends AppCompatActivity
         context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Bundle b = new Bundle();
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -144,6 +155,18 @@ public class DrawerTestActivity extends AppCompatActivity
                 if(counter==1)
                 CategoriesToApi(true);
                 recyclerView.setAdapter(adapter);
+            }
+        });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findCourse(searchEditText.getText().toString())!=null) {
+                    CourseButton c = findCourse(searchEditText.getText().toString());
+                    courseButtonArrayList.clear();
+                    courseButtonArrayList.add(c);
+                    recyclerView.setAdapter(adapter);
+                }
             }
         });
     }
@@ -223,10 +246,20 @@ public class DrawerTestActivity extends AppCompatActivity
         RestClient.networkHandler().getCategories().enqueue(new Callback<ArrayList<CategoriesRecive>>() {
             @Override
             public void onResponse(Call<ArrayList<CategoriesRecive>> call, Response<ArrayList<CategoriesRecive>> response) {
-                ArrayList<CategoriesRecive> newCategoriesRecive = response.body();
+                newCategoriesRecive = response.body();
                 Drawable a;
 
                 if (response.isSuccessful()) {
+                    for (int i = 0; i < newCategoriesRecive.size(); i++) {
+                        if (i % 3 == 0)
+                            a = getResources().getDrawable(R.drawable.gradient_astrology_round_corners);
+                        else if (i % 3 == 1)
+                            a = getResources().getDrawable(R.drawable.gradient_finnance_round_corners);
+                        else
+                            a = getResources().getDrawable(R.drawable.gradient_else_round_corners);
+                        CourseButton c = new CourseButton(newCategoriesRecive.get(i).getName(), a);
+                        originalCourseButtonArrayList.add(c);
+                    }
                     if (newCategoriesRecive.size() >4) {
                         if(greaterThan4==false) {
                             for (int i = 0; i < 4; i++) {
@@ -274,5 +307,14 @@ public class DrawerTestActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    public CourseButton findCourse(String codeIsIn) {
+        for(CourseButton carnet : originalCourseButtonArrayList) {
+            if(carnet.getCourseName().equals(codeIsIn)) {
+                return carnet;
+            }
+        }
+        return null;
     }
 }
