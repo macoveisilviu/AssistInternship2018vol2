@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -37,13 +38,15 @@ import retrofit2.Response;
 public class MainViewActivity extends AppCompatActivity implements RecyclerViewAdapterMainView.OnItemClickListener {
     DrawerLayout drawer;
     ImageButton btnMenu;
-    Button discoverBtn;
+    Button discoverBtn, searchBtn;
     Toolbar toolbar;
+    EditText searchTxt;
 
     private RecyclerView.LayoutManager mLayoutManager;
     RecyclerView recyclerView;
     ArrayList<CategoryResponseModel> newCategoryList = new ArrayList<CategoryResponseModel>();
     ArrayList<CategoryResponseModel> categoryList = new ArrayList<CategoryResponseModel>();
+    ArrayList<CategoryResponseModel> categorySearchList = new ArrayList<CategoryResponseModel>();
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -137,6 +140,8 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnMenu = (ImageButton) findViewById(R.id.btnMenu);
         discoverBtn = (Button) findViewById(R.id.discoverBtn);
+        searchBtn = (Button) findViewById(R.id.buttonSearch);
+        searchTxt = (EditText) findViewById(R.id.searchTxt);
     }
 
 
@@ -165,11 +170,53 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
                 }
             }
         });
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                final String searchApi = searchTxt.getText().toString();
+                SearchCategoryModel category = new SearchCategoryModel(searchApi);
+
+                RestClient.networkHandler().searchCategory(User.getInstance().getLoginResponseModel().getToken(),
+                        "application/json", category).
+                        enqueue(new Callback<ArrayList<CategoryResponseModel>>() {
+                            @Override
+                            public void onResponse(Call<ArrayList<CategoryResponseModel>> call,
+                                                   Response<ArrayList<CategoryResponseModel>> response) {
+
+                                Log.d("text search", "" + searchApi
+                                        + " ...categorySearchList:" + "" + categorySearchList +
+                                        " ....responsebody:" + " " + response.body());
+
+                                if (response.code() == 200) {
+                                    categorySearchList = response.body();
+                                    recyclerViewInit(categorySearchList);
+                                }
+                                if (response.code() == 404) {
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ArrayList<CategoryResponseModel>> call, Throwable t) {
+
+                            }
+
+                        });
+            }
+        });
     }
 
     @Override
     public void onCategoryClick(CategoryResponseModel category) {
-        startActivity(new Intent(MainViewActivity.this, CoursesActivity.class));
+        Intent detailItent = new Intent(MainViewActivity.this, CoursesActivity.class);
+
+        detailItent.putExtra("categoryId",category.getId());
+        startActivity(detailItent);
+        Log.d("categoryId", ""+category.getId());
+
+
     }
 
 

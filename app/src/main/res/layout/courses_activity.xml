@@ -96,15 +96,12 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/searchLayout"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="360dp"
                 android:background="@drawable/back"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top"
-                app:layout_constraintVertical_bias="0.0">
-
+                app:layout_constraintTop_toBottomOf="@+id/top">
 
                 <TextView
                     android:id="@+id/AlexaTxt"
@@ -139,8 +136,42 @@
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
 
+                <EditText
+                    android:id="@+id/searchTxt"
+                    android:layout_width="280dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="65dp"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/shape_field"
+                    android:hint="search..."
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="28dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorHint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pick"></EditText>
+
+                <Button
+                    android:id="@+id/buttonSearch"
+                    android:layout_width="280dp"
+                    android:layout_height="42dp"
+                    android:layout_marginBottom="100dp"
+                    android:layout_marginEnd="65dp"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_button"
+                    android:text="search"
+                    android:textAlignment="center"
+                    android:textColor="@color/whiteText"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/searchTxt" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"

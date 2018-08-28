@@ -40,10 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        //autoLogin();
+        autoLogin();
         initVariables();
         buttonsClick();
-        
+
 
 
     }// onCreate
@@ -172,6 +172,10 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (TextUtils.isEmpty(passValidation)) {
             password.setError("Enter password!");
+            return false;
+        }
+        if (passValidation.length() > 20) {
+            password.setError("Password should contain maximum 20 characters!");
             return false;
         }
 

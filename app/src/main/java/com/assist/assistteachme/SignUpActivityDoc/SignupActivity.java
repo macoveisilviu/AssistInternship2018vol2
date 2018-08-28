@@ -158,6 +158,11 @@ public class SignupActivity extends AppCompatActivity {
         }
 
 
+
+        if (passValidation.length() > 20) {
+            password.setError("Password should contain maximum 20 characters!");
+            return false;
+        }
         if (passValidation.length() < 8) {
             password.setError("Password should contain at least 8 characters!");
             return false;

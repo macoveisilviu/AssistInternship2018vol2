@@ -40,7 +40,8 @@ public class RecyclerViewAdapterMainView extends RecyclerView.Adapter<RecyclerVi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.element_adapter_mainview_activity, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).
+                inflate(R.layout.element_adapter_mainview_activity, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(view);
 
