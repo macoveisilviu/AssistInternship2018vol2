@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,9 +22,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.assist.assistteachme.Adapters.RecycleViewAdapterS;
+import com.assist.assistteachme.Models.CategoriesRecive;
+import com.assist.assistteachme.Models.CourseButton;
 import com.assist.assistteachme.Models.CourseDetails;
+import com.assist.assistteachme.Models.CoursesRecive;
+import com.assist.assistteachme.Network.RestClient;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BrowseThroughCourses extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,17 +44,23 @@ public class BrowseThroughCourses extends AppCompatActivity
     TextView whatsNewTextView;
     TextView aboutTextView;
     TextView nameTextView;
+    TextView parentText;
     Context context;
+    String yourDataObject;
 
     //pentru recycle view
     private RecyclerView recyclerView;
     private RecycleViewAdapterS adapterS;
 
     private ArrayList<CourseDetails> listCourseDetails;
+    ArrayList<CategoriesRecive> newCategoriesRecive = new ArrayList<>();
+    ArrayList<CoursesRecive> coursesRecives = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_through_courses);
+
+        checkBundle();
 
         //recycle view
 
@@ -54,7 +69,9 @@ public class BrowseThroughCourses extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         listCourseDetails= new ArrayList<>();
 
-        populateWithDummyData();
+        //populateWithDummyData();
+        //coursersesToApi();
+        anotherCoursesToApi();
 
 
 
@@ -64,6 +81,9 @@ public class BrowseThroughCourses extends AppCompatActivity
         recyclerView.setAdapter(adapterS);
 
         nav=findViewById(R.id.nav_view);
+        //yourDataObject = null;
+
+
 
         backButon = findViewById(R.id.backButton);
         openButton = findViewById(R.id.openButton);
@@ -74,6 +94,8 @@ public class BrowseThroughCourses extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        parentText = findViewById(R.id.courseNameTextView);
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -187,6 +209,71 @@ public class BrowseThroughCourses extends AppCompatActivity
         for(int i=0; i<6; i++){
             CourseDetails s= new CourseDetails("title"+i, "subtitle", "category");
             listCourseDetails.add(s);
+        }
+    }
+
+    public void coursersesToApi(){
+        RestClient.networkHandler().getCourses().enqueue(new Callback<ArrayList<CoursesRecive>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CoursesRecive>> call, Response<ArrayList<CoursesRecive>> response) {
+                coursesRecives =response.body();
+                if(response.isSuccessful()){
+                    for(int i=0;i<coursesRecives.size();i++){
+                        CourseDetails s = new CourseDetails(coursesRecives.get(i).getTitle(), coursesRecives.get(i).getDescription(), "Category");
+                        listCourseDetails.add(s);
+                    }
+                    adapterS.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CoursesRecive>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void anotherCoursesToApi(){
+        RestClient.networkHandler().getCategories().enqueue(new Callback<ArrayList<CategoriesRecive>>() {
+            @Override
+            public void onResponse(Call<ArrayList<CategoriesRecive>> call, Response<ArrayList<CategoriesRecive>> response) {
+                newCategoriesRecive = response.body();
+                CategoriesRecive c =findCourse(yourDataObject);
+                coursesRecives = c.getCourses();
+                if (response.isSuccessful()){
+                   if(findCourse(yourDataObject)!=null) {
+                        for (int i = 0; i < coursesRecives.size(); i++) {
+                            CourseDetails courseDetails = new CourseDetails(coursesRecives.get(i).getTitle(), coursesRecives.get(i).getDescription(), yourDataObject);
+                            listCourseDetails.add(courseDetails);
+                        }
+                        adapterS.notifyDataSetChanged();
+                    }
+                    else
+                        Toast.makeText(context,"asdasdasd",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<CategoriesRecive>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public CategoriesRecive findCourse(String codeIsIn) {
+        for(CategoriesRecive carnet :newCategoriesRecive) {
+            if(carnet.getName().equals(codeIsIn)) {
+                return carnet;
+            }
+        }
+        return null;
+    }
+
+    public void checkBundle(){
+        if (getIntent().hasExtra("title")) {
+            yourDataObject = getIntent().getStringExtra("title");
+        } else {
+            throw new IllegalArgumentException("Activity cannot find  extras " + "title");
         }
     }
 }

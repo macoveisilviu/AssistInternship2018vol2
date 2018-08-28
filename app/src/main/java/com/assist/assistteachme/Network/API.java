@@ -2,6 +2,7 @@ package com.assist.assistteachme.Network;
 
 
 import com.assist.assistteachme.Models.CategoriesRecive;
+import com.assist.assistteachme.Models.CoursesRecive;
 import com.assist.assistteachme.Models.LogInReceive;
 import com.assist.assistteachme.Models.LogInSend;
 
@@ -37,4 +38,7 @@ public interface API {
 
    @GET("api/categories")
     Call<ArrayList<CategoriesRecive>> getCategories();
+
+   @GET("api/categories/courses")
+    Call<ArrayList<CoursesRecive>> getCourses();
 }
