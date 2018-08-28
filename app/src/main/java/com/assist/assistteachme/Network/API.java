@@ -29,7 +29,6 @@ public interface API {
     @POST("api/login")
     Call<LogInReceive> getLogInReceive(@Body LogInSend logInSend);
 
-
    @POST("api/register")
     Call<RegisterRecive> getRegisterUser(@Body RegisterSend registerSend);
 

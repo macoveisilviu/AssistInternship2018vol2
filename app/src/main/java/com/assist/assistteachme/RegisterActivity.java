@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+
         checkbox = findViewById(R.id.EditCheckbox);
         registerbutton = findViewById(R.id.registerActivity_editButton);
         context = getApplicationContext();
@@ -95,16 +96,22 @@ public class RegisterActivity extends AppCompatActivity {
             firstName.setError("empty field");
             return false;
         }
-        if (firstName.getText().toString().matches(" ")) {
-            firstName.setError("spaces are not allowed");
+        if (firstName.getText().toString().trim().isEmpty()) {
+            firstName.setError("Not allowed whitespaces");
             return false;
         }
+
         if (checkForNumbers(firstName.getText().toString())==false) {
             firstName.setError("field must contain only letters");
             return false;
         }
-        if (lastName.getText().toString().matches(" ")) {
-            lastName.setError("spaces are not allowed");
+
+        /*if(TextUtils.isDigitsOnly(firstName.getText().toString())){
+            firstName.setError("filed must contain only letters");
+            return false;
+        }*/
+        if (lastName.getText().toString().trim().isEmpty()) {
+            lastName.setError("Not allowed whitespaces");
             return false;
         }
         if (TextUtils.isEmpty(lastName.getText().toString())) {
@@ -166,13 +173,16 @@ public class RegisterActivity extends AppCompatActivity {
         registerSend.setLastName(lastName.getText().toString());
         registerSend.setEmail(emaiL.getText().toString());
         registerSend.setPassword(passworD.getText().toString());
+
         RestClient.networkHandler().getRegisterUser(registerSend).enqueue(new Callback<RegisterRecive>() {
             @Override
             public void onResponse(Call<RegisterRecive> call, Response<RegisterRecive> response) {
                 int statusCode = response.code();
-                if (statusCode == 201) {
+                if (response.isSuccessful()) {
                     startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
-
+                    }
+                    else{
+                    Toast.makeText(getApplicationContext(),"This email already exists",Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -189,6 +199,7 @@ public class RegisterActivity extends AppCompatActivity {
         else
             return false;
     }
+
 
 
 

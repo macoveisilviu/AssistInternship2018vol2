@@ -36,6 +36,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "PrefsFile";
 
 
+
     private final String TAG = "MainActivity";
 
     @Override
@@ -135,9 +136,13 @@ public class LoginScreenActivity extends AppCompatActivity {
             passwordEditText.setError("Password must contain Upper character and number");
             return false;
         }
+
+
+
+
+
         return true;
     }
-
 
     public boolean checkPassword(String a) {
         if (Pattern.matches("[A-Z]", a) == true) {
@@ -183,13 +188,17 @@ public class LoginScreenActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LogInReceive> call, Response<LogInReceive> response) {
                 int statuscode = response.code();
-                if (statuscode == 200) {
+                if (response.isSuccessful()) {
                     if (!isAutologin) {
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("pref_email", email).apply();
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("pref_password", password).apply();
+
                     }
                     startActivity(new Intent(LoginScreenActivity.this, DrawerTestActivity.class));
 
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"This account is not exists or password is wrong",Toast.LENGTH_SHORT).show();
                 }
             }
 
