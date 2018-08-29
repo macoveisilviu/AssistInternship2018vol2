@@ -32,7 +32,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     EditText passwordEditText;
     TextView resetTextView;
     Context context;
-    private SharedPreferences mPrefs;
+    //private SharedPreferences mPrefs;
     private static final String PREFS_NAME = "PrefsFile";
 
 
@@ -49,7 +49,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
         resetTextView = findViewById(R.id.resetTextView);
-        mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        //mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         getPreferencesDataAndAutologin();
 

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.assist.assistteachme.Models.Post;
 import com.assist.assistteachme.Models.RegisterRecive;
 import com.assist.assistteachme.Models.RegisterSend;
+import com.assist.assistteachme.Models.User;
 import com.assist.assistteachme.Network.RestClient;
 
 import java.util.List;
@@ -168,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
     }
     public void RegisterAccountToApi(){
-        RegisterSend registerSend = new RegisterSend();
+        final RegisterSend registerSend = new RegisterSend();
         registerSend.setFirstName(firstName.getText().toString());
         registerSend.setLastName(lastName.getText().toString());
         registerSend.setEmail(emaiL.getText().toString());
@@ -180,6 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (response.isSuccessful()) {
                     startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
+
                     }
                     else{
                     Toast.makeText(getApplicationContext(),"This email already exists",Toast.LENGTH_SHORT).show();

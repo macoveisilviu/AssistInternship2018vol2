@@ -31,6 +31,7 @@ import com.assist.assistteachme.Adapters.MyAccounteMenuAdapter;
 import com.assist.assistteachme.Models.ChapterQuestion;
 import com.assist.assistteachme.Models.CourseButton;
 import com.assist.assistteachme.Models.MyAccountMenuModel;
+import com.assist.assistteachme.Models.User;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -76,6 +77,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
 
         populateWithDummyData();
 
+
         myAccounteMenuAdapter = new MyAccounteMenuAdapter( listMyAccountMenu,this);
         recycleView.setAdapter(myAccounteMenuAdapter);
 
@@ -92,7 +94,6 @@ public class MyAccountMenuDrawer extends AppCompatActivity
         logOutButton = findViewById(R.id.activity_my_account_button);
         imageView = findViewById(R.id.activity_my_account_photo);
         uploadButton = findViewById(R.id.upload_button);
-
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -166,6 +167,7 @@ public class MyAccountMenuDrawer extends AppCompatActivity
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
+
     }
 
     @Override
