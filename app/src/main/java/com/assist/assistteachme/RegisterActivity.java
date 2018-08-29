@@ -181,6 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (response.isSuccessful()) {
                     startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
+                    Toast.makeText(getApplicationContext(),"The account has been created",Toast.LENGTH_SHORT).show();
 
                     }
                     else{
