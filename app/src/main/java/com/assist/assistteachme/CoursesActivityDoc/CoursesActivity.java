@@ -125,19 +125,16 @@ public class CoursesActivity extends AppCompatActivity implements RecyclerViewAd
                                 if (response.code() == 200) {
                                     searchListCourses = response.body();
 
-                                if (searchListCourses.size() > 3) {
-                                    discoverBtn.setVisibility(View.VISIBLE);
+                                    if (searchListCourses.size() > 3) {
+                                        discoverBtn.setVisibility(View.VISIBLE);
 
-                                } else {
-                                    discoverBtn.setVisibility(View.INVISIBLE);
-                                }
+                                    } else {
+                                        discoverBtn.setVisibility(View.INVISIBLE);
+                                    }
 
                                     recyclerViewInit(searchListCourses);
                                     Log.d("coursesResponse:", " " + coursesList);
-                                }
-
-                                else
-                                {
+                                } else {
                                     populateDataApi();
                                 }
                             }
@@ -152,87 +149,97 @@ public class CoursesActivity extends AppCompatActivity implements RecyclerViewAd
 
 
             }
-        });}
+        });
+    }
 
 
-            private void populateDataApi() {
-                Intent intent = CoursesActivity.this.getIntent();
-                Integer categoryId = 0;
+    private void populateDataApi() {
+        Intent intent = CoursesActivity.this.getIntent();
+        Integer categoryId = 0;
 
-                categoryId = intent.getIntExtra("categoryId", 0);
-                Log.d("categoryIdd", "" + categoryId);
+        categoryId = intent.getIntExtra("categoryId", 0);
+        Log.d("categoryIdd", "" + categoryId);
 
-                RestClient.networkHandler().getCoursesApi(User.getInstance().getLoginResponseModel().getToken(),
-                        "application/json", categoryId).
-                        enqueue(new Callback<ArrayList<CoursesResponseModel>>() {
+        RestClient.networkHandler().getCoursesApi(User.getInstance().getLoginResponseModel().getToken(),
+                "application/json", categoryId).
+                enqueue(new Callback<ArrayList<CoursesResponseModel>>() {
 
-                            @Override
-                            public void onResponse(Call<ArrayList<CoursesResponseModel>> call, Response<ArrayList<CoursesResponseModel>> response) {
+                    @Override
+                    public void onResponse(Call<ArrayList<CoursesResponseModel>> call, Response<ArrayList<CoursesResponseModel>> response) {
 
-                                if (response.code() == 200) {
-                                    coursesList = response.body();
+                        if (response.code() == 200) {
+                            coursesList = response.body();
 
-                                    if(coursesList.size()==0)
-                                    {
-                                        Toast.makeText(CoursesActivity.this, "There are no courses at this category!", Toast.LENGTH_SHORT).show();
-                                    }
-                                    if (coursesList.size() > 3) {
-                                        discoverBtn.setVisibility(View.VISIBLE);
+                            if (coursesList.size() == 0) {
+                                Toast.makeText(CoursesActivity.this, "There are no courses at this category!", Toast.LENGTH_SHORT).show();
+                            }
+                            if (coursesList.size() > 3) {
+                                discoverBtn.setVisibility(View.VISIBLE);
 
-                                    } else {
-                                        discoverBtn.setVisibility(View.INVISIBLE);
-                                    }
+                            } else {
+                                discoverBtn.setVisibility(View.INVISIBLE);
+                            }
+
+
+                            try {
+                                if (coursesList.size() != 0)
                                     for (int i = 0; i < 3; i++) {
                                         newCoursesList.add(coursesList.get(i));
                                     }
-                                    recyclerViewInit(coursesList);
-                                    Log.d("coursesResponse:", " " + coursesList);
+                                recyclerViewInit(coursesList);
+                                Log.d("coursesResponse:", " " + coursesList);
 
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ArrayList<CoursesResponseModel>> call, Throwable t) {
+                            } catch (Exception e) {
+                                Toast.makeText(CoursesActivity.this, "There aren't courses for this category!", Toast.LENGTH_SHORT).show();
 
                             }
-                        });
-
-            }
-
-            public void clickButtonView(View view) {
-                TextView coursesNav = (TextView) findViewById(R.id.coursesNav);
-                coursesNav.setBackgroundColor(getResources().getColor(R.color.blueButton));
-                drawer.closeDrawer(Gravity.RIGHT);
-                Intent intent = new Intent(CoursesActivity.this, MainViewActivity.class);
-                startActivity(intent);
 
 
-                Log.d("OK Button", "pressed");
-            }
+                        }
+                    }
 
-            public void clickAccountBtn(View view) {
-                drawer.closeDrawer(Gravity.RIGHT);
-                Intent intent = new Intent(CoursesActivity.this, AccountActivity.class);
-                startActivity(intent);
+                    @Override
+                    public void onFailure(Call<ArrayList<CoursesResponseModel>> call, Throwable t) {
+
+                    }
+                });
+
+    }
+
+    public void clickButtonView(View view) {
+        TextView coursesNav = (TextView) findViewById(R.id.coursesNav);
+        coursesNav.setBackgroundColor(getResources().getColor(R.color.blueButton));
+        drawer.closeDrawer(Gravity.RIGHT);
+        Intent intent = new Intent(CoursesActivity.this, MainViewActivity.class);
+        startActivity(intent);
 
 
-            }
+        Log.d("OK Button", "pressed");
+    }
+
+    public void clickAccountBtn(View view) {
+        drawer.closeDrawer(Gravity.RIGHT);
+        Intent intent = new Intent(CoursesActivity.this, AccountActivity.class);
+        startActivity(intent);
 
 
-            public void clickCloseMenuBtn(View view) {
-                drawer.closeDrawer(Gravity.RIGHT);
-
-            }
+    }
 
 
-            @Override
-            public void onCourseClick(CoursesResponseModel courses) {
+    public void clickCloseMenuBtn(View view) {
+        drawer.closeDrawer(Gravity.RIGHT);
 
-                Intent detailItent = new Intent(CoursesActivity.this, ChapterActivity.class);
+    }
 
-                detailItent.putExtra("coursesId",courses.getId());
-                startActivity(detailItent);
-                Log.d("coursesId", ""+courses.getId());
 
-            }
-        }
+    @Override
+    public void onCourseClick(CoursesResponseModel courses) {
+
+        Intent detailItent = new Intent(CoursesActivity.this, ChapterActivity.class);
+
+        detailItent.putExtra("coursesId", courses.getId());
+        startActivity(detailItent);
+        Log.d("coursesId", "" + courses.getId());
+
+    }
+}

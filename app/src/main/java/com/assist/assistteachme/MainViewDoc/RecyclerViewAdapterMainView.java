@@ -1,8 +1,9 @@
 package com.assist.assistteachme.MainViewDoc;
 
-import android.graphics.Color;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import com.assist.assistteachme.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by anairda on 8/25/2018.
@@ -29,13 +29,13 @@ public class RecyclerViewAdapterMainView extends RecyclerView.Adapter<RecyclerVi
 
     private final ArrayList<CategoryResponseModel> categoryTitleList;
     private final OnItemClickListener listener;
+    private Context context;
 
-
-    public RecyclerViewAdapterMainView(ArrayList<CategoryResponseModel> categoryTitleList, OnItemClickListener listener) {
+    public RecyclerViewAdapterMainView(ArrayList<CategoryResponseModel> categoryTitleList, OnItemClickListener listener, Context context) {
 
         this.categoryTitleList = categoryTitleList;
         this.listener = listener;
-
+        this.context = context;
     }
 
 
@@ -88,11 +88,18 @@ public class RecyclerViewAdapterMainView extends RecyclerView.Adapter<RecyclerVi
         public void bind(final CategoryResponseModel category, final OnItemClickListener listener) {
 
             txtViewTitle.setText(category.getCategoryName());
-            mLinearLayout.setBackground(Drawable.createFromPath(category.getBackground()));
 
+            Drawable draw;
+            for (int i = 0; i < 4; i++) {
+                if (i % 3 == 0)
+                    draw = context.getResources().getDrawable(R.drawable.rectangle3);
+                else if (i % 3 == 1)
+                    draw = context.getResources().getDrawable(R.drawable.rectangle2);
+                else
+                    draw = context.getResources().getDrawable(R.drawable.rectangle1);
 
-
-
+                mLinearLayout.setBackground(draw);
+            }
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

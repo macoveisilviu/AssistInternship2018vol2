@@ -78,10 +78,10 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
         public void bind(final QuestionResponseModel question,
                          final RecyclerViewAdapterQuestion.OnItemClickListener listener) {
             txtViewQuestion.setText(question.getQuestion());
-          /*  txtViewAnswerOne.setText(question.getAnswer_one());
-            txtViewAnswerTwo.setText(question.getAnswer_two());
-            txtViewAnswerThree.setText(question.getAnswer_three());
-*/
+            txtViewAnswerOne.setText("Ansewer one");
+            txtViewAnswerTwo.setText("Answer two");
+            txtViewAnswerThree.setText("Answer three");
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

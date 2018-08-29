@@ -74,6 +74,7 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
 
                 if (response.code() == 200) {
 
+
                     categoryList = response.body();
                     if (categoryList.size() > 4) {
                         discoverBtn.setVisibility(View.VISIBLE);
@@ -81,17 +82,27 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
                     } else {
                         discoverBtn.setVisibility(View.INVISIBLE);
                     }
-                    for (int i = 0; i < 4; i++) {
-                        newCategoryList.add(categoryList.get(i));
+
+
+                    try {
+                        if (categoryList.size() != 0)
+                            for (int i = 0; i < 4; i++) {
+                                newCategoryList.add(categoryList.get(i));
+                            }
+
+                        recyclerViewInit(newCategoryList);
+                        Log.d("categoryResponse:", " " + categoryList.size());
+                    } catch (Exception e) {
+                        Toast.makeText(MainViewActivity.this, "There aren't courses for this category!", Toast.LENGTH_SHORT).show();
+
                     }
 
-                    recyclerViewInit(newCategoryList);
-                    Log.d("categoryResponse:", " " + categoryList.size());
 
                 } else {
                     Toast.makeText(MainViewActivity.this, "Server is not working!", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<ArrayList<CategoryResponseModel>> call, Throwable t) {
                 Log.d("categoryResponse:", " " + "error");
@@ -108,7 +119,7 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
         recyclerView.setHasFixedSize(true);
         mLayoutManager = new GridLayoutManager(getParent(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(new RecyclerViewAdapterMainView(categoryListFromAPI, this));
+        recyclerView.setAdapter(new RecyclerViewAdapterMainView(categoryListFromAPI, this, this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
@@ -217,9 +228,9 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
     public void onCategoryClick(CategoryResponseModel category) {
         Intent detailItent = new Intent(MainViewActivity.this, CoursesActivity.class);
 
-        detailItent.putExtra("categoryId",category.getId());
+        detailItent.putExtra("categoryId", category.getId());
         startActivity(detailItent);
-        Log.d("categoryId", ""+category.getId());
+        Log.d("categoryId", "" + category.getId());
 
 
     }

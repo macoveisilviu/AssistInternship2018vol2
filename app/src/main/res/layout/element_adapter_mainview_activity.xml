@@ -27,7 +27,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="Finance"
-            android:textColor="@color/colorHint"
+            android:textColor="@color/fullWhite"
             android:textSize="18sp"
             android:textStyle="bold" />
 

@@ -14,9 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.assist.assistteachme.CoursesActivityDoc.CoursesActivity;
-import com.assist.assistteachme.CoursesActivityDoc.CoursesResponseModel;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
 import com.assist.assistteachme.MyAccountDoc.AccountActivity;
 import com.assist.assistteachme.Network.RestClient;
@@ -38,7 +37,7 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
     RecyclerView recyclerView;
     DrawerLayout drawer;
     ImageButton btnMenu;
-    Button discoverBtn,btnStartChapter;
+    Button discoverBtn, btnStartChapter;
     ArrayList<ChapterResponseModel> chapterList = new ArrayList<ChapterResponseModel>();
     ArrayList<ChapterResponseModel> newChapterList = new ArrayList<ChapterResponseModel>();
 
@@ -95,8 +94,8 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
     private void initVariables() {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnMenu = (ImageButton) findViewById(R.id.btnMenu);
-        discoverBtn=(Button)findViewById(R.id.discoverBtn);
-        btnStartChapter=(Button)findViewById(R.id.btnStartChapter);
+        discoverBtn = (Button) findViewById(R.id.discoverBtn);
+        btnStartChapter = (Button) findViewById(R.id.btnStartChapter);
     }
 
     private void recyclerViewInit(ArrayList<ChapterResponseModel> chapterListFromAP) {
@@ -123,19 +122,28 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
 
                         if (response.code() == 200) {
                             chapterList = response.body();
-                            Log.d("chapterlist", ""+chapterList);
+                            Log.d("chapterlist", "" + chapterList);
                             if (chapterList.size() > 3) {
                                 discoverBtn.setVisibility(View.VISIBLE);
 
                             } else {
                                 discoverBtn.setVisibility(View.INVISIBLE);
                             }
-                            for (int i = 0; i < 3; i++) {
-                                newChapterList.add(chapterList.get(i));
+                            try {
+                                if (chapterList.size() != 0)
+                                    for (int i = 0; i < 3; i++) {
+                                        newChapterList.add(chapterList.get(i));
+                                    }
+                                recyclerViewInit(newChapterList);
+                            } catch (Exception e) {
+                                Toast.makeText(ChapterActivity.this, "There aren't chapters for this course!", Toast.LENGTH_SHORT).show();
+
                             }
-                            recyclerViewInit(newChapterList);
+
                             Log.d("coursesResponse:", " " + chapterList);
 
+                        } else {
+                            Toast.makeText(ChapterActivity.this, "There aren't chapters for this course!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -153,14 +161,13 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
     @Override
     public void onChapterClick(final ChapterResponseModel chapterModel) {
 
-                Intent detailItent = new Intent(ChapterActivity.this, QuestionActivity.class);
+        Intent detailItent = new Intent(ChapterActivity.this, QuestionActivity.class);
 
-                detailItent.putExtra("chapterId",chapterModel.getId());
-                startActivity(detailItent);
-                Log.d("chapterId", ""+chapterModel.getId());
-            }
-
-
-
+        detailItent.putExtra("chapterId", chapterModel.getId());
+        startActivity(detailItent);
+        Log.d("chapterId", "" + chapterModel.getId());
     }
+
+
+}
 

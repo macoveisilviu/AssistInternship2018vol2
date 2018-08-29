@@ -48,6 +48,7 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
     DrawerLayout drawer;
     ImageButton btnMenu;
     EditText name, email;
+    TextView accountNameNav;
     TextInputEditText password;
     String emailValidation, passValidation, nameValidation;
     Button ChooseButton, btnSaveChanges, btnCancelChanges, btnDeleteCourse, btnLogOut;
@@ -114,6 +115,7 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
                     String fullname = response.body().getFirstName().concat(" ").concat(response.body().getLastName());
                     name.setHint(fullname);
                     email.setHint(response.body().getMail());
+                    accountNameNav.setText(fullname);
                 } else {
                     Toast.makeText(AccountActivity.this, "Server is not working!", Toast.LENGTH_SHORT).show();
                 }
@@ -141,8 +143,8 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
             public void onClick(View v) {
 
                 if (validateChanges()) {
-               /*     Toast.makeText(getApplicationContext(), "Your account was created!",
-                            Toast.LENGTH_SHORT).show();*/
+                   Toast.makeText(getApplicationContext(), "Your information will be saved in the future!!",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     //  Toast.makeText(getApplicationContext(), "Invalid email address or password!",
                     // Toast.LENGTH_SHORT).show();
@@ -206,12 +208,14 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
         SelectImage = (ImageView) findViewById(R.id.profilePhoto);
         btnSaveChanges = (Button) findViewById(R.id.btnSaveChange);
         btnCancelChanges = (Button) findViewById(R.id.btnCancelChange);
+        accountNameNav=(TextView)findViewById(R.id.accountNameNav);
         name = (EditText) findViewById(R.id.nameAccount);
         email = (EditText) findViewById(R.id.emailAccount);
         password = (TextInputEditText) findViewById(R.id.PassAccount);
         emailValidation = email.getText().toString().trim();
         passValidation = password.getText().toString().trim();
         nameValidation = name.getText().toString().trim();
+
 
 
     }
