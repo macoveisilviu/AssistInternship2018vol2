@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.assist.assistteachme.BrowseThroughCourses;
 import com.assist.assistteachme.ChapterScreenActivity;
 import com.assist.assistteachme.Models.Course;
+import com.assist.assistteachme.Models.User;
 import com.assist.assistteachme.R;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class RecycleViewAdaptersC extends RecyclerView.Adapter<RecycleViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //User.INSTANCE.setCourseId();
                 Toast.makeText(mContext, "asda",Toast.LENGTH_SHORT).show();
             }
         });
@@ -84,6 +85,7 @@ public class RecycleViewAdaptersC extends RecyclerView.Adapter<RecycleViewAdapte
                 @Override
                 public void onClick(View v) {
                     // myAccountMenuList.remove(getAdapterPosition());
+
                     Toast.makeText(mContext, "asda "+getAdapterPosition(),Toast.LENGTH_SHORT).show();
                     mContext.startActivity(new Intent(mContext, ChapterScreenActivity.class));
                 }

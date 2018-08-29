@@ -26,6 +26,7 @@ import com.assist.assistteachme.Models.CategoriesRecive;
 import com.assist.assistteachme.Models.CourseButton;
 import com.assist.assistteachme.Models.CourseDetails;
 import com.assist.assistteachme.Models.CoursesRecive;
+import com.assist.assistteachme.Models.User;
 import com.assist.assistteachme.Network.RestClient;
 
 import java.util.ArrayList;
@@ -240,11 +241,13 @@ public class BrowseThroughCourses extends AppCompatActivity
                 newCategoriesRecive = response.body();
                 CategoriesRecive c =findCourse(yourDataObject);
                 coursesRecives = c.getCourses();
+
                 if (response.isSuccessful()){
                    if(findCourse(yourDataObject)!=null) {
                         for (int i = 0; i < coursesRecives.size(); i++) {
                             CourseDetails courseDetails = new CourseDetails(coursesRecives.get(i).getTitle(), coursesRecives.get(i).getDescription(), yourDataObject);
                             listCourseDetails.add(courseDetails);
+                            User.INSTANCE.setCourseId(coursesRecives.get(i).getId());
                         }
                         adapterS.notifyDataSetChanged();
                     }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.assist.assistteachme.Models.LogInReceive;
 import com.assist.assistteachme.Models.LogInSend;
+import com.assist.assistteachme.Models.User;
 import com.assist.assistteachme.Network.RestClient;
 
 import java.util.regex.Pattern;
@@ -82,11 +83,8 @@ public class LoginScreenActivity extends AppCompatActivity {
             }
         });
 
-
         emailEditText.getText().clear();
         passwordEditText.getText().clear();
-
-
     }
 
 

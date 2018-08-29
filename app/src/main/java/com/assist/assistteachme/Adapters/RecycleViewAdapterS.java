@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.assist.assistteachme.BrowseThroughCourses;
 import com.assist.assistteachme.CourseDetailScreenActivity;
 import com.assist.assistteachme.Models.CourseDetails;
+import com.assist.assistteachme.Models.User;
 import com.assist.assistteachme.R;
 
 import org.w3c.dom.Text;
@@ -47,7 +48,7 @@ public class RecycleViewAdapterS extends RecyclerView.Adapter<RecycleViewAdapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "on Bind ViewHolder");
 
         CourseDetails listS = coursedetails.get(position);
@@ -59,7 +60,8 @@ public class RecycleViewAdapterS extends RecyclerView.Adapter<RecycleViewAdapter
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "asda",Toast.LENGTH_SHORT).show();
+                //User.INSTANCE.setCourseId(position);
+                //Toast.makeText(mContext, "asda",Toast.LENGTH_SHORT).show();
                 mContext.startActivity(new Intent(mContext, CourseDetailScreenActivity.class));
             }
         });
