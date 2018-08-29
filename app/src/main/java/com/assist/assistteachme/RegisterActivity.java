@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                     RegisterAccountToApi();
 
                 } else {
-                    Toast.makeText(context, "Invalid", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(context, "Invalid", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -181,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
                 int statusCode = response.code();
                 if (response.isSuccessful()) {
                     startActivity(new Intent(RegisterActivity.this, LoginScreenActivity.class));
-
+                    Toast.makeText(context,"The account has been created",Toast.LENGTH_SHORT).show();
                     }
                     else{
                     Toast.makeText(getApplicationContext(),"This email already exists",Toast.LENGTH_SHORT).show();

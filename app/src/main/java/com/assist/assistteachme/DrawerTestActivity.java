@@ -161,12 +161,14 @@ public class DrawerTestActivity extends AppCompatActivity
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(findCourse(searchEditText.getText().toString())!=null) {
-                    CourseButton c = findCourse(searchEditText.getText().toString());
+                if(findCourse1(searchEditText.getText().toString())!=null) {
+                    CourseButton c = findCourse1(searchEditText.getText().toString());
                     courseButtonArrayList.clear();
                     courseButtonArrayList.add(c);
                     recyclerView.setAdapter(adapter);
                 }
+                else
+                    Toast.makeText(context, "category not found", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -312,6 +314,15 @@ public class DrawerTestActivity extends AppCompatActivity
     public CourseButton findCourse(String codeIsIn) {
         for(CourseButton carnet : originalCourseButtonArrayList) {
             if(carnet.getCourseName().equals(codeIsIn)) {
+                return carnet;
+            }
+        }
+        return null;
+    }
+
+    public CourseButton findCourse1(String codeIsIn) {
+        for(CourseButton carnet : originalCourseButtonArrayList) {
+            if(carnet.getCourseName().toLowerCase().equals(codeIsIn)) {
                 return carnet;
             }
         }

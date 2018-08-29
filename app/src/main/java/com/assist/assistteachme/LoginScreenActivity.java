@@ -196,7 +196,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"This account is not exists or password is wrong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"This account does not exists or password is wrong",Toast.LENGTH_SHORT).show();
                 }
             }
 
