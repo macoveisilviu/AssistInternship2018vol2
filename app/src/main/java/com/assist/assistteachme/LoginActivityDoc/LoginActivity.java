@@ -40,12 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-       // autoLogin();
+        autoLogin();
         initVariables();
         buttonsClick();
-
-        email.setText("ionpopescu@gmail.com");
-        password.setText("Assist123.");
 
 
     }// onCreate
