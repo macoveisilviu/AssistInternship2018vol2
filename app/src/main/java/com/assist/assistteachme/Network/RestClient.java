@@ -22,6 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
         setupRestClient();
     }
 
+
+    public String getBaseUrl(){
+        return  BASE_URL;
+    }
+
     private static void setupRestClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

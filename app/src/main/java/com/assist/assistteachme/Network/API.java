@@ -1,11 +1,14 @@
 package com.assist.assistteachme.Network;
 
+import com.assist.assistteachme.ChapterActivityDoc.ChapterResponseModel;
 import com.assist.assistteachme.CoursesActivityDoc.CoursesResponseModel;
 import com.assist.assistteachme.CoursesActivityDoc.SearchCoursesModel;
 import com.assist.assistteachme.LoginActivityDoc.LoginResponseModel;
 import com.assist.assistteachme.LoginActivityDoc.LoginUserModel;
 import com.assist.assistteachme.MainViewDoc.CategoryResponseModel;
 import com.assist.assistteachme.MainViewDoc.SearchCategoryModel;
+import com.assist.assistteachme.QuestionActivityDoc.QuestionFinishResponseModel;
+import com.assist.assistteachme.QuestionActivityDoc.QuestionResponseModel;
 import com.assist.assistteachme.ResetPassActivityDoc.ResetResponseModel;
 import com.assist.assistteachme.ResetPassActivityDoc.ResetUserModel;
 import com.assist.assistteachme.SignUpActivityDoc.SignUpResponseModel;
@@ -25,8 +28,6 @@ import retrofit2.http.Query;
  */
 public interface API {
 
-/*    @GET("/login")
-   Call<LoginUserModel> get();*/
 
     @POST("/api/login")
     Call<LoginResponseModel> login(@Body LoginUserModel userModel);
@@ -47,19 +48,31 @@ public interface API {
 
 
     @POST("/api/categories/search")
-    Call<ArrayList<CategoryResponseModel>> searchCategory(@Header("token")String token,
+    Call<ArrayList<CategoryResponseModel>> searchCategory(@Header("token") String token,
                                                           @Header("Content-Type") String contentType,
                                                           @Body SearchCategoryModel response);
 
     @GET("/api/courses?")
-    Call<ArrayList<CoursesResponseModel>> getCoursesApi(@Header("token")String token,
-                                             @Header("Content-Type") String contentType,
-                                             @Query("categoryId") Integer categoryId);
+    Call<ArrayList<CoursesResponseModel>> getCoursesApi(@Header("token") String token,
+                                                        @Header("Content-Type") String contentType,
+                                                        @Query("categoryId") Integer categoryId);
 
 
     @POST("/api/courses/search")
-    Call<ArrayList<CoursesResponseModel>> searchCourses(@Header("token")String token,
-                                                          @Header("Content-Type") String contentType,
-                                                          @Body SearchCoursesModel response);
+    Call<ArrayList<CoursesResponseModel>> searchCourses(@Header("token") String token,
+                                                        @Header("Content-Type") String contentType,
+                                                        @Body SearchCoursesModel response);
 
+
+    @GET("/api/chapters?")
+    Call<ArrayList<ChapterResponseModel>> getChapterApi(@Header("token") String token,
+                                                        @Query("courseId") Integer courseId);
+
+    @GET("/api/quiz?")
+    Call<ArrayList<QuestionResponseModel>> getQuestionApi(@Header("token") String token,
+                                                          @Query("chapterId") Integer chapterId);
+
+    @GET("/api/quiz?")
+    Call<ArrayList<QuestionFinishResponseModel>> getQuestionFinishApi(@Header("token") String token,
+                                                                      @Query("chapterId") Integer chapterId);
 }

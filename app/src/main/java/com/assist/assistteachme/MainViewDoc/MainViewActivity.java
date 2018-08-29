@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.assist.assistteachme.CoursesActivityDoc.CoursesActivity;
 import com.assist.assistteachme.MyAccountDoc.AccountActivity;
@@ -71,22 +72,26 @@ public class MainViewActivity extends AppCompatActivity implements RecyclerViewA
             @Override
             public void onResponse(Call<ArrayList<CategoryResponseModel>> call, Response<ArrayList<CategoryResponseModel>> response) {
 
-                categoryList = response.body();
-                if (categoryList.size() > 4) {
-                    discoverBtn.setVisibility(View.VISIBLE);
+                if (response.code() == 200) {
+
+                    categoryList = response.body();
+                    if (categoryList.size() > 4) {
+                        discoverBtn.setVisibility(View.VISIBLE);
+
+                    } else {
+                        discoverBtn.setVisibility(View.INVISIBLE);
+                    }
+                    for (int i = 0; i < 4; i++) {
+                        newCategoryList.add(categoryList.get(i));
+                    }
+
+                    recyclerViewInit(newCategoryList);
+                    Log.d("categoryResponse:", " " + categoryList.size());
 
                 } else {
-                    discoverBtn.setVisibility(View.INVISIBLE);
+                    Toast.makeText(MainViewActivity.this, "Server is not working!", Toast.LENGTH_SHORT).show();
                 }
-                for (int i = 0; i < 4; i++) {
-                    newCategoryList.add(categoryList.get(i));
-                }
-
-                recyclerViewInit(newCategoryList);
-                Log.d("categoryResponse:", " " + categoryList.size());
-
             }
-
             @Override
             public void onFailure(Call<ArrayList<CategoryResponseModel>> call, Throwable t) {
                 Log.d("categoryResponse:", " " + "error");

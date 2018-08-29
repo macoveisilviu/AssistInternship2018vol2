@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.assist.assistteachme.ChapterActivityDoc.ChapterActivity;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
@@ -170,6 +171,11 @@ public class CoursesActivity extends AppCompatActivity implements RecyclerViewAd
 
                                 if (response.code() == 200) {
                                     coursesList = response.body();
+
+                                    if(coursesList.size()==0)
+                                    {
+                                        Toast.makeText(CoursesActivity.this, "There are no courses at this category!", Toast.LENGTH_SHORT).show();
+                                    }
                                     if (coursesList.size() > 3) {
                                         discoverBtn.setVisibility(View.VISIBLE);
 
@@ -221,8 +227,12 @@ public class CoursesActivity extends AppCompatActivity implements RecyclerViewAd
 
             @Override
             public void onCourseClick(CoursesResponseModel courses) {
-                Intent intent = new Intent(CoursesActivity.this, ChapterActivity.class);
-                startActivity(intent);
+
+                Intent detailItent = new Intent(CoursesActivity.this, ChapterActivity.class);
+
+                detailItent.putExtra("coursesId",courses.getId());
+                startActivity(detailItent);
+                Log.d("coursesId", ""+courses.getId());
 
             }
         }

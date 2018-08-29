@@ -11,15 +11,24 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.assist.assistteachme.CoursesActivityDoc.CoursesActivity;
+import com.assist.assistteachme.CoursesActivityDoc.CoursesResponseModel;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
 import com.assist.assistteachme.MyAccountDoc.AccountActivity;
+import com.assist.assistteachme.Network.RestClient;
 import com.assist.assistteachme.QuestionActivityDoc.QuestionActivity;
 import com.assist.assistteachme.R;
+import com.assist.assistteachme.User;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by anairda on 8/21/2018.
@@ -29,7 +38,10 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
     RecyclerView recyclerView;
     DrawerLayout drawer;
     ImageButton btnMenu;
-    ArrayList<ChapterModel> list = new ArrayList<ChapterModel>();
+    Button discoverBtn,btnStartChapter;
+    ArrayList<ChapterResponseModel> chapterList = new ArrayList<ChapterResponseModel>();
+    ArrayList<ChapterResponseModel> newChapterList = new ArrayList<ChapterResponseModel>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +51,7 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
         initVariables();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.bringToFront();
-        populateDummyData();
-        recyclerViewInit();
+        populateDataApi();
         buttonsOnClick();
 
 
@@ -84,44 +95,72 @@ public class ChapterActivity extends AppCompatActivity implements RecyclerViewAd
     private void initVariables() {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnMenu = (ImageButton) findViewById(R.id.btnMenu);
+        discoverBtn=(Button)findViewById(R.id.discoverBtn);
+        btnStartChapter=(Button)findViewById(R.id.btnStartChapter);
     }
 
-    private void recyclerViewInit() {
+    private void recyclerViewInit(ArrayList<ChapterResponseModel> chapterListFromAP) {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(ChapterActivity.this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new RecyclerViewAdapterChapter(list, this));
+        recyclerView.setAdapter(new RecyclerViewAdapterChapter(chapterListFromAP, this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void populateDummyData() {
-        ChapterModel one = new ChapterModel("CHAPTER I",
-                "Welcome To Desiclassifieds Free Classifieds Free Ads",
-                "It’s hard to say when in our lives each of us become aware of this thing called “astronomy”. " +
-                        " But it is safe to say that at some point on our lives, each and every one of us has that moment when " +
-                        "we are suddenly stunned when we come face to face with the enormity of the universe that we see in the" +
-                        " night sky.");
-        ChapterModel two = new ChapterModel("CHAPTER II",
-                "Welcome To Desiclassifieds Free Classifieds Free Ads",
-                "It’s hard to say when in our lives each of us become aware of this thing called “astronomy”. " +
-                        " But it is safe to say that at some point on our lives, each and every one of us has that moment when " +
-                        "we are suddenly stunned when we come face to face with the enormity of the universe that we see in the" +
-                        " night sky.");
-        ChapterModel thre = new ChapterModel("CHAPTER III",
-                "Welcome To Desiclassifieds Free Classifieds Free Ads",
-                "It’s hard to say when in our lives each of us become aware of this thing called “astronomy”. " +
-                        " But it is safe to say that at some point on our lives, each and every one of us has that moment when " +
-                        "we are suddenly stunned when we come face to face with the enormity of the universe that we see in the" +
-                        " night sky.");
-        list.add(one);
-        list.add(two);
-        list.add(thre);
+    private void populateDataApi() {
+        Intent intent = ChapterActivity.this.getIntent();
+        Integer coursesId = 0;
+
+        coursesId = intent.getIntExtra("coursesId", 0);
+        Log.d("coursesId", "" + coursesId);
+
+        RestClient.networkHandler().getChapterApi(User.getInstance().getLoginResponseModel().getToken(), coursesId).
+                enqueue(new Callback<ArrayList<ChapterResponseModel>>() {
+
+                    @Override
+                    public void onResponse(Call<ArrayList<ChapterResponseModel>> call,
+                                           Response<ArrayList<ChapterResponseModel>> response) {
+
+                        if (response.code() == 200) {
+                            chapterList = response.body();
+                            Log.d("chapterlist", ""+chapterList);
+                            if (chapterList.size() > 3) {
+                                discoverBtn.setVisibility(View.VISIBLE);
+
+                            } else {
+                                discoverBtn.setVisibility(View.INVISIBLE);
+                            }
+                            for (int i = 0; i < 3; i++) {
+                                newChapterList.add(chapterList.get(i));
+                            }
+                            recyclerViewInit(newChapterList);
+                            Log.d("coursesResponse:", " " + chapterList);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<ChapterResponseModel>> call, Throwable t) {
+
+                    }
+
+
+                });
+
     }
 
 
     @Override
-    public void onChapterClick(ChapterModel chapterModel) {
-        startActivity(new Intent(ChapterActivity.this, QuestionActivity.class));
+    public void onChapterClick(final ChapterResponseModel chapterModel) {
+
+                Intent detailItent = new Intent(ChapterActivity.this, QuestionActivity.class);
+
+                detailItent.putExtra("chapterId",chapterModel.getId());
+                startActivity(detailItent);
+                Log.d("chapterId", ""+chapterModel.getId());
+            }
+
+
 
     }
-}
+

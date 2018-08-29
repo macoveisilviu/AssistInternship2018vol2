@@ -18,71 +18,69 @@ import android.widget.TextView;
 import com.assist.assistteachme.CongratsActivity;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
 import com.assist.assistteachme.MyAccountDoc.AccountActivity;
+import com.assist.assistteachme.Network.RestClient;
 import com.assist.assistteachme.R;
+import com.assist.assistteachme.User;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QuestionFinishActivity extends AppCompatActivity implements RecyclerViewAdapterQuestionFinish.OnItemClickListener {
     DrawerLayout drawer;
     ImageButton btnMenu;
     RecyclerView recyclerView;
-    ArrayList<QuestionModel> list = new ArrayList<QuestionModel>();
-    Button finishBtn, prevBtn;
+    ArrayList<QuestionFinishResponseModel> questionList = new ArrayList<QuestionFinishResponseModel>();
+    Button nextChapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_finish);
-
+        setContentView(R.layout.activity_question);
         initVariables();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.bringToFront();
-
-        populateDummyData();
-
-        recyclerViewInit();
+        buttonsOnClick();
+        populateDataApi();
         buttonsInit();
+
+
+    }//onCReate
+
+
+    public void populateDataApi() {
+        Intent intent = QuestionFinishActivity.this.getIntent();
+        Integer chapterId = 0;
+
+        chapterId = intent.getIntExtra("chapterId", 0);
+        Log.d("coursesIdd", "" + chapterId);
+
+        RestClient.networkHandler().getQuestionFinishApi(User.getInstance().getLoginResponseModel().getToken(), chapterId).
+                enqueue(new Callback<ArrayList<QuestionFinishResponseModel>>() {
+
+                    @Override
+                    public void onResponse(Call<ArrayList<QuestionFinishResponseModel>> call,
+                                           Response<ArrayList<QuestionFinishResponseModel>> response) {
+
+                        if (response.code() == 200) {
+                            questionList = response.body();
+
+                            recyclerViewInit(questionList);
+                            Log.d("coursesResponse:", " " + questionList);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<QuestionFinishResponseModel>> call, Throwable t) {
+
+                    }
+
+
+                });
+
     }
 
-    private void initVariables() {
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        btnMenu = (ImageButton) findViewById(R.id.btnMenu);
-
-        finishBtn = (Button) findViewById(R.id.finishBtn);
-        prevBtn = (Button) findViewById(R.id.discoverBtn);
-
-    }
-
-    private void buttonsInit() {
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.openDrawer(Gravity.RIGHT);
-            }
-
-        });
-
-
-        finishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(QuestionFinishActivity.this, CongratsActivity.class));
-
-
-            }
-        });
-        prevBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(QuestionFinishActivity.this, QuestionActivity.class));
-
-
-            }
-        });
-    }
 
     public void clickButtonView(View view) {
         TextView coursesNav = (TextView) findViewById(R.id.coursesNav);
@@ -103,43 +101,55 @@ public class QuestionFinishActivity extends AppCompatActivity implements Recycle
 
     }
 
+    private void buttonsOnClick() {
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+
+        });
+    }
+
 
     public void clickCloseMenuBtn(View view) {
         drawer.closeDrawer(Gravity.RIGHT);
 
     }
 
-    private void recyclerViewInit() {
+    private void initVariables() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.bringToFront();
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        btnMenu = (ImageButton) findViewById(R.id.btnMenu);
+
+    }
+
+    private void buttonsInit() {
+        nextChapter = (Button) findViewById(R.id.nextBtn);
+        nextChapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(QuestionFinishActivity.this, CongratsActivity.class));
+
+
+            }
+        });
+    }
+
+    private void recyclerViewInit(ArrayList<QuestionFinishResponseModel> questionList) {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(QuestionFinishActivity.this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new RecyclerViewAdapterQuestionFinish(list, this));
+        recyclerView.setAdapter(new RecyclerViewAdapterQuestionFinish(questionList, this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void populateDummyData() {
-
-        QuestionModel one = new QuestionModel("Where Can You Find Unique Myspace Layouts Nowadays?",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive");
-        QuestionModel two = new QuestionModel("Where Can You Find Unique Myspace Layouts Nowadays?",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive");
-        QuestionModel three = new QuestionModel("Where Can You Find Unique Myspace Layouts Nowadays?",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive");
-
-        list.add(one);
-        list.add(two);
-        list.add(three);
-    }
 
     @Override
-    public void onQuestionrClick(QuestionModel question) {
+    public void onQuestionrClick(QuestionFinishResponseModel questionFinish) {
 
     }
 }

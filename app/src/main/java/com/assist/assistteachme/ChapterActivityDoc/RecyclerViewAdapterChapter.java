@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.assist.assistteachme.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,14 +19,14 @@ public class RecyclerViewAdapterChapter extends RecyclerView.Adapter<RecyclerVie
 
 
     public interface OnItemClickListener {
-        void onChapterClick(ChapterModel chapter);
+        void onChapterClick(ChapterResponseModel chapter);
     }
 
-    private final List<ChapterModel> chapter;
+    private final ArrayList<ChapterResponseModel> chapter;
     private final RecyclerViewAdapterChapter.OnItemClickListener listener;
 
 
-    public RecyclerViewAdapterChapter(List<ChapterModel> chapter, OnItemClickListener listener) {
+    public RecyclerViewAdapterChapter(ArrayList<ChapterResponseModel> chapter, OnItemClickListener listener) {
 
         this.chapter = chapter;
         this.listener = listener;
@@ -67,16 +68,17 @@ public class RecyclerViewAdapterChapter extends RecyclerView.Adapter<RecyclerVie
 
         public ViewHolder(View itemView) {
             super(itemView);
-            txtViewChapterNo = (TextView) itemView.findViewById(R.id.chapterTxt);
+            txtViewChapterNo = (TextView) itemView.findViewById(R.id.chapterTxtApi);
             txtViewTitle = (TextView) itemView.findViewById(R.id.chapterTitle);
             txtViewDescription = (TextView) itemView.findViewById(R.id.chapterDescription);
         }
 
-        public void bind(final ChapterModel chapter,
-                         final RecyclerViewAdapterChapter.OnItemClickListener listener) {
-            txtViewDescription.setText(chapter.getChapterDescription());
-            txtViewChapterNo.setText(chapter.getChapterNo());
-            txtViewTitle.setText(chapter.getChapterName());
+        public void bind(final ChapterResponseModel chapter,
+                         final OnItemClickListener listener) {
+            txtViewDescription.setText(chapter.getContent());
+            txtViewTitle.setText(chapter.getTitle());
+
+            txtViewChapterNo.setText(String.valueOf(chapter.getId()));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

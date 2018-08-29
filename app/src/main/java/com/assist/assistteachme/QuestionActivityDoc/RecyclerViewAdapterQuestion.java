@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.assist.assistteachme.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by anairda on 8/21/2018.
@@ -18,15 +18,15 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
 
 
     public interface OnItemClickListener {
-        void onQuestionrClick(QuestionModel question);
+        void onQuestionrClick(QuestionResponseModel question);
     }
 
-    private final List<QuestionModel> question;
+    private final ArrayList<QuestionResponseModel> question;
     private final RecyclerViewAdapterQuestion.OnItemClickListener listener;
 
 
-    public RecyclerViewAdapterQuestion(List<QuestionModel> question,
-                                       RecyclerViewAdapterQuestion.OnItemClickListener listener) {
+    public RecyclerViewAdapterQuestion(ArrayList<QuestionResponseModel> question,
+                                       QuestionActivity listener) {
 
         this.question = question;
         this.listener = listener;
@@ -35,7 +35,7 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
 
 
     @Override
-    public RecyclerViewAdapterQuestion.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
         View view = LayoutInflater.from(parent.getContext()).
@@ -75,13 +75,13 @@ public class RecyclerViewAdapterQuestion extends RecyclerView.Adapter<RecyclerVi
 
         }
 
-        public void bind(final QuestionModel question,
+        public void bind(final QuestionResponseModel question,
                          final RecyclerViewAdapterQuestion.OnItemClickListener listener) {
             txtViewQuestion.setText(question.getQuestion());
-            txtViewAnswerOne.setText(question.getAnswer_one());
+          /*  txtViewAnswerOne.setText(question.getAnswer_one());
             txtViewAnswerTwo.setText(question.getAnswer_two());
             txtViewAnswerThree.setText(question.getAnswer_three());
-
+*/
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -1,6 +1,8 @@
 package com.assist.assistteachme.MainViewDoc;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.assist.assistteachme.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by anairda on 8/25/2018.
@@ -73,7 +76,6 @@ public class RecyclerViewAdapterMainView extends RecyclerView.Adapter<RecyclerVi
         private TextView txtViewTitle;
         private LinearLayout mLinearLayout;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -87,6 +89,11 @@ public class RecyclerViewAdapterMainView extends RecyclerView.Adapter<RecyclerVi
 
             txtViewTitle.setText(category.getCategoryName());
             mLinearLayout.setBackground(Drawable.createFromPath(category.getBackground()));
+
+
+
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

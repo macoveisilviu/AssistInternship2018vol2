@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.assist.assistteachme.LoginActivityDoc.LoginActivity;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
@@ -108,8 +109,14 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
                 .getToken()).enqueue(new Callback<SignUpResponseModel>() {
             @Override
             public void onResponse(Call<SignUpResponseModel> call, Response<SignUpResponseModel> response) {
-                name.setHint(response.body().getFirstName());
-                email.setHint(response.body().getMail());
+
+                if (response.code() == 200) {
+                    String fullname = response.body().getFirstName().concat(" ").concat(response.body().getLastName());
+                    name.setHint(fullname);
+                    email.setHint(response.body().getMail());
+                } else {
+                    Toast.makeText(AccountActivity.this, "Server is not working!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -382,7 +389,7 @@ public class AccountActivity extends AppCompatActivity implements RecyclerViewAd
 
     private void deletePoints(Courses courses) {
         int deleteNoPoint = courses.getPoints();
-        Log.d("deleteNoPoints" ,""+deleteNoPoint);
+        Log.d("deleteNoPoints", "" + deleteNoPoint);
         int finalpoints;
         TextView pointsNav = (TextView) findViewById(R.id.points);
         int totalPoints = Integer.parseInt(pointsNav.getText().toString());

@@ -15,17 +15,24 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.assist.assistteachme.CongratsActivity;
 import com.assist.assistteachme.MainViewDoc.MainViewActivity;
 import com.assist.assistteachme.MyAccountDoc.AccountActivity;
+import com.assist.assistteachme.Network.RestClient;
 import com.assist.assistteachme.R;
+import com.assist.assistteachme.User;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QuestionActivity extends AppCompatActivity implements RecyclerViewAdapterQuestion.OnItemClickListener {
     DrawerLayout drawer;
     ImageButton btnMenu;
     RecyclerView recyclerView;
-    ArrayList<QuestionModel> list = new ArrayList<QuestionModel>();
+    ArrayList<QuestionResponseModel> questionList = new ArrayList<QuestionResponseModel>();
     Button nextChapter;
 
     @Override
@@ -34,12 +41,46 @@ public class QuestionActivity extends AppCompatActivity implements RecyclerViewA
         setContentView(R.layout.activity_question);
         initVariables();
         buttonsOnClick();
-        populateDummyData();
-        recyclerViewInit();
+        populateDataApi();
         buttonsInit();
 
 
     }//onCReate
+
+
+    public void populateDataApi() {
+        Intent intent = QuestionActivity.this.getIntent();
+        Integer chapterId = 0;
+
+        chapterId = intent.getIntExtra("chapterId", 0);
+        Log.d("coursesIdd", "" + chapterId);
+
+        RestClient.networkHandler().getQuestionApi(User.getInstance().getLoginResponseModel().getToken(), chapterId).
+                enqueue(new Callback<ArrayList<QuestionResponseModel>>() {
+
+                    @Override
+                    public void onResponse(Call<ArrayList<QuestionResponseModel>> call,
+                                           Response<ArrayList<QuestionResponseModel>> response) {
+
+                        if (response.code() == 200) {
+                            questionList = response.body();
+
+                            recyclerViewInit(questionList);
+                            Log.d("coursesResponse:", " " + questionList);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<QuestionResponseModel>> call, Throwable t) {
+
+                    }
+
+
+                });
+
+    }
+
 
     public void clickButtonView(View view) {
         TextView coursesNav = (TextView) findViewById(R.id.coursesNav);
@@ -90,44 +131,25 @@ public class QuestionActivity extends AppCompatActivity implements RecyclerViewA
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(QuestionActivity.this, QuestionFinishActivity.class));
+                startActivity(new Intent(QuestionActivity.this, CongratsActivity.class));
 
 
             }
         });
     }
 
-    private void recyclerViewInit() {
+    private void recyclerViewInit(ArrayList<QuestionResponseModel> questionList) {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(QuestionActivity.this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new RecyclerViewAdapterQuestion(list, this));
+        recyclerView.setAdapter(new RecyclerViewAdapterQuestion(questionList, this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void populateDummyData() {
-
-        QuestionModel one = new QuestionModel("Where Can You Find Unique Myspace Layouts Nowadays?",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive");
-        QuestionModel two = new QuestionModel("Where Can You Find Unique Myspace Layouts Nowadays?",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive");
-        QuestionModel three = new QuestionModel("Where Can You Find Unique Myspace Layouts Nowadays?",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive",
-                "From Wetlands To Canals And Dams Amsterdam Is Alive");
-
-        list.add(one);
-        list.add(two);
-        list.add(three);
-    }
 
     @Override
-    public void onQuestionrClick(QuestionModel question) {
+    public void onQuestionrClick(QuestionResponseModel question) {
 
     }
 }

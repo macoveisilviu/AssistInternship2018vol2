@@ -2,12 +2,14 @@
 package com.assist.assistteachme.CoursesActivityDoc;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.assist.assistteachme.Network.RestClient;
 import com.assist.assistteachme.R;
 import com.bumptech.glide.Glide;
 
@@ -86,8 +88,12 @@ public class RecyclerViewAdapterCourses extends RecyclerView.Adapter<RecyclerVie
             txtViewDescription.setText(courses.getDescription());
             txtViewTitle.setText(courses.getTitle());
 
+            RestClient baseUrl=new RestClient();
+            String path=baseUrl.getBaseUrl().concat("/").concat(courses.getPath());
+            Log.d("path:",""+path);
 
-          // Glide.with(itemView.getContext()).load(courses.getPath().into(imgViewCourse));
+
+           Glide.with(itemView.getContext()).load(path).into(imgViewCourse);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

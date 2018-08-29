@@ -1,5 +1,6 @@
 package com.assist.assistteachme.QuestionActivityDoc;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 
 import com.assist.assistteachme.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by anairda on 8/22/2018.
@@ -18,26 +19,26 @@ public class RecyclerViewAdapterQuestionFinish extends RecyclerView.Adapter<Recy
 
 
     public interface OnItemClickListener {
-        void onQuestionrClick(QuestionModel question);
+        void onQuestionrClick(QuestionFinishResponseModel questionFinish);
     }
 
-    private final List<QuestionModel> question;
+    private final ArrayList<QuestionFinishResponseModel> questionFinish;
     private final RecyclerViewAdapterQuestionFinish.OnItemClickListener listener;
 
 
-    public RecyclerViewAdapterQuestionFinish(List<QuestionModel> question,
+    public RecyclerViewAdapterQuestionFinish(ArrayList<QuestionFinishResponseModel> questionFinish,
                                              RecyclerViewAdapterQuestionFinish.OnItemClickListener listener) {
 
-        this.question = question;
+        this.questionFinish = questionFinish;
         this.listener = listener;
 
     }
 
 
+
+
     @Override
-    public RecyclerViewAdapterQuestionFinish.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.element_adapter_question_finish_activity, parent, false);
 
@@ -48,14 +49,16 @@ public class RecyclerViewAdapterQuestionFinish extends RecyclerView.Adapter<Recy
 
     @Override
     public void onBindViewHolder(RecyclerViewAdapterQuestionFinish.ViewHolder holder, int position) {
-        holder.bind(question.get(position), listener);
+        holder.bind(questionFinish.get(position), listener);
 
 
     }
 
+
+
     @Override
     public int getItemCount() {
-        return question.size();
+        return questionFinish.size();
     }
 
 
@@ -75,17 +78,18 @@ public class RecyclerViewAdapterQuestionFinish extends RecyclerView.Adapter<Recy
 
         }
 
-        public void bind(final QuestionModel question,
+        public void bind(final QuestionFinishResponseModel questionFinish,
                          final RecyclerViewAdapterQuestionFinish.OnItemClickListener listener) {
-            txtViewQuestion.setText(question.getQuestion());
-            txtViewAnswerOne.setText(question.getAnswer_one());
+            txtViewQuestion.setText(questionFinish.getQuestion());
+ /* txtViewAnswerOne.setText(question.getAnswer_one());
             txtViewAnswerTwo.setText(question.getAnswer_two());
             txtViewAnswerThree.setText(question.getAnswer_three());
+*/
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onQuestionrClick(question);
+                    listener.onQuestionrClick(questionFinish);
                 }
             });
         }

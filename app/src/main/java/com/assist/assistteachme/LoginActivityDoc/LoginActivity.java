@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         buttonsClick();
 
 
-
     }// onCreate
 
     private void autoLogin() {
