@@ -22,10 +22,19 @@ import android.widget.Toast;
 
 import com.assist.assistteachme.Adapters.ChapterQuestionsAdapter;
 import com.assist.assistteachme.Adapters.RecycleViewAdaptersC;
+import com.assist.assistteachme.Models.CategoriesRecive;
 import com.assist.assistteachme.Models.ChapterQuestion;
+import com.assist.assistteachme.Models.ChapterRecive;
 import com.assist.assistteachme.Models.Course;
+import com.assist.assistteachme.Models.QuizesRecive;
+import com.assist.assistteachme.Models.User;
+import com.assist.assistteachme.Network.RestClient;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChapterScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +52,7 @@ public class ChapterScreenActivity extends AppCompatActivity
     private RecyclerView recycleView;
     private ChapterQuestionsAdapter chapterQuestionsAdapter;
 
+    private ArrayList<ChapterRecive> chapterReciveArrayList;
     private ArrayList<ChapterQuestion> listQuestions;
 
     @Override
@@ -60,6 +70,7 @@ public class ChapterScreenActivity extends AppCompatActivity
         listQuestions = new ArrayList<>();
 
         populateWithDummyData();
+       // questionsToApi();
 
         chapterQuestionsAdapter = new ChapterQuestionsAdapter( listQuestions,this);
         recycleView.setAdapter(chapterQuestionsAdapter);
@@ -187,4 +198,28 @@ public class ChapterScreenActivity extends AppCompatActivity
             listQuestions.add(c);
         }
     }
+
+    public void questionsToApi(){
+        RestClient.networkHandler().getChapters().enqueue(new Callback<ArrayList<ChapterRecive>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ChapterRecive>> call, Response<ArrayList<ChapterRecive>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ChapterRecive>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public ChapterRecive findChapter(int codeIsIn) {
+        for(ChapterRecive carnet :chapterReciveArrayList) {
+            if(carnet.getCourseId()==(codeIsIn)) {
+                return carnet;
+            }
+        }
+        return null;
+    }
+
 }

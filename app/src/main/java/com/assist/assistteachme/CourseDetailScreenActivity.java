@@ -21,10 +21,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.assist.assistteachme.Adapters.RecycleViewAdaptersC;
+import com.assist.assistteachme.Models.CategoriesRecive;
+import com.assist.assistteachme.Models.ChapterRecive;
 import com.assist.assistteachme.Models.Course;
+import com.assist.assistteachme.Models.User;
+import com.assist.assistteachme.Network.RestClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CourseDetailScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +50,7 @@ public class CourseDetailScreenActivity extends AppCompatActivity
     private RecycleViewAdaptersC adaptersC;
 
     private ArrayList<Course> listCourse;
+    private ArrayList<ChapterRecive> chapterReciveArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +63,8 @@ public class CourseDetailScreenActivity extends AppCompatActivity
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         listCourse = new ArrayList<>();
 
-        populateWithDummyData();
+        //populateWithDummyData();
+        chapterToApi();
 
         adaptersC = new RecycleViewAdaptersC( listCourse,this);
         recycleView.setAdapter(adaptersC);
@@ -185,6 +195,35 @@ public class CourseDetailScreenActivity extends AppCompatActivity
             Course c= new Course("chapter"+i,"subtitlu","asdasdsadasd asdasd asda dasd asd asda as dasd  sfgafas  ajsdg ajhdg j gdajshd kad asjhdg jahsd jasd sadasd asd asd a dsa sda asd asd asd asd asd asd asdasd .");
             listCourse.add(c);
         }
+    }
+
+    public void chapterToApi(){
+        RestClient.networkHandler().getChapters().enqueue(new Callback<ArrayList<ChapterRecive>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ChapterRecive>> call, Response<ArrayList<ChapterRecive>> response) {
+                User.INSTANCE.setChapterReciveArrayList(response.body());
+                chapterReciveArrayList=User.INSTANCE.getChapterReciveArrayList();
+                //Toast.makeText(context," "+User.INSTANCE.getCourseId(),Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()){
+                    for(int i=0;i<chapterReciveArrayList.size();i++){
+                        if(chapterReciveArrayList.get(i).getCourseId()==User.INSTANCE.getCourseId()){
+                            Course c = new Course(chapterReciveArrayList.get(i).getName(),chapterReciveArrayList.get(i).getName(),chapterReciveArrayList.get(i).getContent());
+                            listCourse.add(c);
+                            User.INSTANCE.setChapterId(chapterReciveArrayList.get(i).getId());
+
+                            //Toast.makeText(context," "+chapterReciveArrayList.get(i).getId(),Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                    adaptersC.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ChapterRecive>> call, Throwable t) {
+
+            }
+        });
     }
 
 }

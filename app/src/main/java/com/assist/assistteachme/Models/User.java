@@ -2,48 +2,22 @@ package com.assist.assistteachme.Models;
 
 import java.util.ArrayList;
 
-public enum User {
+public enum  User {
     INSTANCE;
 
-    User() {
+    User(){}
+
+    private String token;
+
+    public String getToken() {
+        return token;
     }
 
-    private String firstname;
-    private String lastname;
-    private String email;
-    private String password;
-
-    public String getFirstname() {
-        return firstname;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    ArrayList<ChapterRecive> chapterReciveArrayList;
 
     public ArrayList<ChapterRecive> getChapterReciveArrayList() {
         return chapterReciveArrayList;
@@ -52,6 +26,24 @@ public enum User {
     public void setChapterReciveArrayList(ArrayList<ChapterRecive> chapterReciveArrayList) {
         this.chapterReciveArrayList = chapterReciveArrayList;
     }
+    private int courseId;
 
-    ArrayList<ChapterRecive> chapterReciveArrayList;
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    private int chapterId;
+
+    public int getChapterId() {
+        return chapterId;
+    }
+
+    public void setChapterId(int chapterId) {
+        this.chapterId = chapterId;
+    }
+
 }
